@@ -1,3 +1,21 @@
+fn parse_report(report: &[i32]) -> (i32, i32) {
+    let mut front = 1111;
+    let mut back = 2222;
+    for tfront in report.iter() {
+        for tback in report.iter() {
+            if tfront + tback == 2020 {
+                front = *tfront;
+                back = *tback;
+                break;
+            }
+        }
+        if tfront + back == 2020 {
+            break;
+        }
+    }
+    (front, back)
+}
+
 fn main() {
     let report = vec![
         1721,
@@ -16,12 +34,6 @@ fn main() {
         1801,
         1802,
     ];
-    for front in report.iter() {
-        for back in report.iter() {
-            if front + back == 2020 {
-                println!("{} {} {}", front, back, front * back);
-            }
-        }
-    }
-    println!("Hello World!");
+    let (front, back) = parse_report(&report);
+    println!("{} {} {} {}", front, back, front + back, front * back);
 }
