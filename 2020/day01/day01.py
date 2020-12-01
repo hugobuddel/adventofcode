@@ -45,9 +45,15 @@ def find_2020(report: List[int]) -> int:
     report_reversed = iter(reversed(sorted(report)))
     front = next(report_sorted)
     back = next(report_reversed)
-    print(front, back)
+    while (the_sum := front + back) != 2020:
+        if the_sum < 2020:
+            front = next(report_sorted)
+        else:
+            back = next(report_reversed)
 
-    return front * back
+    solution = front * back
+    print("Found:", front, back, the_sum, solution)
+    return solution
 
 
 def test_example():
