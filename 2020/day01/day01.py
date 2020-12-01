@@ -57,6 +57,7 @@ def find_2020(report: List[int]) -> int:
 
 
 def test_example():
+    """Test with example."""
     report = [
         1721,
         979,
@@ -78,5 +79,15 @@ def test_example():
     assert fix == 514579
 
 
+def day01():
+    """Solve day 1."""
+    report = [
+        int(c)
+        for c in open('input.txt').readlines()
+    ]
+    print(find_2020(report))
+
+
 if __name__ == '__main__':
     test_example()
+    day01()
