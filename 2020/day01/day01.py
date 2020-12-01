@@ -68,6 +68,11 @@ def find_2020(report: List[int]) -> int:
     return solution
 
 
+def find_2020_three(report: List[int]) -> int:
+    """Return product of three entries that sum to 2020."""
+    return report[0]
+
+
 def test_example():
     """Test with example."""
     report = [
@@ -89,6 +94,8 @@ def test_example():
     ]
     fix = find_2020(report)
     assert fix == 514579
+    fix3 = find_2020_three(report)
+    assert fix3 == 241861950
 
 
 def day01():
