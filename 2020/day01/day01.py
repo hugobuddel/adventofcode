@@ -51,14 +51,14 @@ In your expense report, what is the product of the three entries that sum to
 from typing import List
 
 
-def find_2020(report: List[int]) -> int:
-    """Return product of two entries that sum to 2020."""
+def find_sum(report: List[int], sum_wanted) -> int:
+    """Product of two numbers that sum to sum_wanted."""
     report_sorted = iter(sorted(report))
     report_reversed = iter(reversed(sorted(report)))
     front = next(report_sorted)
     back = next(report_reversed)
-    while (the_sum := front + back) != 2020:
-        if the_sum < 2020:
+    while (the_sum := front + back) != sum_wanted:
+        if the_sum < sum_wanted:
             front = next(report_sorted)
         else:
             back = next(report_reversed)
@@ -68,8 +68,13 @@ def find_2020(report: List[int]) -> int:
     return solution
 
 
+def find_2020(report: List[int]) -> int:
+    """Return product of two entries that sum to 2020."""
+    return find_sum(report, 2020)
+
+
 def find_2020_three(report: List[int]) -> int:
-    """Return product of three entries that sum to 2020."""
+    """Return product of two entries that sum to 2020."""
     return report[0]
 
 
