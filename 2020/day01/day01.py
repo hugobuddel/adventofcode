@@ -58,6 +58,15 @@ def test_example():
         299,
         675,
         1456,
+        # Added because otherwise solution is immediately found:
+        1,
+        2,
+        3,
+        4,
+        5,
+        1800,
+        1801,
+        1802,
     ]
     fix = find_2020(report)
     assert fix == 514579
