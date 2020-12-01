@@ -48,23 +48,27 @@ In your expense report, what is the product of the three entries that sum to
 2020?
 """
 
-from typing import List
+from typing import List, Optional
 
 
-def find_sum(report: List[int], sum_wanted) -> int:
+def find_sum(report: List[int], sum_wanted) -> Optional[int]:
     """Product of two numbers that sum to sum_wanted."""
     report_sorted = iter(sorted(report))
     report_reversed = iter(reversed(sorted(report)))
     front = next(report_sorted)
     back = next(report_reversed)
-    while (the_sum := front + back) != sum_wanted:
+    while (the_sum := front + back) != sum_wanted and front < back:
         if the_sum < sum_wanted:
             front = next(report_sorted)
         else:
             back = next(report_reversed)
 
-    solution = front * back
-    print("Found:", front, back, the_sum, solution)
+    if the_sum == sum_wanted:
+        solution = front * back
+        print("Found:", front, back, the_sum, solution)
+    else:
+        solution = None
+
     return solution
 
 
@@ -75,7 +79,12 @@ def find_2020(report: List[int]) -> int:
 
 def find_2020_three(report: List[int]) -> int:
     """Return product of two entries that sum to 2020."""
-    return report[0]
+
+    front, *report = report
+    while not (solution_two := find_sum(report, 2020 - front)):
+        front, *report = report
+
+    return front * solution_two
 
 
 def test_example():
@@ -110,6 +119,7 @@ def day01():
         for c in open('input.txt').readlines()
     ]
     print(find_2020(report))
+    print(find_2020_three(report))
 
 
 if __name__ == '__main__':
