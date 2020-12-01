@@ -39,11 +39,15 @@ Of course, your expense report is much larger. Find the two entries that sum to
 from typing import List
 
 
-def find_2020(report: List[int]):
+def find_2020(report: List[int]) -> int:
     """Return product of two entries that sum to 2020."""
-    report_sorted = list(sorted(report))
-    forward = True
-    return report
+    report_sorted = iter(sorted(report))
+    report_reversed = iter(reversed(sorted(report)))
+    front = next(report_sorted)
+    back = next(report_reversed)
+    print(front, back)
+
+    return front * back
 
 
 def test_example():
