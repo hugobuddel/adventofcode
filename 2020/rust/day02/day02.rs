@@ -148,4 +148,10 @@ fn main() {
         }
     }
 
+    if let Ok(entries6) = read_lines("./input") {
+        let entries7 = entries6.map(|x| Password::from_str(&x.unwrap()));
+        let bad_entries = entries7.filter(|x| ! x.validate());
+        println!("Number of bad entries: {}", bad_entries.collect::<Vec<_>>().len());
+    }
+
 }
