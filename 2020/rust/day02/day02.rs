@@ -86,7 +86,11 @@ fn main() {
     ).collect::<Vec<_>>();
     println!("{:?}", entries2);
     let entries3 = entries2.iter().map(
-        |a| a
+        |abc| (
+            abc[0].split("-").map(|a| a.parse::<i32>().unwrap()).collect::<Vec<i32>>(),
+            abc[1].trim_end_matches(":"),
+            abc[2],
+        )
     ).collect::<Vec<_>>();
     println!("{:?}", entries3);
 }
