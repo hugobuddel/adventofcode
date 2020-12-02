@@ -73,15 +73,17 @@
 
 #[derive(Debug)]
 struct Password {
-    minimum: i32,
-    maximum: i32,
-    letter: String,
+    minimum: usize,
+    maximum: usize,
+    letter: char,
     password: String,
 }
 
 impl Password {
     fn validate(&self) -> bool {
-        false
+        let the_count = self.password.chars().filter(|x| *x == self.letter).count();
+        println!("The count {}", the_count);
+        self.minimum < the_count
     }
 }
 
@@ -100,7 +102,7 @@ fn main() {
     println!("{:?}", entries2);
     let entries3 = entries2.iter().map(
         |abc| (
-            abc[0].split("-").map(|a| a.parse::<i32>().unwrap()).collect::<Vec<i32>>(),
+            abc[0].split("-").map(|a| a.parse::<usize>().unwrap()).collect::<Vec<usize>>(),
             abc[1].trim_end_matches(":"),
             abc[2],
         )
@@ -112,7 +114,7 @@ fn main() {
             Password {
                 minimum: abc.0[0],
                 maximum: abc.0[1],
-                letter: abc.1.to_string(),
+                letter: abc.1.chars().nth(0).unwrap(),
                 password: abc.2.to_string(),
             }
         )
