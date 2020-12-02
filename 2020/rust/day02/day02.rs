@@ -169,34 +169,14 @@ fn main() {
         }
     }
 
-    // let file = File::open("./input").expect("Cannot read file.");
-    // let entries5 = io::BufReader::new(file);
-    if let Ok(entries5) = read_lines("./input") {
-        for entry in entries5 {
-            let entry2 = entry.unwrap();
-            let pw = Password::from_str(&entry2);
-            if ! pw.validate() {
-                // println!("Bad: {:?}", entry2);
-            }
-        }
-    }
-
     if let Ok(entries6) = read_lines("./input") {
-        let entries7 = entries6.map(|x| Password::from_str(&x.unwrap()));
-        let good_entries = entries7.filter(|x| x.validate());
-        println!("Number of good entries: {}", good_entries.collect::<Vec<_>>().len());
-    }
-
-    if let Ok(entries6) = read_lines("./input") {
-        let entries7 = entries6.map(|x| Password::from_str(&x.unwrap()));
-        let bad_entries = entries7.filter(|x| ! x.validate());
-        println!("Number of bad entries: {}", bad_entries.collect::<Vec<_>>().len());
-    }
-
-    if let Ok(entries6) = read_lines("./input") {
-        let entries7 = entries6.map(|x| Password::from_str(&x.unwrap()));
-        let good_entries = entries7.filter(|x| x.validate_toboggan());
-        println!("Number of good entries tobbogan: {}", good_entries.collect::<Vec<_>>().len());
+        let entries7 = entries6.map(|x| Password::from_str(&x.unwrap())).collect::<Vec<_>>();
+        let entries_good = entries7.iter().filter(|x| x.validate());
+        println!("Number of good entries: {}", entries_good.collect::<Vec<_>>().len());
+        let entries_bad = entries7.iter().filter(|x| ! x.validate());
+        println!("Number of bad entries: {}", entries_bad.collect::<Vec<_>>().len());
+        let entries_good_tobbogan = entries7.iter().filter(|x| x.validate_toboggan());
+        println!("Number of good entries tobbogan: {}", entries_good_tobbogan.collect::<Vec<_>>().len());
     }
 
 }
