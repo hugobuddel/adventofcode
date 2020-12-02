@@ -82,8 +82,8 @@ struct Password {
 impl Password {
     fn validate(&self) -> bool {
         let the_count = self.password.chars().filter(|x| *x == self.letter).count();
-        println!("The count {}", the_count);
-        self.minimum < the_count
+        // println!("The count {}", the_count);
+        (self.minimum <= the_count) & (the_count <= self.maximum)
     }
 }
 
