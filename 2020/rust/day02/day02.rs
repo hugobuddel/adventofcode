@@ -85,6 +85,21 @@ impl Password {
         // println!("The count {}", the_count);
         (self.minimum <= the_count) & (the_count <= self.maximum)
     }
+
+    fn from_str(x: &str) -> Password {
+        let abc1 = x.split(" ").collect::<Vec<&str>>();
+        let abc2 = (
+            abc1[0].split("-").map(|a| a.parse::<usize>().unwrap()).collect::<Vec<usize>>(),
+            abc1[1].trim_end_matches(":"),
+            abc1[2],
+        );
+        Password {
+            minimum: abc2.0[0],
+            maximum: abc2.0[1],
+            letter: abc2.1.chars().nth(0).unwrap(),
+            password: abc2.2.to_string(),
+        }
+    }
 }
 
 fn main() {
@@ -96,28 +111,8 @@ fn main() {
         "2-9 c: ccccccccc",
     ];
     println!("{:?}", entries1);
-    let entries2 = entries1.iter().map(
-        |x| x.split(" ").collect::<Vec<&str>>()
-    ).collect::<Vec<_>>();
-    println!("{:?}", entries2);
-    let entries3 = entries2.iter().map(
-        |abc| (
-            abc[0].split("-").map(|a| a.parse::<usize>().unwrap()).collect::<Vec<usize>>(),
-            abc[1].trim_end_matches(":"),
-            abc[2],
-        )
-    ).collect::<Vec<_>>();
-    println!("{:?}", entries3);
-    println!("{:?}", entries3[0].0);
-    let entries4 = entries3.iter().map(
-        |abc| (
-            Password {
-                minimum: abc.0[0],
-                maximum: abc.0[1],
-                letter: abc.1.chars().nth(0).unwrap(),
-                password: abc.2.to_string(),
-            }
-        )
+    let entries4 = entries1.iter().map(
+        |x| Password::from_str(x)
     ).collect::<Vec<_>>();
     println!("{:?}", entries4);
 
