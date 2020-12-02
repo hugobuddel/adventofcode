@@ -71,6 +71,13 @@
 //
 // How many passwords are valid according to their policies?
 
+#[derive(Debug)]
+struct Password {
+    minimum: i32,
+    maximum: i32,
+    // letter: String,
+    // password: String,
+}
 
 fn main() {
     println!("Advent of Code 2020 Day 2");
@@ -93,4 +100,15 @@ fn main() {
         )
     ).collect::<Vec<_>>();
     println!("{:?}", entries3);
+
+    let entries4 = entries3.iter().map(
+        |abc| (
+            Password {
+                minimum: 0,
+                maximum: 1,
+            }
+        )
+    ).collect::<Vec<_>>();
+    println!("{:?}", entries4)
+
 }
