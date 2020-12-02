@@ -74,4 +74,19 @@
 
 fn main() {
     println!("Advent of Code 2020 Day 2");
+
+    let entries1 = vec![
+        "1-3 a: abcde",
+        "1-3 b: cdefg",
+        "2-9 c: ccccccccc",
+    ];
+    println!("{:?}", entries1);
+    let entries2 = entries1.iter().map(
+        |x| x.split(" ").collect::<Vec<&str>>()
+    ).collect::<Vec<_>>();
+    println!("{:?}", entries2);
+    let entries3 = entries2.iter().map(
+        |a| a
+    ).collect::<Vec<_>>();
+    println!("{:?}", entries3);
 }
