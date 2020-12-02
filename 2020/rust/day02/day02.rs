@@ -71,6 +71,10 @@
 //
 // How many passwords are valid according to their policies?
 
+use std::fs::File;
+use std::io::{self, BufRead};
+use std::path::Path;
+
 #[derive(Debug)]
 struct Password {
     minimum: usize,
@@ -102,6 +106,16 @@ impl Password {
     }
 }
 
+// from https://doc.rust-lang.org/stable/rust-by-example/std_misc/file/read_lines.html
+// The output is wrapped in a Result to allow matching on errors
+// Returns an Iterator to the Reader of the lines of the file.
+fn read_lines<P>(filename: P) -> io::Result<io::Lines<io::BufReader<File>>>
+where P: AsRef<Path>, {
+    let file = File::open(filename)?;
+    Ok(io::BufReader::new(file).lines())
+}
+
+
 fn main() {
     println!("Advent of Code 2020 Day 2");
 
@@ -110,15 +124,29 @@ fn main() {
         "1-3 b: cdefg",
         "2-9 c: ccccccccc",
     ];
-    println!("{:?}", entries1);
+    // println!("{:?}", entries1);
     let entries4 = entries1.iter().map(
         |x| Password::from_str(x)
     ).collect::<Vec<_>>();
-    println!("{:?}", entries4);
+    // println!("{:?}", entries4);
 
     for entry in entries4 {
         if ! entry.validate() {
             println!("Bad entry: {:?}", entry);
         }
     }
+
+    // let file = File::open("./input").expect("Cannot read file.");
+    // let entries5 = io::BufReader::new(file);
+    if let Ok(entries5) = read_lines("./input") {
+        for entry in entries5 {
+            println!("{:?}", entry);
+            let pw = Password::from_str(&entry.unwrap());
+            if ! pw.validate() {
+                // println!("Bad: {:?}", entry);
+                println!("Bad");
+            }
+        }
+    }
+
 }
