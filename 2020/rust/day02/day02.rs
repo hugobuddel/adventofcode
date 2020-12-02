@@ -75,8 +75,8 @@
 struct Password {
     minimum: i32,
     maximum: i32,
-    // letter: String,
-    // password: String,
+    letter: String,
+    password: String,
 }
 
 fn main() {
@@ -100,12 +100,14 @@ fn main() {
         )
     ).collect::<Vec<_>>();
     println!("{:?}", entries3);
-
+    println!("{:?}", entries3[0].0);
     let entries4 = entries3.iter().map(
         |abc| (
             Password {
-                minimum: 0,
-                maximum: 1,
+                minimum: abc.0[0],
+                maximum: abc.0[1],
+                letter: abc.1.to_string(),
+                password: abc.2.to_string(),
             }
         )
     ).collect::<Vec<_>>();
