@@ -115,6 +115,14 @@ impl Password {
         (self.minimum <= the_count) & (the_count <= self.maximum)
     }
 
+    // Either the character at position 'minimum' or at position 'maximum'
+    // must be 'letter'. 1-based indexing.
+    fn validate_toboggan(&self) -> bool {
+        // println!("Testing {:?}", self);
+        (self.password.chars().nth(self.minimum - 1).unwrap() == self.letter) ^
+            (self.password.chars().nth(self.maximum - 1).unwrap() == self.letter)
+    }
+
     fn from_str(x: &str) -> Password {
         let abc1 = x.split(" ").collect::<Vec<&str>>();
         let abc2 = (
@@ -168,7 +176,7 @@ fn main() {
             let entry2 = entry.unwrap();
             let pw = Password::from_str(&entry2);
             if ! pw.validate() {
-                println!("Bad: {:?}", entry2);
+                // println!("Bad: {:?}", entry2);
             }
         }
     }
@@ -183,6 +191,12 @@ fn main() {
         let entries7 = entries6.map(|x| Password::from_str(&x.unwrap()));
         let bad_entries = entries7.filter(|x| ! x.validate());
         println!("Number of bad entries: {}", bad_entries.collect::<Vec<_>>().len());
+    }
+
+    if let Ok(entries6) = read_lines("./input") {
+        let entries7 = entries6.map(|x| Password::from_str(&x.unwrap()));
+        let good_entries = entries7.filter(|x| x.validate_toboggan());
+        println!("Number of good entries tobbogan: {}", good_entries.collect::<Vec<_>>().len());
     }
 
 }
