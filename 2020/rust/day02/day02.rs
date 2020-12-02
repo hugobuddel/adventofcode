@@ -140,11 +140,10 @@ fn main() {
     // let entries5 = io::BufReader::new(file);
     if let Ok(entries5) = read_lines("./input") {
         for entry in entries5 {
-            println!("{:?}", entry);
-            let pw = Password::from_str(&entry.unwrap());
+            let entry2 = entry.unwrap();
+            let pw = Password::from_str(&entry2);
             if ! pw.validate() {
-                // println!("Bad: {:?}", entry);
-                println!("Bad");
+                println!("Bad: {:?}", entry2);
             }
         }
     }
