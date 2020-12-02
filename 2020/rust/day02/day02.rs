@@ -79,6 +79,12 @@ struct Password {
     password: String,
 }
 
+impl Password {
+    fn validate(&self) -> bool {
+        false
+    }
+}
+
 fn main() {
     println!("Advent of Code 2020 Day 2");
 
@@ -111,6 +117,11 @@ fn main() {
             }
         )
     ).collect::<Vec<_>>();
-    println!("{:?}", entries4)
+    println!("{:?}", entries4);
 
+    for entry in entries4 {
+        if ! entry.validate() {
+            println!("Bad entry: {:?}", entry);
+        }
+    }
 }
