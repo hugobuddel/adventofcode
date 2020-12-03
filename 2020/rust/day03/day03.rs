@@ -69,6 +69,13 @@
 // Starting at the top-left corner of your map and following a slope of right 3
 // and down 1, how many trees would you encounter?
 
+fn slide(
+    map: &[&str],
+    slope: usize,
+) -> usize {
+    3
+}
+
 fn main() {
     println!("Advent of Code 2020 Day 3!");
     let map = vec![
@@ -87,7 +94,7 @@ fn main() {
     let slope: usize = 3;
     let mut x: usize = 0;
     let mut collisions: usize = 0;
-    for row in map {
+    for row in &map {
         // let mut result = String::with_capacity(row.len());
         let mut chars: Vec<char> = row.chars().collect();
         if chars[x] == '#' {
@@ -100,6 +107,11 @@ fn main() {
         x = x % row.len();
     }
     println!("Colissions: {}", collisions);
+    assert_eq!(collisions, 7, "Collisions should be 7.");
+
+    collisions = slide(&map, slope);
+    println!("Colissions: {}", collisions);
     assert_eq!(collisions, 7, "Collisions should be 7.")
+
 }
 
