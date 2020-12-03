@@ -73,7 +73,21 @@ fn slide(
     map: &[&str],
     slope: usize,
 ) -> usize {
-    3
+    let mut x: usize = 0;
+    let mut collisions: usize = 0;
+    for row in map {
+        // let mut result = String::with_capacity(row.len());
+        let mut chars: Vec<char> = row.chars().collect();
+        if chars[x] == '#' {
+            collisions += 1;
+        }
+        chars[x] = 'O';
+        let row2: String = chars.iter().collect();
+        println!("{:?}", row2);
+        x += slope;
+        x = x % row.len();
+    }
+    collisions
 }
 
 fn main() {
@@ -92,24 +106,7 @@ fn main() {
         ".#..#...#.#",
     ];
     let slope: usize = 3;
-    let mut x: usize = 0;
-    let mut collisions: usize = 0;
-    for row in &map {
-        // let mut result = String::with_capacity(row.len());
-        let mut chars: Vec<char> = row.chars().collect();
-        if chars[x] == '#' {
-            collisions += 1;
-        }
-        chars[x] = 'O';
-        let row2: String = chars.iter().collect();
-        println!("{:?}", row2);
-        x += slope;
-        x = x % row.len();
-    }
-    println!("Colissions: {}", collisions);
-    assert_eq!(collisions, 7, "Collisions should be 7.");
-
-    collisions = slide(&map, slope);
+    let collisions = slide(&map, slope);
     println!("Colissions: {}", collisions);
     assert_eq!(collisions, 7, "Collisions should be 7.")
 
