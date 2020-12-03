@@ -102,25 +102,31 @@ where P: AsRef<Path>, {
 }
 
 fn slide(
-    map: Vec<String>,
+    map: &Vec<String>,
     slopex: usize,
     slopey: usize,
 ) -> usize {
     let mut x: usize = 0;
     let mut collisions: usize = 0;
+    let mut ycounter: usize = 0;
     for row in map {
-        // let mut result = String::with_capacity(row.len());
         let mut chars: Vec<char> = row.chars().collect();
-        if chars[x] == '#' {
-            collisions += 1;
-            chars[x] = 'X';
-        } else {
-            chars[x] = 'O';
+        // let mut result = String::with_capacity(row.len());
+        // Only count rows that fit with slopey.
+        if ycounter == 0 {
+            if chars[x] == '#' {
+                collisions += 1;
+                chars[x] = 'X';
+            } else {
+                chars[x] = 'O';
+            }
+            x += slopex;
+            x = x % row.len();
         }
         let row2: String = chars.iter().collect();
         println!("{:?}", row2);
-        x += slopex;
-        x = x % row.len();
+        ycounter += 1;
+        ycounter = ycounter % slopey;
     }
     collisions
 }
@@ -143,9 +149,15 @@ fn main() {
     let slopex: usize = 3;
     let slopey: usize = 1;
 
-    let collisions = slide(map, slopex, slopey);
+    let collisions = slide(&map, slopex, slopey);
     println!("Colissions: {}", collisions);
     assert_eq!(collisions, 7, "Collisions should be 7.");
+
+    let slopex: usize = 1;
+    let slopey: usize = 2;
+    let collisions = slide(&map, slopex, slopey);
+    println!("Colissions: {}", collisions);
+    assert_eq!(collisions, 2, "Collisions should be 2.");
 
     if let Ok(map) = read_lines("./input.txt") {
         // let map2 = map.map(|x| x.unwrap().as_str()).collect::<Vec<_>>();
@@ -155,7 +167,7 @@ fn main() {
         ).collect::<Vec<String>>();
         let slopex: usize = 3;
         let slopey: usize = 1;
-        let collisions = slide(map2, slopex, slopey);
+        let collisions = slide(&map2, slopex, slopey);
         println!("Colissions: {}", collisions);
     }
 }
