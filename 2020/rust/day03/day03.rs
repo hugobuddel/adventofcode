@@ -69,6 +69,19 @@
 // Starting at the top-left corner of your map and following a slope of right 3
 // and down 1, how many trees would you encounter?
 
+use std::fs::File;
+use std::io::{self, BufRead};
+use std::path::Path;
+
+// from https://doc.rust-lang.org/stable/rust-by-example/std_misc/file/read_lines.html
+// The output is wrapped in a Result to allow matching on errors
+// Returns an Iterator to the Reader of the lines of the file.
+fn read_lines<P>(filename: P) -> io::Result<io::Lines<io::BufReader<File>>>
+where P: AsRef<Path>, {
+    let file = File::open(filename)?;
+    Ok(io::BufReader::new(file).lines())
+}
+
 fn slide(
     map: &[&str],
     slope: usize,
@@ -80,8 +93,10 @@ fn slide(
         let mut chars: Vec<char> = row.chars().collect();
         if chars[x] == '#' {
             collisions += 1;
+            chars[x] = 'X';
+        } else {
+            chars[x] = 'O';
         }
-        chars[x] = 'O';
         let row2: String = chars.iter().collect();
         println!("{:?}", row2);
         x += slope;
@@ -109,6 +124,5 @@ fn main() {
     let collisions = slide(&map, slope);
     println!("Colissions: {}", collisions);
     assert_eq!(collisions, 7, "Collisions should be 7.")
-
 }
 
