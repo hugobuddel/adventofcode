@@ -84,8 +84,16 @@ fn main() {
         "#...##....#",
         ".#..#...#.#",
     ];
+    let slope: usize = 3;
+    let mut x: usize = 0;
     for row in map {
-        println!("{:?}", row);
+        // let mut result = String::with_capacity(row.len());
+        let mut chars: Vec<char> = row.chars().collect();
+        chars[x] = 'O';
+        let row2: String = chars.iter().collect();
+        println!("{:?}", row2);
+        x += slope;
+        x = x % row.len();
     }
 }
 
