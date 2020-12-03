@@ -200,6 +200,34 @@ fn main() {
         let slopey: usize = 1;
         let collisions = slide(&map2, slopex, slopey);
         println!("Colissions: {}", collisions);
+
+        let slopex: usize = 1;
+        let slopey: usize = 1;
+        let collisions1 = slide(&map2, slopex, slopey);
+        println!("Colissions: {} {} {}", slopex, slopey, collisions1);
+
+        let slopex: usize = 3;
+        let slopey: usize = 1;
+        let collisions2 = slide(&map2, slopex, slopey);
+        println!("Colissions: {} {} {}", slopex, slopey, collisions2);
+
+        let slopex: usize = 5;
+        let slopey: usize = 1;
+        let collisions3 = slide(&map2, slopex, slopey);
+        println!("Colissions: {} {} {}", slopex, slopey, collisions3);
+
+        let slopex: usize = 7;
+        let slopey: usize = 1;
+        let collisions4 = slide(&map2, slopex, slopey);
+        println!("Colissions: {} {} {}", slopex, slopey, collisions4);
+
+        let slopex: usize = 1;
+        let slopey: usize = 2;
+        let collisions5 = slide(&map2, slopex, slopey);
+        println!("Colissions: {} {} {}", slopex, slopey, collisions5);
+
+        let collisions_prod = collisions1 * collisions2 * collisions3 * collisions4 * collisions5;
+        println!("Colissions Product: {}", collisions_prod);
     }
 }
 
