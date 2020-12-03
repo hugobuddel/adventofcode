@@ -83,7 +83,7 @@ where P: AsRef<Path>, {
 }
 
 fn slide(
-    map: &[&str],
+    map: Vec<String>,
     slope: usize,
 ) -> usize {
     let mut x: usize = 0;
@@ -107,7 +107,7 @@ fn slide(
 
 fn main() {
     println!("Advent of Code 2020 Day 3!");
-    let map = vec![
+    let map :Vec<String> = vec![
         "..##.......",
         "#...#...#..",
         ".#....#..#.",
@@ -119,10 +119,22 @@ fn main() {
         "#.##...#...",
         "#...##....#",
         ".#..#...#.#",
-    ];
+    ].iter().map(|x| x.to_string()).collect();
     let slope: usize = 3;
-    let collisions = slide(&map, slope);
+
+    let collisions = slide(map, slope);
     println!("Colissions: {}", collisions);
-    assert_eq!(collisions, 7, "Collisions should be 7.")
+    assert_eq!(collisions, 7, "Collisions should be 7.");
+
+    if let Ok(map) = read_lines("./input.txt") {
+        // let map2 = map.map(|x| x.unwrap().as_str()).collect::<Vec<_>>();
+        // let map2 = map.map(|x| &x.unwrap().as_str()).collect::<Vec<_>>();
+        let map2 = map.map(
+            |x| x.unwrap().chars().collect::<String>()
+        ).collect::<Vec<String>>();
+        let slope: usize = 3;
+        let collisions = slide(map2, slope);
+        println!("Colissions: {}", collisions);
+    }
 }
 
