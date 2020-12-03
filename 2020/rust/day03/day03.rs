@@ -103,7 +103,8 @@ where P: AsRef<Path>, {
 
 fn slide(
     map: Vec<String>,
-    slope: usize,
+    slopex: usize,
+    slopey: usize,
 ) -> usize {
     let mut x: usize = 0;
     let mut collisions: usize = 0;
@@ -118,7 +119,7 @@ fn slide(
         }
         let row2: String = chars.iter().collect();
         println!("{:?}", row2);
-        x += slope;
+        x += slopex;
         x = x % row.len();
     }
     collisions
@@ -139,9 +140,10 @@ fn main() {
         "#...##....#",
         ".#..#...#.#",
     ].iter().map(|x| x.to_string()).collect();
-    let slope: usize = 3;
+    let slopex: usize = 3;
+    let slopey: usize = 1;
 
-    let collisions = slide(map, slope);
+    let collisions = slide(map, slopex, slopey);
     println!("Colissions: {}", collisions);
     assert_eq!(collisions, 7, "Collisions should be 7.");
 
@@ -151,8 +153,9 @@ fn main() {
         let map2 = map.map(
             |x| x.unwrap().chars().collect::<String>()
         ).collect::<Vec<String>>();
-        let slope: usize = 3;
-        let collisions = slide(map2, slope);
+        let slopex: usize = 3;
+        let slopey: usize = 1;
+        let collisions = slide(map2, slopex, slopey);
         println!("Colissions: {}", collisions);
     }
 }
