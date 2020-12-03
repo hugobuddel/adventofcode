@@ -159,6 +159,37 @@ fn main() {
     println!("Colissions: {}", collisions);
     assert_eq!(collisions, 2, "Collisions should be 2.");
 
+    let map2 = map;
+    let slopex: usize = 1;
+    let slopey: usize = 1;
+    let collisions1 = slide(&map2, slopex, slopey);
+    println!("Colissions: {} {} {}", slopex, slopey, collisions1);
+
+    let slopex: usize = 3;
+    let slopey: usize = 1;
+    let collisions2 = slide(&map2, slopex, slopey);
+    println!("Colissions: {} {} {}", slopex, slopey, collisions2);
+
+    let slopex: usize = 5;
+    let slopey: usize = 1;
+    let collisions3 = slide(&map2, slopex, slopey);
+    println!("Colissions: {} {} {}", slopex, slopey, collisions3);
+
+    let slopex: usize = 7;
+    let slopey: usize = 1;
+    let collisions4 = slide(&map2, slopex, slopey);
+    println!("Colissions: {} {} {}", slopex, slopey, collisions4);
+
+    let slopex: usize = 1;
+    let slopey: usize = 2;
+    let collisions5 = slide(&map2, slopex, slopey);
+    println!("Colissions: {} {} {}", slopex, slopey, collisions5);
+
+    let collisions_prod = collisions1 * collisions2 * collisions3 * collisions4 * collisions5;
+    println!("Colissions Product: {}", collisions_prod);
+    assert_eq!(collisions_prod, 336, "Collisions Product should be 336.");
+
+
     if let Ok(map) = read_lines("./input.txt") {
         // let map2 = map.map(|x| x.unwrap().as_str()).collect::<Vec<_>>();
         // let map2 = map.map(|x| &x.unwrap().as_str()).collect::<Vec<_>>();
