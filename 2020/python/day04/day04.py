@@ -1,6 +1,6 @@
 print(len([
     pp
-    for passport in open("inputexample.txt").read().split("\n\n")
+    for passport in open("input.txt").read().split("\n\n")
     if len((pp := {
         field: value
         for (field, value) in [
