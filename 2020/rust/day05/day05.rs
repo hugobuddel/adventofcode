@@ -71,6 +71,7 @@ use std::convert::TryInto;
 use std::fs::File;
 use std::io::{self, BufRead};
 use std::path::Path;
+use std::collections::HashSet;
 
 // from https://doc.rust-lang.org/stable/rust-by-example/std_misc/file/read_lines.html
 // The output is wrapped in a Result to allow matching on errors
@@ -105,6 +106,11 @@ fn main() {
     assert_eq!(seat_id_from_partitioning("FFFBBBFRRR"), 119);
     assert_eq!(seat_id_from_partitioning("BBFFBBFRLL"), 820);
 
+    let mut seats = HashSet::new();
+    for s in 1..890 {
+        seats.insert(s);
+    }
+
     if let Ok(passes) = read_lines("./input.txt") {
         let mut seat_max: usize = 0;
         for rpartitioning in passes {
@@ -114,8 +120,13 @@ fn main() {
                     seat_max = seat_id;
                 }
                 println!("Pass:{:?} seat:{} max:{}", partitioning, seat_id, seat_max);
-
+                seats.remove(&seat_id);
             }
         }
     }
+
+    println!("Seats:{:?}", seats);
+    let mut seats_sorted = seats.into_iter().collect::<Vec<_>>();
+    seats_sorted.sort();
+    println!("Sorted:{:?}", seats_sorted);
 }
