@@ -54,12 +54,28 @@
 // As a sanity check, look through your list of boarding passes. What is the
 // highest seat ID on a boarding pass?
 
+use std::convert::TryInto;
+
 fn seat_id_from_partitioning(partitioning: &str) -> usize {
-    567
+    let mut seat_id: usize = 0;
+    let mut row: usize = 0;
+    let mut column: usize = 0;
+    for (i, letter) in partitioning.chars().enumerate() {
+        if letter == 'B' {
+            row += 2_usize.pow((6 - i).try_into().unwrap());
+        }
+        if letter == 'R' {
+            column += 2_usize.pow((9 - i).try_into().unwrap());
+        }
+        seat_id = row * 8 + column;
+        println!("i:{} letter:{} row:{} column:{} seat_id:{}", i, letter, row, column, seat_id);
+    }
+    seat_id
 }
 
 fn main() {
     println!("Advent of Code 2020 Day 5!");
+    assert_eq!(seat_id_from_partitioning("FBFBBFFRLR"), 357);
     assert_eq!(seat_id_from_partitioning("BFFFBBFRRR"), 567);
     assert_eq!(seat_id_from_partitioning("FFFBBBFRRR"), 119);
     assert_eq!(seat_id_from_partitioning("BBFFBBFRLL"), 820);
