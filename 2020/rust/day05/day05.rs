@@ -54,6 +54,13 @@
 // As a sanity check, look through your list of boarding passes. What is the
 // highest seat ID on a boarding pass?
 
+fn seat_id_from_partitioning(partitioning: &str) -> usize {
+    567
+}
+
 fn main() {
-    println!("Advent of Code 2020 Day 5!")
+    println!("Advent of Code 2020 Day 5!");
+    assert_eq!(seat_id_from_partitioning("BFFFBBFRRR"), 567);
+    assert_eq!(seat_id_from_partitioning("FFFBBBFRRR"), 119);
+    assert_eq!(seat_id_from_partitioning("BBFFBBFRLL"), 820);
 }
