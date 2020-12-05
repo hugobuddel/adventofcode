@@ -55,6 +55,18 @@
 // highest seat ID on a boarding pass?
 
 use std::convert::TryInto;
+use std::fs::File;
+use std::io::{self, BufRead};
+use std::path::Path;
+
+// from https://doc.rust-lang.org/stable/rust-by-example/std_misc/file/read_lines.html
+// The output is wrapped in a Result to allow matching on errors
+// Returns an Iterator to the Reader of the lines of the file.
+fn read_lines<P>(filename: P) -> io::Result<io::Lines<io::BufReader<File>>>
+where P: AsRef<Path>, {
+    let file = File::open(filename)?;
+    Ok(io::BufReader::new(file).lines())
+}
 
 fn seat_id_from_partitioning(partitioning: &str) -> usize {
     let mut seat_id: usize = 0;
@@ -79,4 +91,18 @@ fn main() {
     assert_eq!(seat_id_from_partitioning("BFFFBBFRRR"), 567);
     assert_eq!(seat_id_from_partitioning("FFFBBBFRRR"), 119);
     assert_eq!(seat_id_from_partitioning("BBFFBBFRLL"), 820);
+
+    if let Ok(passes) = read_lines("./input.txt") {
+        let mut seat_max: usize = 0;
+        for rpartitioning in passes {
+            if let Ok(partitioning) = rpartitioning {
+                let seat_id = seat_id_from_partitioning(&partitioning);
+                if seat_id > seat_max {
+                    seat_max = seat_id;
+                }
+                println!("Pass:{:?} seat:{} max:{}", partitioning, seat_id, seat_max);
+
+            }
+        }
+    }
 }
