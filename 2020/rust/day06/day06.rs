@@ -55,6 +55,13 @@
 // For each group, count the number of questions to which anyone answered
 // "yes". What is the sum of those counts?
 
+use std::fs;
+
 fn main() {
-    println!("Advent of Code 2020 Day 6 Part 1.")
+    println!("Advent of Code 2020 Day 6 Part 1.");
+
+    let contents = fs::read_to_string("inputexample.txt")
+        .expect("Something went wrong");
+
+    println!("{}", contents);
 }
