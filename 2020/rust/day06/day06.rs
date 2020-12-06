@@ -55,6 +55,44 @@
 // For each group, count the number of questions to which anyone answered
 // "yes". What is the sum of those counts?
 
+// --- Part Two ---
+// As you finish the last group's customs declaration, you notice that you
+// misread one word in the instructions:
+//
+// You don't need to identify the questions to which anyone answered "yes"; you
+// need to identify the questions to which everyone answered "yes"!
+//
+// Using the same example as above:
+//
+// abc
+//
+// a
+// b
+// c
+//
+// ab
+// ac
+//
+// a
+// a
+// a
+// a
+//
+// b
+// This list represents answers from five groups:
+//
+// In the first group, everyone (all 1 person) answered "yes" to 3 questions:
+// a, b, and c.
+// In the second group, there is no question to which everyone answered "yes".
+// In the third group, everyone answered yes to only 1 question, a. Since some
+// people did not answer "yes" to b or c, they don't count.
+// In the fourth group, everyone answered yes to only 1 question, a.
+// In the fifth group, everyone (all 1 person) answered "yes" to 1 question, b.
+// In this example, the sum of these counts is 3 + 0 + 1 + 1 + 1 = 6.
+//
+// For each group, count the number of questions to which everyone answered
+// "yes". What is the sum of those counts?
+
 use std::fs;
 use std::collections::HashSet;
 
@@ -68,20 +106,41 @@ fn main() {
 
     // println!("{}", contents);
     let mut thesum = 0;
+    let mut thesum2 = 0;
     let groups = contents.trim().split("\n\n");
     for group in groups {
+        // For part 1
         let mut yesses = HashSet::new();
+        // For part 2
+        let mut yesses2 = HashSet::new();
+        for letter in "abcdefghijklmnopqrstuvwxyz".chars() {
+            yesses2.insert(letter);
+        }
+
         // println!("group: {}", group);
         for line in group.lines() {
             // println!("line: {}", line);
+            let mut yesses_person = HashSet::new();
             for letter in line.chars() {
                 yesses.insert(letter);
+                yesses_person.insert(letter);
+            }
+            // TODO: figure out how to use intersection..
+            // yesses2: HashSet<_> = yesses2.intersection(&yesses_person).collect();
+            for letter in yesses2.clone() {
+                if ! yesses_person.contains(&letter) {
+                    yesses2.remove(&letter);
+                }
             }
         }
         thesum += yesses.len();
+        thesum2 += yesses2.len();
         let mut yesses_sorted = yesses.into_iter().collect::<Vec<_>>();
         yesses_sorted.sort();
-        println!("Sorted: {} {:?}", thesum, yesses_sorted);
-
+        let mut yesses2_sorted = yesses2.into_iter().collect::<Vec<_>>();
+        yesses2_sorted.sort();
+        println!("Sorted1: {} {:?}", thesum, yesses_sorted);
+        println!("Sorted2: {} {:?}", thesum2, yesses2_sorted);
     }
+
 }
