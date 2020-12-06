@@ -56,6 +56,7 @@
 // "yes". What is the sum of those counts?
 
 use std::fs;
+use std::collections::HashSet;
 
 fn main() {
     println!("Advent of Code 2020 Day 6 Part 1.");
@@ -63,5 +64,22 @@ fn main() {
     let contents = fs::read_to_string("inputexample.txt")
         .expect("Something went wrong");
 
-    println!("{}", contents);
+    // println!("{}", contents);
+    let mut thesum = 0;
+    let groups = contents.trim().split("\n\n");
+    for group in groups {
+        let mut yesses = HashSet::new();
+        // println!("group: {}", group);
+        for line in group.lines() {
+            // println!("line: {}", line);
+            for letter in line.chars() {
+                yesses.insert(letter);
+            }
+        }
+        thesum += yesses.len();
+        let mut yesses_sorted = yesses.into_iter().collect::<Vec<_>>();
+        yesses_sorted.sort();
+        println!("Sorted: {} {:?}", thesum, yesses_sorted);
+
+    }
 }
