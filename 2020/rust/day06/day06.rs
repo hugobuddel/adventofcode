@@ -61,7 +61,9 @@ use std::collections::HashSet;
 fn main() {
     println!("Advent of Code 2020 Day 6 Part 1.");
 
-    let contents = fs::read_to_string("inputexample.txt")
+    // let filename = "inputexample.txt";
+    let filename = "input.txt";
+    let contents = fs::read_to_string(filename)
         .expect("Something went wrong");
 
     // println!("{}", contents);
