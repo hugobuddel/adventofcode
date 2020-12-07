@@ -71,7 +71,7 @@ fn main () {
             let rr = lineu.split(" bags contain ").collect::<Vec<_>>();
             let name = rr[0];
             let rest = rr[1];
-            let mut contains: Vec<(i32, &str)> = Vec::new();
+            let mut contains: Vec<(i32, String)> = Vec::new();
             if rest != "no other bags." {
                 let rest_split = rest.replace(".", " ");
                 let rest_split2 = rest_split.trim();
@@ -82,14 +82,12 @@ fn main () {
                     // println!("{:?}", count_type_split);
                     let count = count_type_split[0].parse::<i32>().unwrap();
                     let bagtype = count_type_split[1];
-                    let c_bt = (count, bagtype);
+                    let c_bt = (count, bagtype.to_string());
                     // println!("{:?}", c_bt);
                     contains.push(c_bt);
                 }
             }
-            // let contains2 = contains.clone();
-            // println!("{} {:?}", name, contains2);
-
+            println!("{} {:?}", name, contains);
         }
     }
 }
