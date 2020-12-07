@@ -81,7 +81,7 @@ fn main () {
                     let count_type_split: Vec<&str> = count_type.splitn(2, " ").collect();
                     // println!("{:?}", count_type_split);
                     let count = count_type_split[0].parse::<i32>().unwrap();
-                    let bagtype = count_type_split[1];
+                    let bagtype = count_type_split[1].rsplitn(2, " ").collect::<Vec<_>>()[1];
                     let c_bt = (count, bagtype.to_string());
                     // println!("{:?}", c_bt);
                     contains.push(c_bt);
