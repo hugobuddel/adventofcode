@@ -3,10 +3,12 @@ fn main () {
     println!("Advent of Code 2020 Day 7.");
 
     let line = "abcd efgh";
-    let mut mylines: Vec<&str> = Vec::new();
+    // let mut mylines: Vec<&str> = Vec::new();
+    let mut mylines: Vec<String> = Vec::new();
     for word in line.split(" ") {
         let word2 = word.replace("a", "b");
-        mylines.push(&word2);
+        // mylines.push(&word2);
+        mylines.push(word2);
     }
     println!("{:?}", mylines);
 }
