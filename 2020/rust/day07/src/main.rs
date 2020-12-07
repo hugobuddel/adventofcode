@@ -96,8 +96,14 @@ fn main () {
     }
 
     let mut deps = Graph::<&str, &str>::new();
-    let nodes = bagrules.iter().map(|n_cc| (n_cc.0.clone(), deps.add_node(n_cc.0.as_str()))).collect::<HashMap<_, _>>();
+    let bagrules2 = bagrules.clone();
+    let nodes = bagrules2.iter().map(|n_cc| (n_cc.0.clone(), deps.add_node(n_cc.0.as_str()))).collect::<HashMap<_, _>>();
     deps.add_edge(nodes["bright white"], nodes["shiny gold"], "1");
+    for (name, rule) in bagrules {
+        for (_count, name2) in rule {
+            deps.add_edge(nodes[&name], nodes[&name2], "1");
+        }
+    }
 
-    println!("{:?}", nodes);
+    println!("{:?}", deps);
 }
