@@ -66,7 +66,30 @@ fn main () {
 
     if let Ok(lines) = read_lines("./inputexample.txt") {
         for line in lines {
-            println!("{:?}", line);
+            // println!("{:?}", line.unwrap());
+            let lineu = line.unwrap();
+            let rr = lineu.split(" bags contain ").collect::<Vec<_>>();
+            let name = rr[0];
+            let rest = rr[1];
+            let mut contains: Vec<(i32, &str)> = Vec::new();
+            if rest != "no other bags." {
+                let rest_split = rest.replace(".", " ");
+                let rest_split2 = rest_split.trim();
+                let rest_split3 = rest_split2.split(", ");
+                for count_type in rest_split3 {
+                    // println!("{:?}", count_type);
+                    let count_type_split: Vec<&str> = count_type.splitn(2, " ").collect();
+                    // println!("{:?}", count_type_split);
+                    let count = count_type_split[0].parse::<i32>().unwrap();
+                    let bagtype = count_type_split[1];
+                    let c_bt = (count, bagtype);
+                    // println!("{:?}", c_bt);
+                    contains.push(c_bt);
+                }
+            }
+            // let contains2 = contains.clone();
+            // println!("{} {:?}", name, contains2);
+
         }
     }
 }
