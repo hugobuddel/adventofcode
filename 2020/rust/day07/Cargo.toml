@@ -1,0 +1,8 @@
+[package]
+name = "AdventOfCode2020Day7"
+version = "0.1.0"
+authors = ["Hugo"]
+edition = "2018"
+
+[dependencies]
+petgraph = "0.5.1"
