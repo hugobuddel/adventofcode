@@ -51,6 +51,7 @@ use std::fs::File;
 use std::io::{self, BufRead};
 use std::path::Path;
 use petgraph::Graph;
+use std::collections::HashMap;
 
 // from https://doc.rust-lang.org/stable/rust-by-example/std_misc/file/read_lines.html
 // The output is wrapped in a Result to allow matching on errors
@@ -63,6 +64,8 @@ where P: AsRef<Path>, {
 
 fn main () {
     println!("Advent of Code 2020 Day 7.");
+
+    let mut bagrules: Vec<(String, Vec<(i32, String)>)> = Vec::new();
 
     if let Ok(lines) = read_lines("./inputexample.txt") {
         for line in lines {
@@ -87,7 +90,14 @@ fn main () {
                     contains.push(c_bt);
                 }
             }
+            bagrules.push((name.to_string(), contains.clone()));
             println!("{} {:?}", name, contains);
         }
     }
+
+    let mut deps = Graph::<&str, &str>::new();
+    let nodes = bagrules.iter().map(|n_cc| (n_cc.0.clone(), deps.add_node(n_cc.0.as_str()))).collect::<HashMap<_, _>>();
+    deps.add_edge(nodes["bright white"], nodes["shiny gold"], "1");
+
+    println!("{:?}", nodes);
 }
