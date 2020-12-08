@@ -99,8 +99,18 @@ where P: AsRef<Path>, {
     Ok(io::BufReader::new(file).lines())
 }
 
-fn count_contents(deps: &Graph::<&str, &str>, node:petgraph::prelude::NodeIndex) {
-    println!("Contens of bag {:?}", node);
+fn count_contents(deps: &Graph::<&str, &str>, node:petgraph::prelude::NodeIndex) -> i32 {
+    // println!("Getting contents of bag {:?}", node);
+    let mut count_bags = 0;
+    for neighbor in deps.neighbors_directed(node, petgraph::Direction::Outgoing) {
+        let name_bag = deps[neighbor];
+        // println!("Neighbor {:?}", name_bag);
+        // Add the contents of neighbor.
+        count_bags += count_contents(deps, neighbor);
+        // Add neighbor itself.
+        count_bags += 1;
+    }
+    count_bags
 }
 
 fn main () {
@@ -140,20 +150,24 @@ fn main () {
     let mut deps = Graph::<&str, &str>::new();
     let bagrules2 = bagrules.clone();
     let nodes = bagrules2.iter().map(|n_cc| (n_cc.0.clone(), deps.add_node(n_cc.0.as_str()))).collect::<HashMap<_, _>>();
-    deps.add_edge(nodes["bright white"], nodes["shiny gold"], "1");
+    // deps.add_edge(nodes["bright white"], nodes["shiny gold"], "1");
     for (name, rule) in bagrules {
-        for (_count, name2) in rule {
-            deps.add_edge(nodes[&name], nodes[&name2], "1");
+        for (count, name2) in rule {
+            // Add the edge count number of times.
+            // TODO: figure out how to use edge weights instead.
+            for _counti in 0..count {
+                deps.add_edge(nodes[&name], nodes[&name2], "1");
+            }
         }
     }
 
-    println!("{:?}", deps);
+    println!("Graph: {:?}", deps);
+    println!("Node: {:?}", nodes["shiny gold"]);
 
     let p1 = algo::has_path_connecting(&deps, nodes["shiny gold"], nodes["dark orange"], None);
     let p2 = algo::has_path_connecting(&deps, nodes["dark orange"], nodes["shiny gold"], None);
     let p3 = algo::has_path_connecting(&deps, nodes["shiny gold"], nodes["shiny gold"], None);
     println!("Testpaths {} {} {}", p1, p2, p3);
-
     let nodes_to_gold = nodes.iter().filter(
         |bag| algo::has_path_connecting(&deps, *bag.1, nodes["shiny gold"], None)
     ).collect::<Vec<_>>();
@@ -162,5 +176,7 @@ fn main () {
     println!("Number of bags that can contain a shiny gold bag: {}", nr_bags_with_gold);
     assert_eq!(nr_bags_with_gold, 4);
 
-    count_contents(&deps, nodes["shiny gold"]);
+    let bags_in_gold = count_contents(&deps, nodes["shiny gold"]);
+    println!("Number of bags in gold bag: {}", bags_in_gold);
+    assert_eq!(bags_in_gold, 32);
 }
