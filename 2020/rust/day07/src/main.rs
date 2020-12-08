@@ -51,6 +51,7 @@ use std::fs::File;
 use std::io::{self, BufRead};
 use std::path::Path;
 use petgraph::Graph;
+use petgraph::algo;
 use std::collections::HashMap;
 
 // from https://doc.rust-lang.org/stable/rust-by-example/std_misc/file/read_lines.html
@@ -106,4 +107,17 @@ fn main () {
     }
 
     println!("{:?}", deps);
+
+    let p1 = algo::has_path_connecting(&deps, nodes["shiny gold"], nodes["dark orange"], None);
+    let p2 = algo::has_path_connecting(&deps, nodes["dark orange"], nodes["shiny gold"], None);
+    let p3 = algo::has_path_connecting(&deps, nodes["shiny gold"], nodes["shiny gold"], None);
+    println!("Testpaths {} {} {}", p1, p2, p3);
+
+    let nodes_to_gold = nodes.iter().filter(
+        |bag| algo::has_path_connecting(&deps, *bag.1, nodes["shiny gold"], None)
+    ).collect::<Vec<_>>();
+    // -1 because there is a path from a node to itself.
+    let nr_bags_with_gold = nodes_to_gold.len() - 1;
+    println!("Number of bags that can contain a shiny gold bag: {}", nr_bags_with_gold);
+    assert_eq!(nr_bags_with_gold, 4);
 }
