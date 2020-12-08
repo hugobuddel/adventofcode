@@ -118,8 +118,8 @@ fn main () {
 
     let mut bagrules: Vec<(String, Vec<(i32, String)>)> = Vec::new();
 
-    if let Ok(lines) = read_lines("./inputexample.txt") {
-    // if let Ok(lines) = read_lines("./input.txt") {
+    // if let Ok(lines) = read_lines("./inputexample.txt") {
+    if let Ok(lines) = read_lines("./input.txt") {
         for line in lines {
             // println!("{:?}", line.unwrap());
             let lineu = line.unwrap();
@@ -174,9 +174,9 @@ fn main () {
     // -1 because there is a path from a node to itself.
     let nr_bags_with_gold = nodes_to_gold.len() - 1;
     println!("Number of bags that can contain a shiny gold bag: {}", nr_bags_with_gold);
-    assert_eq!(nr_bags_with_gold, 4);
+    // assert_eq!(nr_bags_with_gold, 4);
 
     let bags_in_gold = count_contents(&deps, nodes["shiny gold"]);
     println!("Number of bags in gold bag: {}", bags_in_gold);
-    assert_eq!(bags_in_gold, 32);
+    // assert_eq!(bags_in_gold, 32);
 }
