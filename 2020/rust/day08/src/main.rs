@@ -69,6 +69,46 @@
 // Run your copy of the boot code. Immediately before any instruction is
 // executed a second time, what value is in the accumulator?
 
+use std::fs::File;
+use std::io::{self, BufRead};
+use std::path::Path;
+// use std::collections::HashMap;
+
+// from https://doc.rust-lang.org/stable/rust-by-example/std_misc/file/read_lines.html
+// The output is wrapped in a Result to allow matching on errors
+// Returns an Iterator to the Reader of the lines of the file.
+fn read_lines<P>(filename: P) -> io::Result<io::Lines<io::BufReader<File>>>
+where P: AsRef<Path>, {
+    let file = File::open(filename)?;
+    Ok(io::BufReader::new(file).lines())
+}
+
+#[derive(Debug)]
+struct Instruction {
+    name: String,
+    toadd: i32,
+    done: bool,
+}
+
 fn main() {
     println!("Advent of Code 2020 Day 8!");
+
+    let filename = "inputexample.txt";
+    let mut instructions: Vec<Instruction> = Vec::new();
+    if let Ok(lines) = read_lines(filename) {
+        println!("{:?}", lines);
+        for line in lines {
+            println!("{:?}", line);
+            let line2 = line.unwrap();
+            let name_toadd: Vec<&str> = line2.splitn(2, " ").collect();
+            let name = name_toadd[0].to_string();
+            let toadd = name_toadd[1].parse::<i32>().unwrap();
+            let instruction = Instruction {
+                name:name,
+                toadd:toadd,
+                done:false
+            };
+            println!("{:?}", instruction);
+        }
+    }
 }
