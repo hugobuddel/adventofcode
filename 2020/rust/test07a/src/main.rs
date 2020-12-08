@@ -1,3 +1,4 @@
+use std::boxed::Box;
 
 fn main () {
     println!("Advent of Code 2020 Day 7.");
@@ -11,6 +12,16 @@ fn main () {
         mylines.push(word2);
     }
     println!("{:?}", mylines);
+    
+    let line = "abcd efgh";
+    let mut mylines: Vec<Box<str>> = Vec::new();
+    for word in line.split(" ") {
+        let word2 = word.replace("a", "b");
+        mylines.push(word2.into());
+    }
+    println!("{:?}", mylines);
+
+
 }
 
 // error[E0597]: `word2` does not live long enough
