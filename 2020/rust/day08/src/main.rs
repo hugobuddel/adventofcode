@@ -120,6 +120,7 @@ impl Machine {
                 let line2 = line.unwrap();
                 let instruction = Instruction::from_str(line2.as_str());
                 println!("{:?}", instruction);
+                instructions.push(instruction);
             }
         }
         Machine {
@@ -128,11 +129,19 @@ impl Machine {
             current: 0,
         }
     }
+
+    fn step(&mut self) {
+        let mut instruction = &self.instructions[self.current];
+        println!("Performing: {:?}", instruction);
+        self.instructions[self.current].done = true;
+    }
 }
 
 fn main() {
     println!("Advent of Code 2020 Day 8!");
 
     let filename = "inputexample.txt";
-    let machine = Machine::from_filename(filename);
+    let mut machine = Machine::from_filename(filename);
+    machine.step();
+    machine.step();
 }
