@@ -103,18 +103,36 @@ impl Instruction {
     }
 }
 
+#[derive(Debug)]
+struct Machine {
+    instructions: Vec<Instruction>,
+    accumulator: i32,
+    current: usize,
+}
+
+impl Machine {
+    fn from_filename(filename: &str) -> Machine {
+        let mut instructions: Vec<Instruction> = Vec::new();
+        if let Ok(lines) = read_lines(filename) {
+            println!("{:?}", lines);
+            for line in lines {
+                println!("{:?}", line);
+                let line2 = line.unwrap();
+                let instruction = Instruction::from_str(line2.as_str());
+                println!("{:?}", instruction);
+            }
+        }
+        Machine {
+            instructions: instructions,
+            accumulator: 0,
+            current: 0,
+        }
+    }
+}
+
 fn main() {
     println!("Advent of Code 2020 Day 8!");
 
     let filename = "inputexample.txt";
-    let mut instructions: Vec<Instruction> = Vec::new();
-    if let Ok(lines) = read_lines(filename) {
-        println!("{:?}", lines);
-        for line in lines {
-            println!("{:?}", line);
-            let line2 = line.unwrap();
-            let instruction = Instruction::from_str(line2.as_str());
-            println!("{:?}", instruction);
-        }
-    }
+    let machine = Machine::from_filename(filename);
 }
