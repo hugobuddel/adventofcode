@@ -90,6 +90,19 @@ struct Instruction {
     done: bool,
 }
 
+impl Instruction {
+    fn from_str(x: &str) -> Instruction {
+        let name_toadd: Vec<&str> = x.splitn(2, " ").collect();
+        let name = name_toadd[0].to_string();
+        let toadd = name_toadd[1].parse::<i32>().unwrap();
+        Instruction {
+            name: name,
+            toadd: toadd,
+            done: false,
+        }
+    }
+}
+
 fn main() {
     println!("Advent of Code 2020 Day 8!");
 
@@ -100,14 +113,7 @@ fn main() {
         for line in lines {
             println!("{:?}", line);
             let line2 = line.unwrap();
-            let name_toadd: Vec<&str> = line2.splitn(2, " ").collect();
-            let name = name_toadd[0].to_string();
-            let toadd = name_toadd[1].parse::<i32>().unwrap();
-            let instruction = Instruction {
-                name:name,
-                toadd:toadd,
-                done:false
-            };
+            let instruction = Instruction::from_str(line2.as_str());
             println!("{:?}", instruction);
         }
     }
