@@ -182,7 +182,7 @@ impl Machine {
         }
     }
 
-    fn step(&mut self) {
+    fn step(&mut self, pos_change:i32) {
         // let  instruction = self.instructions[self.current];
         println!("Performing: {} {:?}", self.accumulator, self.instructions[self.current]);
         self.instructions[self.current].done = true;
@@ -216,9 +216,9 @@ impl Machine {
         self.current = 0;
     }
 
-    fn run(&mut self) {
+    fn run(&mut self, pos_change: i32) {
         while ! self.instructions[self.current].done {
-            self.step();
+            self.step(pos_change);
         }
     }
 }
@@ -229,7 +229,7 @@ fn main() {
     // let filename = "inputexample.txt";
     let filename = "input.txt";
     let mut machine = Machine::from_filename(filename);
-    machine.run();
+    machine.run(-2);
     machine.reset();
-    machine.run();
+    machine.run(-4);
 }
