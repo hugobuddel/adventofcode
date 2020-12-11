@@ -188,15 +188,15 @@ impl Machine {
         self.instructions[self.current].done = true;
         // instruction.done = true;
         // match instruction.name.as_str() {
-        match self.instructions[self.current].name.as_str() {
-            "nop" => {
+        match (self.instructions[self.current].name.as_str(), self.current as i32 == pos_change) {
+            ("nop", _) => {
                 self.current += 1;
             }
-            "acc" => {
+            ("acc", _) => {
                 self.accumulator += self.instructions[self.current].toadd;
                 self.current += 1;
             }
-            "jmp" => {
+            ("jmp", _) => {
                 self.current = (self.current as i32 + self.instructions[self.current].toadd) as usize;
             }
             _ => {
