@@ -142,6 +142,7 @@ fn main() {
 
     let filename = "inputexample.txt";
     let mut machine = Machine::from_filename(filename);
-    machine.step();
-    machine.step();
+    while ! machine.instructions[machine.current].done {
+        machine.step();
+    }
 }
