@@ -131,9 +131,26 @@ impl Machine {
     }
 
     fn step(&mut self) {
-        let mut instruction = &self.instructions[self.current];
-        println!("Performing: {:?}", instruction);
+        // let  instruction = self.instructions[self.current];
+        println!("Performing: {} {:?}", self.accumulator, self.instructions[self.current]);
         self.instructions[self.current].done = true;
+        // instruction.done = true;
+        // match instruction.name.as_str() {
+        match self.instructions[self.current].name.as_str() {
+            "nop" => {
+                self.current += 1;
+            }
+            "acc" => {
+                self.accumulator += self.instructions[self.current].toadd;
+                self.current += 1;
+            }
+            "jmp" => {
+                self.current = (self.current as i32 + self.instructions[self.current].toadd) as usize;
+            }
+            _ => {
+                println!("Unknown instruction!");
+            }
+        }
     }
 }
 
