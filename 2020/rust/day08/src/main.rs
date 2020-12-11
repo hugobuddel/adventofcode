@@ -184,7 +184,7 @@ impl Machine {
 
     fn step(&mut self, pos_change:i32) {
         // let  instruction = self.instructions[self.current];
-        println!("Performing: {} {:?}", self.accumulator, self.instructions[self.current]);
+        println!("Performing: {:?}", self.instructions[self.current]);
         self.instructions[self.current].done = true;
         // instruction.done = true;
         // match instruction.name.as_str() {
@@ -219,6 +219,7 @@ impl Machine {
     fn run(&mut self, pos_change: i32) {
         while ! self.instructions[self.current].done {
             self.step(pos_change);
+           println!("Accumulator: {}", self.accumulator);
         }
     }
 }
@@ -229,7 +230,9 @@ fn main() {
     let filename = "inputexample.txt";
     // let filename = "input.txt";
     let mut machine = Machine::from_filename(filename);
-    machine.run(-2);
-    machine.reset();
-    machine.run(7);
+    machine.run(0);
+    for pos_change in 0..machine.instructions.len() {
+        machine.reset();
+        machine.run(pos_change as i32);
+    }
 }
