@@ -226,10 +226,10 @@ impl Machine {
 fn main() {
     println!("Advent of Code 2020 Day 8!");
 
-    // let filename = "inputexample.txt";
-    let filename = "input.txt";
+    let filename = "inputexample.txt";
+    // let filename = "input.txt";
     let mut machine = Machine::from_filename(filename);
     machine.run(-2);
     machine.reset();
-    machine.run(-4);
+    machine.run(7);
 }
