@@ -205,6 +205,17 @@ impl Machine {
         }
     }
 
+    fn reset(&mut self) {
+        for pos in 0..self.instructions.len() {
+            self.instructions[pos].done = false;
+        }
+        // for mut instruction in self.instructions.iter() {
+        //     instruction.done = false;
+        // }
+        self.accumulator = 0;
+        self.current = 0;
+    }
+
     fn run(&mut self) {
         while ! self.instructions[self.current].done {
             self.step();
@@ -218,5 +229,7 @@ fn main() {
     // let filename = "inputexample.txt";
     let filename = "input.txt";
     let mut machine = Machine::from_filename(filename);
+    machine.run();
+    machine.reset();
     machine.run();
 }
