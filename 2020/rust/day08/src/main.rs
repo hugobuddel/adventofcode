@@ -204,6 +204,12 @@ impl Machine {
             }
         }
     }
+
+    fn run(&mut self) {
+        while ! self.instructions[self.current].done {
+            self.step();
+        }
+    }
 }
 
 fn main() {
@@ -212,7 +218,5 @@ fn main() {
     // let filename = "inputexample.txt";
     let filename = "input.txt";
     let mut machine = Machine::from_filename(filename);
-    while ! machine.instructions[machine.current].done {
-        machine.step();
-    }
+    machine.run();
 }
