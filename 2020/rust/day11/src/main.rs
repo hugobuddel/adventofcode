@@ -111,6 +111,25 @@
 // Simulate your seating area by applying the seating rules repeatedly until
 // no seats change state. How many seats end up occupied?
 
+use std::fs;
+
+#[derive(Debug)]
+struct Seats<'a> {
+    rows: Vec<&'a str>,
+}
+
+impl Seats<'_> {
+    fn from_filename(filename: &str) -> Seats {
+        let contents = fs::read_to_string(filename).unwrap();
+        let myvec: Vec<&str> = contents.clone().trim().split("\n").collect();
+        Seats {
+            rows: myvec.clone()
+            // rows: contents.trim().split("\n").collect().clone()
+        }
+    }
+}
+
 fn main() {
     println!("Advent of Code 2020 Day 11!");
+    let filename = "inputexample.txt";
 }
