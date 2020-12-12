@@ -94,13 +94,15 @@ where P: AsRef<Path>, {
 fn main() {
     println!("Advent of Code 2020 Day 9!");
 
-    let filename = "inputexample.txt";
+    // let filename = "inputexample.txt";
+    let filename = "input.txt";
+    let npreamble = 25;
 
     if let Ok(lines) = read_lines(filename) {
         let mut numbers: Vec<i32> = Vec::new();
         for line in lines {
             let num_new = line.unwrap().parse::<i32>().unwrap();
-            if numbers.len() < 5 {
+            if numbers.len() < npreamble {
                 numbers.push(num_new);
                 println!("Number {}", num_new);
             } else {
