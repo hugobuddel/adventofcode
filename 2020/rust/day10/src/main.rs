@@ -199,11 +199,12 @@ where P: AsRef<Path>, {
 fn main() {
     println!("Advent of Code 2020 Day 10!");
 
-    let filename = "input.txt";
+    // let filename = "input.txt";
+    let filename = "inputexample2.txt";
     if let Ok(lines) = read_lines(filename) {
         let mut jolts: Vec<usize> = lines.map(|line| line.unwrap().parse::<usize>().unwrap()).collect();
         jolts.sort();
-        let mut paths: HashMap<usize, usize> = (0..jolts.len()).map(|jolt| (jolt.clone(), 0)).collect();
+        let mut paths: HashMap<i32, i32> = (-3_i32..jolts.len() as i32 + 3).map(|jolt| (jolt.clone(), 0)).collect();
         // paths[&0] = 1;
         // trait `IndexMut` is required to modify indexed content, but it is not implemented for `std::collections::HashMap<usize, usize>`
         // https://stackoverflow.com/questions/30414424/how-can-i-update-a-value-in-a-mutable-hashmap
@@ -226,7 +227,12 @@ fn main() {
                 }
             }
             jolt_previous = jolt;
-            // println!("Jolt: {:?} {} {}", jolt, count1, count3);
+            *paths.get_mut(&(jolt as i32)).unwrap() =
+                paths[&(jolt as i32 - 3)] +
+                paths[&(jolt as i32 - 2)] +
+                paths[&(jolt as i32 - 1)];
+
+            println!("Jolt: {:?} {} {} {}", jolt, count1, count3, paths[&(jolt as i32)]);
         }
         println!("Count1: {}, count3: {}, 1*3={}", count1, count3, count1 * count3);
     }
