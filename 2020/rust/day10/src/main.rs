@@ -116,6 +116,27 @@
 // the charging outlet, the adapters, and your device. What is the number of
 // 1-jolt differences multiplied by the number of 3-jolt differences?
 
+use std::fs::File;
+use std::io::{self, BufRead};
+use std::path::Path;
+
+// from https://doc.rust-lang.org/stable/rust-by-example/std_misc/file/read_lines.html
+// The output is wrapped in a Result to allow matching on errors
+// Returns an Iterator to the Reader of the lines of the file.
+fn read_lines<P>(filename: P) -> io::Result<io::Lines<io::BufReader<File>>>
+where P: AsRef<Path>, {
+    let file = File::open(filename)?;
+    Ok(io::BufReader::new(file).lines())
+}
+
 fn main() {
-    println!("Hello, world!");
+    println!("Advent of Code 2020 Day 10!");
+
+    let filename = "inputexample2.txt";
+    if let Ok(lines) = read_lines(filename) {
+        let jolts: Vec<usize> = lines.map(|line| line.unwrap().parse::<usize>().unwrap()).collect();
+        for jolt in jolts {
+            println!("Jolt: {:?}", jolt);
+        }
+    }
 }
