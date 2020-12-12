@@ -199,8 +199,8 @@ where P: AsRef<Path>, {
 fn main() {
     println!("Advent of Code 2020 Day 10!");
 
-    // let filename = "input.txt";
-    let filename = "inputexample2.txt";
+    let filename = "input.txt";
+    // let filename = "inputexample2.txt";
     if let Ok(lines) = read_lines(filename) {
         let mut jolts: Vec<usize> = lines.map(|line| line.unwrap().parse::<usize>().unwrap()).collect();
         jolts.sort();
@@ -213,7 +213,7 @@ fn main() {
 
         println!("{:?}", paths);
         let mut count1: usize = 0;
-        let mut count3: usize = 1;  // start with 1 for your own device
+        let mut count3: usize = 0;  // start with 0 because own device is explicitly added
         let mut jolt_previous: usize = 0;
         for jolt in jolts {
             match jolt - jolt_previous {
