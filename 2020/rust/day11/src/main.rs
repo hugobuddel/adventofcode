@@ -114,17 +114,16 @@
 use std::fs;
 
 #[derive(Debug)]
-struct Seats<'a> {
-    rows: Vec<&'a str>,
+struct Seats {
+    rows: Vec<String>,
 }
 
-impl Seats<'_> {
+impl Seats {
     fn from_filename(filename: &str) -> Seats {
         let contents = fs::read_to_string(filename).unwrap();
-        let myvec: Vec<&str> = contents.clone().trim().split("\n").collect();
+        let myvec: Vec<String> = contents.clone().trim().split("\n").map(|x| x.to_string()).collect();
         Seats {
             rows: myvec.clone()
-            // rows: contents.trim().split("\n").collect().clone()
         }
     }
 }
