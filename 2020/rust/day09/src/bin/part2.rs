@@ -55,11 +55,11 @@ where P: AsRef<Path>, {
 fn main() {
     println!("Advent of Code 2020 Day 9!");
 
-    // let filename = "inputexample.txt";
-    // let number_bad = 127;
+    let filename = "inputexample.txt";
+    let number_bad = 127;
 
-    let filename = "input.txt";
-    let number_bad = 18272118;
+    // let filename = "input.txt";
+    // let number_bad = 18272118;
 
     if let Ok(lines) = read_lines(filename) {
         let mut numbers: Vec<i32> = Vec::new();
@@ -69,25 +69,31 @@ fn main() {
             let mut sum: i32 = numbers.iter().sum();
             // println!("Trying: {} {}", num_new, sum);
             if sum == number_bad {
+                let largest = numbers.iter().max().unwrap();
+                let smallest = numbers.iter().min().unwrap();
                 println!(
                     "Found1: {}, {} {} {}",
                     number_bad,
-                    numbers.first().unwrap(),
-                    numbers.last().unwrap(),
-                    numbers.first().unwrap() + numbers.last().unwrap()
+                    largest,
+                    smallest,
+                    largest + smallest,
                 );
+                println!("{:?}", numbers);
             }
             while sum > number_bad {
                 numbers.remove(0);
                 sum = numbers.iter().sum();
                 if sum == number_bad {
+                    let largest = numbers.iter().max().unwrap();
+                    let smallest = numbers.iter().min().unwrap();
                     println!(
-                        "Found2: {}, {} {} {}",
+                        "Found1: {}, {} {} {}",
                         number_bad,
-                        numbers.first().unwrap(),
-                        numbers.last().unwrap(),
-                        numbers.first().unwrap() + numbers.last().unwrap()
+                        largest,
+                        smallest,
+                        largest + smallest,
                     );
+                    println!("{:?}", numbers);
                 }
             }
         }
