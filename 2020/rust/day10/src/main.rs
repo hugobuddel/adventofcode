@@ -185,6 +185,7 @@
 use std::fs::File;
 use std::io::{self, BufRead};
 use std::path::Path;
+use std::collections::HashMap;
 
 // from https://doc.rust-lang.org/stable/rust-by-example/std_misc/file/read_lines.html
 // The output is wrapped in a Result to allow matching on errors
@@ -202,6 +203,7 @@ fn main() {
     if let Ok(lines) = read_lines(filename) {
         let mut jolts: Vec<usize> = lines.map(|line| line.unwrap().parse::<usize>().unwrap()).collect();
         jolts.sort();
+        let mut paths: HashMap<usize, usize> = HashMap::new();
         let mut count1: usize = 0;
         let mut count3: usize = 1;  // start with 1 for your own device
         let mut jolt_previous: usize = 0;
