@@ -126,6 +126,13 @@ impl Seats {
             rows: myvec
         }
     }
+
+    fn pprint(&self) {
+        println!();
+        for line in &self.rows {
+            println!("{}", line);
+        }
+    }
 }
 
 fn main() {
@@ -133,4 +140,5 @@ fn main() {
     let filename = "inputexample.txt";
     let seats = Seats::from_filename(filename);
     println!("{:?}", seats);
+    seats.pprint();
 }
