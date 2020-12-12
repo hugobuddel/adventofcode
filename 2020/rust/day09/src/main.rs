@@ -102,12 +102,20 @@ fn main() {
             let num_new = line.unwrap().parse::<i32>().unwrap();
             if numbers.len() < 5 {
                 numbers.push(num_new);
+                println!("Number {}", num_new);
             } else {
+                let mut ok_number = false;
                 for number1 in &numbers {
                     for number2 in &numbers {
-
+                        if number1 + number2 == num_new && number1 != number2 {
+                            ok_number = true;
+                        }
                     }
                 }
+                println!("Number {} {}", num_new, ok_number);
+                assert!(ok_number);
+                numbers.push(num_new);
+                numbers.remove(0);
             }
         }
     }
