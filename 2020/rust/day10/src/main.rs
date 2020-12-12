@@ -204,7 +204,8 @@ fn main() {
     if let Ok(lines) = read_lines(filename) {
         let mut jolts: Vec<usize> = lines.map(|line| line.unwrap().parse::<usize>().unwrap()).collect();
         jolts.sort();
-        let mut paths: HashMap<i32, i32> = (-3_i32..jolts.len() as i32 + 3).map(|jolt| (jolt.clone(), 0)).collect();
+        jolts.push(jolts.last().unwrap() + 3);
+        let mut paths: HashMap<i32, i32> = (-3_i32..*jolts.last().unwrap() as i32 + 3).map(|jolt| (jolt.clone(), 0)).collect();
         // paths[&0] = 1;
         // trait `IndexMut` is required to modify indexed content, but it is not implemented for `std::collections::HashMap<usize, usize>`
         // https://stackoverflow.com/questions/30414424/how-can-i-update-a-value-in-a-mutable-hashmap
