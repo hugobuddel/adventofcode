@@ -55,12 +55,13 @@ where P: AsRef<Path>, {
 fn main() {
     println!("Advent of Code 2020 Day 9!");
 
-    let filename = "inputexample.txt";
+    // let filename = "inputexample.txt";
     // let npreamble = 5;
-    let number_bad = 127;
+    // let number_bad = 127;
 
-    // let filename = "input.txt";
+    let filename = "input.txt";
     // let npreamble = 25;
+    let number_bad = 18272118;
 
     if let Ok(lines) = read_lines(filename) {
         let mut numbers: Vec<i32> = Vec::new();
