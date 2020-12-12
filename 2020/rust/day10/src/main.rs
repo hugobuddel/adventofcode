@@ -132,7 +132,7 @@ where P: AsRef<Path>, {
 fn main() {
     println!("Advent of Code 2020 Day 10!");
 
-    let filename = "inputexample2.txt";
+    let filename = "input.txt";
     if let Ok(lines) = read_lines(filename) {
         let mut jolts: Vec<usize> = lines.map(|line| line.unwrap().parse::<usize>().unwrap()).collect();
         jolts.sort();
@@ -152,7 +152,7 @@ fn main() {
                 }
             }
             jolt_previous = jolt;
-            println!("Jolt: {:?} {} {}", jolt, count1, count3);
+            // println!("Jolt: {:?} {} {}", jolt, count1, count3);
         }
         println!("Count1: {}, count3: {}, 1*3={}", count1, count3, count1 * count3);
     }
