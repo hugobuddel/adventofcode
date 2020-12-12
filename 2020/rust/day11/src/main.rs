@@ -121,9 +121,9 @@ struct Seats {
 impl Seats {
     fn from_filename(filename: &str) -> Seats {
         let contents = fs::read_to_string(filename).unwrap();
-        let myvec: Vec<String> = contents.clone().trim().split("\n").map(|x| x.to_string()).collect();
+        let myvec: Vec<String> = contents.trim().split("\n").map(|x| x.to_string()).collect();
         Seats {
-            rows: myvec.clone()
+            rows: myvec
         }
     }
 }
@@ -131,4 +131,6 @@ impl Seats {
 fn main() {
     println!("Advent of Code 2020 Day 11!");
     let filename = "inputexample.txt";
+    let seats = Seats::from_filename(filename);
+    println!("{:?}", seats);
 }
