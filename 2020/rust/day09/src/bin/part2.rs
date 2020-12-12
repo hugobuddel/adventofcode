@@ -70,7 +70,7 @@ fn main() {
             println!("Trying: {} {}", num_new, sum);
             if sum == number_bad {
                 println!(
-                    "Found: {}, {} {} {}",
+                    "Found1: {}, {} {} {}",
                     number_bad,
                     numbers.first().unwrap(),
                     numbers.last().unwrap(),
@@ -80,6 +80,15 @@ fn main() {
             while sum > number_bad {
                 numbers.remove(0);
                 sum = numbers.iter().sum();
+                if sum == number_bad {
+                    println!(
+                        "Found2: {}, {} {} {}",
+                        number_bad,
+                        numbers.first().unwrap(),
+                        numbers.last().unwrap(),
+                        numbers.first().unwrap() + numbers.last().unwrap()
+                    );
+                }
             }
         }
     }
