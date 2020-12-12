@@ -203,7 +203,13 @@ fn main() {
     if let Ok(lines) = read_lines(filename) {
         let mut jolts: Vec<usize> = lines.map(|line| line.unwrap().parse::<usize>().unwrap()).collect();
         jolts.sort();
-        let mut paths: HashMap<usize, usize> = HashMap::new();
+        let mut paths: HashMap<usize, usize> = (0..jolts.len()).map(|jolt| (jolt.clone(), 0)).collect();
+        // paths[&0] = 1;
+        // trait `IndexMut` is required to modify indexed content, but it is not implemented for `std::collections::HashMap<usize, usize>`
+        // https://stackoverflow.com/questions/30414424/how-can-i-update-a-value-in-a-mutable-hashmap
+        *paths.get_mut(&0).unwrap() = 1;
+
+        println!("{:?}", paths);
         let mut count1: usize = 0;
         let mut count3: usize = 1;  // start with 1 for your own device
         let mut jolt_previous: usize = 0;
