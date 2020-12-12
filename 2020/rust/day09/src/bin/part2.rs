@@ -55,13 +55,11 @@ where P: AsRef<Path>, {
 fn main() {
     println!("Advent of Code 2020 Day 9!");
 
-    // let filename = "inputexample.txt";
-    // let npreamble = 5;
-    // let number_bad = 127;
+    let filename = "inputexample.txt";
+    let number_bad = 127;
 
-    let filename = "input.txt";
-    // let npreamble = 25;
-    let number_bad = 18272118;
+    // let filename = "input.txt";
+    // let number_bad = 18272118;
 
     if let Ok(lines) = read_lines(filename) {
         let mut numbers: Vec<i32> = Vec::new();
@@ -69,7 +67,7 @@ fn main() {
             let num_new = line.unwrap().parse::<i32>().unwrap();
             numbers.push(num_new);
             let mut sum: i32 = numbers.iter().sum();
-            // println!("Trying: {} {}", num_new, sum);
+            println!("Trying: {} {}", num_new, sum);
             if sum == number_bad {
                 println!(
                     "Found: {}, {} {} {}",
