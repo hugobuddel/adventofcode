@@ -134,9 +134,26 @@ fn main() {
 
     let filename = "inputexample2.txt";
     if let Ok(lines) = read_lines(filename) {
-        let jolts: Vec<usize> = lines.map(|line| line.unwrap().parse::<usize>().unwrap()).collect();
+        let mut jolts: Vec<usize> = lines.map(|line| line.unwrap().parse::<usize>().unwrap()).collect();
+        jolts.sort();
+        let mut count1: usize = 0;
+        let mut count3: usize = 1;  // start with 1 for your own device
+        let mut jolt_previous: usize = 0;
         for jolt in jolts {
-            println!("Jolt: {:?}", jolt);
+            match jolt - jolt_previous {
+                1 => {
+                    count1 += 1;
+                }
+                3 => {
+                    count3 += 1;
+                }
+                _ => {
+                    panic!("Weird jolt match {} {} {}", jolt, jolt_previous, jolt - jolt_previous);
+                }
+            }
+            jolt_previous = jolt;
+            println!("Jolt: {:?} {} {}", jolt, count1, count3);
         }
+        println!("Count1: {}, count3: {}, 1*3={}", count1, count3, count1 * count3);
     }
 }
