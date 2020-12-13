@@ -116,14 +116,18 @@ use std::fs;
 #[derive(Debug)]
 struct Seats {
     rows: Vec<String>,
+    size: usize,
 }
 
 impl Seats {
     fn from_filename(filename: &str) -> Seats {
         let contents = fs::read_to_string(filename).unwrap();
         let myvec: Vec<String> = contents.trim().split("\n").map(|x| x.to_string()).collect();
+        let size = myvec.len();
+
         Seats {
-            rows: myvec
+            rows: myvec,
+            size: size,
         }
     }
 
