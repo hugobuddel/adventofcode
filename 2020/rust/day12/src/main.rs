@@ -54,10 +54,18 @@ extern crate pest_derive;
 use pest::Parser;
 
 use std::fs;
+use std::num;
 
 #[derive(Parser)]
 #[grammar = "directions.pest"]
 pub struct DirectionsParser;
+
+enum Compass {
+    East,
+    South,
+    West,
+    North,
+}
 
 fn main() {
     println!("Advent of Code 2020 Day 12!");
@@ -70,24 +78,57 @@ fn main() {
         .expect("Unsuccessful parse")
         .next().unwrap();
 
+    let mut pos_ew: i32 = 0;  // East to West
+    let mut pos_sn: i32 = 0;  // South to North
+    let mut direction = Compass::East;
+
     for amove in directions.into_inner() {
         // println!("{:?}", amove);
         match amove.as_rule() {
             Rule::moveforward => {
                 let distance = amove.into_inner().as_str().parse::<i32>().unwrap();
                 println!("Moving forward by {}!", distance);
+                match direction {
+                    Compass::East => {pos_ew -= distance}
+                    Compass::South => {pos_sn -= distance}
+                    Compass::West => {pos_ew += distance}
+                    Compass::North => {pos_sn += distance}
+                }
+                println!("Currently at {},{}. Distance {}.", pos_ew, pos_sn, pos_ew.abs() + pos_sn.abs());
             }
             Rule::moveangle => {
                 let mut pairs = amove.into_inner();
                 let leftright = pairs.next().unwrap().as_str();
-                let angle = pairs.next().unwrap().as_str().parse::<i32>().unwrap();
-                println!("Turning {} degrees to the {}!", angle, leftright);
+                let angle = pairs.next().unwrap().as_str().parse::<i32>().unwrap() / 90;
+                println!("Turning 90 degrees to the {} {} times!", leftright, angle);
+                for _ in 0..angle {
+                    match (direction, leftright) {
+                        (Compass::East, "L") => {direction = Compass::North}
+                        (Compass::East, "R") => {direction = Compass::South}
+                        (Compass::South, "L") => {direction = Compass::West}
+                        (Compass::South, "R") => {direction = Compass::East}
+                        (Compass::West, "L") => {direction = Compass::South}
+                        (Compass::West, "R") => {direction = Compass::North}
+                        (Compass::North, "L") => {direction = Compass::West}
+                        (Compass::North, "R") => {direction = Compass::East}
+                        _ => unreachable!()
+                    }
+                }
+                println!("Currently at {},{}. Distance {}.", pos_ew, pos_sn, pos_ew.abs() + pos_sn.abs());
             }
             Rule::movecompass => {
                 let mut pairs = amove.into_inner();
                 let compass = pairs.next().unwrap().as_str();
                 let distance = pairs.next().unwrap().as_str().parse::<i32>().unwrap();
                 println!("Moving {} in direction {}!", distance, compass);
+                match compass {
+                    "E" => {pos_ew -= distance}
+                    "S" => {pos_sn -= distance}
+                    "W" => {pos_ew += distance}
+                    "N" => {pos_sn += distance}
+                    _ => unreachable!()
+                }
+                println!("Currently at {},{}. Distance {}.", pos_ew, pos_sn, pos_ew.abs() + pos_sn.abs());
             }
             Rule::EOI => (),
             _ => unreachable!(),
