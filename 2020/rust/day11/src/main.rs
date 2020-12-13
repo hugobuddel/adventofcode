@@ -132,7 +132,29 @@ impl Seats {
     }
 
     fn step(&mut self) {
-        self.rows[0][0] = 'X';
+        for x in 0..self.size {
+            for y in 0..self.size {
+                let mut count_occupied = 0;
+                for xi in (x as i32) - 1..(x as i32) + 1{
+                    for yi in (y as i32) -1..(y as i32)+1 {
+                        if xi >= 0 &&
+                            xi < self.size as i32 &&
+                            yi >= 0 &&
+                            yi < self.size as i32 &&
+                            self.rows[xi as usize][yi as usize] == '#' &&
+                            true
+                        {
+                            count_occupied += 1;
+                        }
+                    }
+                }
+                if self.rows[x][y] == 'L' && count_occupied == 0 {
+                    self.rows[x][y] = '#';
+                } else if self.rows[x][y] == '#' && count_occupied >= 4 {
+                    self.rows[x][y] = 'L';
+                }
+            }
+        }
     }
 
     fn pprint(&self) {
@@ -148,6 +170,17 @@ fn main() {
     let filename = "inputexample.txt";
     let mut seats = Seats::from_filename(filename);
     println!("{:?}", seats);
+    seats.pprint();
+    seats.step();
+    seats.pprint();
+    seats.step();
+    seats.pprint();
+    seats.step();
+    seats.pprint();
+    seats.step();
+    seats.pprint();
+    seats.step();
+    seats.pprint();
     seats.step();
     seats.pprint();
 }
