@@ -116,6 +116,7 @@ use std::fs;
 #[derive(Debug)]
 struct Seats {
     rows: Vec<Vec<char>>,
+    rows_prev:  Vec<Vec<char>>,
     size: usize,
 }
 
@@ -127,11 +128,14 @@ impl Seats {
 
         Seats {
             rows: myvec,
+            rows_prev: Vec::new(),
             size: size,
         }
     }
 
     fn step(&mut self) {
+        // Copy the board because we need to check it while modifying.
+        self.rows_prev = self.rows.clone();
         for x in 0..self.size {
             for y in 0..self.size {
                 let mut count_occupied = 0;
@@ -141,13 +145,14 @@ impl Seats {
                             xi < self.size as i32 &&
                             yi >= 0 &&
                             yi < self.size as i32 &&
-                            self.rows[xi as usize][yi as usize] == '#' &&
+                            self.rows_prev[xi as usize][yi as usize] == '#' &&
                             true
                         {
                             count_occupied += 1;
                         }
                     }
                 }
+                // println!("{} {} {} {}", x, y, self.rows[x][y], count_occupied);
                 if self.rows[x][y] == 'L' && count_occupied == 0 {
                     self.rows[x][y] = '#';
                 } else if self.rows[x][y] == '#' && count_occupied >= 4 {
@@ -170,11 +175,8 @@ fn main() {
     let filename = "inputexample.txt";
     let mut seats = Seats::from_filename(filename);
     println!("{:?}", seats);
-    let mut rows_prev = seats.rows.clone();
-    rows_prev  [0][0] = 'Q';
-    while rows_prev != seats.rows {
+    while seats.rows_prev != seats.rows {
         seats.pprint();
-        rows_prev = seats.rows.clone();
         seats.step();
     }
     seats.pprint();
