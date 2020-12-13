@@ -174,23 +174,26 @@ impl Seats {
                         yi += *ydiff;
                         // println!("{} {} {} {} {} {} ",
                         //     x, y, xi, yi, self.rows.len() as i32, self.rows[0].len() as i32);
-                        if xi <= 0 || yi <= 0 || xi >= self.rows.len() as i32 || yi >= self.rows[0].len() as i32 ||
-                            self.rows_prev[xi as usize][yi as usize] != '.' {
+                        if xi <= 0 || yi <= 0 || xi >= self.rows.len() as i32 || yi >= self.rows[0].len() as i32 {
+                            // hit end of the hall, did not see any chair
+                            break;
+                        } else if self.rows_prev[xi as usize][yi as usize] != '.' {
+                            // hit a chair
+                            match self.rows_prev[xi as usize][yi as usize] {
+                                'L' => {
+                                    // Empty chair
+                                }
+                                '#' => {
+                                    // Occupied chair
+                                    count_occupied += 1;
+                                }
+                                _ => {
+                                    panic!("Unknown chair found.")
+                                }
+                            }
                             break;
                         }
                     }
-                        // if xi >= 0 &&
-                        //     xi < self.rows.len() as i32 &&
-                        //     yi >= 0 &&
-                        //     yi < self.rows[0].len() as i32 &&
-                        //     !(xi == x as i32 && yi == y as i32)
-                        // {
-                        //     // count_space += 1;
-                        //     if self.rows_prev[xi as usize][yi as usize] == '#'
-                        //     {
-                        //         count_occupied += 1;
-                        //     }
-                        // }
                 }
                 // println!("{} {} {} {} {}", x, y, self.rows[x][y], count_space, count_occupied);
                 if self.rows[x][y] == 'L' && count_occupied == 0 {
