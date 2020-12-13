@@ -62,7 +62,8 @@ pub struct DirectionsParser;
 fn main() {
     println!("Advent of Code 2020 Day 12!");
 
-    let filename = "inputexample.txt";
+    // let filename = "inputexample.txt";
+    let filename = "input.txt";
     let unparsed_file = fs::read_to_string(filename).expect("Error reading file.");
 
     let directions = DirectionsParser::parse(Rule::directions, &unparsed_file)
@@ -70,37 +71,27 @@ fn main() {
         .next().unwrap();
 
     for amove in directions.into_inner() {
-        println!("{:?}", amove);
+        // println!("{:?}", amove);
         match amove.as_rule() {
             Rule::moveforward => {
-                println!("Moving forward!");
+                let distance = amove.into_inner().as_str().parse::<i32>().unwrap();
+                println!("Moving forward by {}!", distance);
             }
             Rule::moveangle => {
-                println!("Turning!");
+                let mut pairs = amove.into_inner();
+                let leftright = pairs.next().unwrap().as_str();
+                let angle = pairs.next().unwrap().as_str().parse::<i32>().unwrap();
+                println!("Turning {} degrees to the {}!", angle, leftright);
             }
             Rule::movecompass => {
-                println!("Moving in direction!");
+                let mut pairs = amove.into_inner();
+                let compass = pairs.next().unwrap().as_str();
+                let distance = pairs.next().unwrap().as_str().parse::<i32>().unwrap();
+                println!("Moving {} in direction {}!", distance, compass);
             }
             Rule::EOI => (),
             _ => unreachable!(),
         }
     }
-
-    // for record in file.into_inner() {
-    //     match record.as_rule() {
-    //         Rule::record => {
-    //             record_count += 1;
-    //
-    //             for field in record.into_inner() {
-    //                 field_sum += field.as_str().parse::<f64>().unwrap();
-    //             }
-    //         }
-    //         Rule::EOI => (),
-    //         _ => unreachable!(),
-    //     }
-    // }
-    //
-    // println!("Sum of fields: {}", field_sum);
-    // println!("Number of records: {}", record_count);
 
 }
