@@ -166,11 +166,24 @@ impl Seats {
         }
     }
 
+    fn occupied(&self) -> usize {
+        let mut count_occupied = 0;
+        for row in &self.rows {
+            for seat in row {
+                if *seat == '#' {
+                    count_occupied += 1;
+                }
+            }
+        }
+        count_occupied
+    }
+
     fn pprint(&self) {
         println!();
         for line in &self.rows {
             println!("{:?}", line.iter().collect::<String>());
         }
+        println!("Occupied: {}", &self.occupied());
     }
 }
 
