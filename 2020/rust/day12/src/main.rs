@@ -106,8 +106,8 @@ fn main() {
                     match (direction, leftright) {
                         (Compass::East, "L") => {direction = Compass::North}
                         (Compass::East, "R") => {direction = Compass::South}
-                        (Compass::South, "L") => {direction = Compass::West}
-                        (Compass::South, "R") => {direction = Compass::East}
+                        (Compass::South, "L") => {direction = Compass::East}
+                        (Compass::South, "R") => {direction = Compass::West}
                         (Compass::West, "L") => {direction = Compass::South}
                         (Compass::West, "R") => {direction = Compass::North}
                         (Compass::North, "L") => {direction = Compass::West}
