@@ -146,7 +146,8 @@ impl Seats {
 fn main() {
     println!("Advent of Code 2020 Day 11!");
     let filename = "inputexample.txt";
-    let seats = Seats::from_filename(filename);
+    let mut seats = Seats::from_filename(filename);
     println!("{:?}", seats);
+    seats.step();
     seats.pprint();
 }
