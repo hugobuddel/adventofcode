@@ -65,9 +65,26 @@ fn main() {
     let filename = "inputexample.txt";
     let unparsed_file = fs::read_to_string(filename).expect("Error reading file.");
 
-    let file = DirectionsParser::parse(Rule::directions, &unparsed_file)
+    let directions = DirectionsParser::parse(Rule::directions, &unparsed_file)
         .expect("Unsuccessful parse")
         .next().unwrap();
+
+    for amove in directions.into_inner() {
+        println!("{:?}", amove);
+        match amove.as_rule() {
+            Rule::moveforward => {
+                println!("Moving forward!");
+            }
+            Rule::moveangle => {
+                println!("Turning!");
+            }
+            Rule::movecompass => {
+                println!("Moving in direction!");
+            }
+            Rule::EOI => (),
+            _ => unreachable!(),
+        }
+    }
 
     // for record in file.into_inner() {
     //     match record.as_rule() {
