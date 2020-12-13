@@ -151,25 +151,46 @@ impl Seats {
     fn step(&mut self) {
         // Copy the board because we need to check it while modifying.
         self.rows_prev = self.rows.clone();
+        // The 8 directions, this was supposed to have a logical ordering..
+        let xydiffs = vec![
+            (-1_i32,  0_i32),
+            (-1_i32,  1_i32),
+            ( 0_i32,  1_i32),
+            ( 1_i32, -1_i32),
+            ( 1_i32,  0_i32),
+            ( 1_i32,  1_i32),
+            ( 0_i32, -1_i32),
+            (-1_i32, -1_i32),
+        ];
         for x in 0..self.rows.len() {
             for y in 0..self.rows[0].len() {
                 let mut count_occupied = 0;
-                // let mut count_space = 0;
-                for xi in (x as i32) - 1..(x as i32) + 2 {
-                    for yi in (y as i32) -1..(y as i32) + 2 {
-                        if xi >= 0 &&
-                            xi < self.rows.len() as i32 &&
-                            yi >= 0 &&
-                            yi < self.rows[0].len() as i32 &&
-                            !(xi == x as i32 && yi == y as i32)
-                        {
-                            // count_space += 1;
-                            if self.rows_prev[xi as usize][yi as usize] == '#'
-                            {
-                                count_occupied += 1;
-                            }
+                for (xdiff, ydiff) in &xydiffs {
+                    // TODO: do something nice with if let or so?
+                    let mut xi = x as i32;
+                    let mut yi = y as i32;
+                    loop {
+                        xi += *xdiff;
+                        yi += *ydiff;
+                        // println!("{} {} {} {} {} {} ",
+                        //     x, y, xi, yi, self.rows.len() as i32, self.rows[0].len() as i32);
+                        if xi <= 0 || yi <= 0 || xi >= self.rows.len() as i32 || yi >= self.rows[0].len() as i32 ||
+                            self.rows_prev[xi as usize][yi as usize] != '.' {
+                            break;
                         }
                     }
+                        // if xi >= 0 &&
+                        //     xi < self.rows.len() as i32 &&
+                        //     yi >= 0 &&
+                        //     yi < self.rows[0].len() as i32 &&
+                        //     !(xi == x as i32 && yi == y as i32)
+                        // {
+                        //     // count_space += 1;
+                        //     if self.rows_prev[xi as usize][yi as usize] == '#'
+                        //     {
+                        //         count_occupied += 1;
+                        //     }
+                        // }
                 }
                 // println!("{} {} {} {} {}", x, y, self.rows[x][y], count_space, count_occupied);
                 if self.rows[x][y] == 'L' && count_occupied == 0 {
