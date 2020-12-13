@@ -48,6 +48,42 @@
 // Figure out where the navigation instructions lead. What is the Manhattan
 // distance between that location and the ship's starting position?
 
+extern crate pest;
+#[macro_use]
+extern crate pest_derive;
+use pest::Parser;
+
+use std::fs;
+
+#[derive(Parser)]
+#[grammar = "directions.pest"]
+pub struct DirectionsParser;
+
 fn main() {
     println!("Advent of Code 2020 Day 12!");
+
+    let filename = "inputexample.txt";
+    let unparsed_file = fs::read_to_string(filename).expect("Error reading file.");
+
+    let file = DirectionsParser::parse(Rule::directions, &unparsed_file)
+        .expect("Unsuccessful parse")
+        .next().unwrap();
+
+    // for record in file.into_inner() {
+    //     match record.as_rule() {
+    //         Rule::record => {
+    //             record_count += 1;
+    //
+    //             for field in record.into_inner() {
+    //                 field_sum += field.as_str().parse::<f64>().unwrap();
+    //             }
+    //         }
+    //         Rule::EOI => (),
+    //         _ => unreachable!(),
+    //     }
+    // }
+    //
+    // println!("Sum of fields: {}", field_sum);
+    // println!("Number of records: {}", record_count);
+
 }

@@ -1,0 +1,9 @@
+distance = { ASCII_DIGIT+ }
+angle = { "90" | "180" | "270" }
+compass = { "N" | "S" | "E" | "W" }
+leftright = { "L" | "R" }
+movecomp = { compass ~ distance }
+moveangle = { leftright ~ angle }
+moveforward = { "F" ~ distance }
+amove = {movecomp | moveangle | moveforward}
+directions = { SOI ~ (amove ~ ("\r\n" | "\n") )* ~ EOI }
