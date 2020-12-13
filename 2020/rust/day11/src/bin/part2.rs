@@ -174,7 +174,7 @@ impl Seats {
                         yi += *ydiff;
                         // println!("{} {} {} {} {} {} ",
                         //     x, y, xi, yi, self.rows.len() as i32, self.rows[0].len() as i32);
-                        if xi <= 0 || yi <= 0 || xi >= self.rows.len() as i32 || yi >= self.rows[0].len() as i32 {
+                        if xi < 0 || yi < 0 || xi >= self.rows.len() as i32 || yi >= self.rows[0].len() as i32 {
                             // hit end of the hall, did not see any chair
                             break;
                         } else if self.rows_prev[xi as usize][yi as usize] != '.' {
@@ -233,7 +233,7 @@ fn main() {
     let mut seats = Seats::from_filename(filename);
     // println!("{:?}", seats);
     while seats.rows_prev != seats.rows {
-        // seats.pprint();
+        seats.pprint();
         seats.step();
     }
     seats.pprint();
