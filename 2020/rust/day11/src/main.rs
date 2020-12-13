@@ -115,14 +115,14 @@ use std::fs;
 
 #[derive(Debug)]
 struct Seats {
-    rows: Vec<String>,
+    rows: Vec<Vec<char>>,
     size: usize,
 }
 
 impl Seats {
     fn from_filename(filename: &str) -> Seats {
         let contents = fs::read_to_string(filename).unwrap();
-        let myvec: Vec<String> = contents.trim().split("\n").map(|x| x.to_string()).collect();
+        let myvec: Vec<Vec<char>> = contents.trim().split("\n").map(|x| x.chars().collect()).collect();
         let size = myvec.len();
 
         Seats {
@@ -131,10 +131,14 @@ impl Seats {
         }
     }
 
+    fn step(&mut self) {
+        self.rows[0][0] = 'X';
+    }
+
     fn pprint(&self) {
         println!();
         for line in &self.rows {
-            println!("{}", line);
+            println!("{:?}", line.iter().collect::<String>());
         }
     }
 }
