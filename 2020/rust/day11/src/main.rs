@@ -170,17 +170,12 @@ fn main() {
     let filename = "inputexample.txt";
     let mut seats = Seats::from_filename(filename);
     println!("{:?}", seats);
-    seats.pprint();
-    seats.step();
-    seats.pprint();
-    seats.step();
-    seats.pprint();
-    seats.step();
-    seats.pprint();
-    seats.step();
-    seats.pprint();
-    seats.step();
-    seats.pprint();
-    seats.step();
+    let mut rows_prev = seats.rows.clone();
+    rows_prev  [0][0] = 'Q';
+    while rows_prev != seats.rows {
+        seats.pprint();
+        rows_prev = seats.rows.clone();
+        seats.step();
+    }
     seats.pprint();
 }
