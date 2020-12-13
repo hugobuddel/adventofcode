@@ -174,7 +174,7 @@ impl Seats {
                 // println!("{} {} {} {} {}", x, y, self.rows[x][y], count_space, count_occupied);
                 if self.rows[x][y] == 'L' && count_occupied == 0 {
                     self.rows[x][y] = '#';
-                } else if self.rows[x][y] == '#' && count_occupied >= 4 {
+                } else if self.rows[x][y] == '#' && count_occupied >= 5 {
                     self.rows[x][y] = 'L';
                 }
             }
@@ -204,8 +204,8 @@ impl Seats {
 
 fn main() {
     println!("Advent of Code 2020 Day 11!");
-    // let filename = "inputexample.txt";
-    let filename = "input.txt";
+    let filename = "inputexample.txt";
+    // let filename = "input.txt";
     let mut seats = Seats::from_filename(filename);
     // println!("{:?}", seats);
     while seats.rows_prev != seats.rows {
