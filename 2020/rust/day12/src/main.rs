@@ -84,7 +84,7 @@ fn main() {
     let mut direction = Compass::East;
 
     for amove in directions.into_inner() {
-        // println!("{:?}", amove);
+        println!("Move: {:?}", amove.as_str());
         match amove.as_rule() {
             Rule::moveforward => {
                 let distance = amove.into_inner().as_str().parse::<i32>().unwrap();
