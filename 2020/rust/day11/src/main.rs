@@ -117,35 +117,32 @@ use std::fs;
 struct Seats {
     rows: Vec<Vec<char>>,
     rows_prev:  Vec<Vec<char>>,
-    size: usize,
 }
 
 impl Seats {
     fn from_filename(filename: &str) -> Seats {
         let contents = fs::read_to_string(filename).unwrap();
         let myvec: Vec<Vec<char>> = contents.trim().split("\n").map(|x| x.chars().collect()).collect();
-        let size = myvec.len();
 
         Seats {
             rows: myvec,
             rows_prev: Vec::new(),
-            size: size,
         }
     }
 
     fn step(&mut self) {
         // Copy the board because we need to check it while modifying.
         self.rows_prev = self.rows.clone();
-        for x in 0..self.size {
-            for y in 0..self.size {
+        for x in 0..self.rows.len() {
+            for y in 0..self.rows[0].len() {
                 let mut count_occupied = 0;
                 let mut count_space = 0;
                 for xi in (x as i32) - 1..(x as i32) + 2 {
                     for yi in (y as i32) -1..(y as i32) + 2 {
                         if xi >= 0 &&
-                            xi < self.size as i32 &&
+                            xi < self.rows.len() as i32 &&
                             yi >= 0 &&
-                            yi < self.size as i32 &&
+                            yi < self.rows[0].len() as i32 &&
                             !(xi == x as i32 && yi == y as i32)
                         {
                             count_space += 1;
@@ -189,9 +186,8 @@ impl Seats {
 
 fn main() {
     println!("Advent of Code 2020 Day 11!");
-    // let q = -1..1;
-    // println!("q {}", q.collect::<Vec<_>>().len());
     let filename = "inputexample.txt";
+    // let filename = "inputexample.txt";
     let mut seats = Seats::from_filename(filename);
     println!("{:?}", seats);
     while seats.rows_prev != seats.rows {
