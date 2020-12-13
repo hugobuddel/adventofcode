@@ -60,6 +60,7 @@ use std::num;
 #[grammar = "directions.pest"]
 pub struct DirectionsParser;
 
+#[derive(Debug)]
 enum Compass {
     East,
     South,
@@ -94,7 +95,7 @@ fn main() {
                     Compass::West => {pos_ew += distance}
                     Compass::North => {pos_sn += distance}
                 }
-                println!("Currently at {},{}. Distance {}.", pos_ew, pos_sn, pos_ew.abs() + pos_sn.abs());
+                println!("Currently at {},{}. Distance {}. Facing {:?}.", pos_ew, pos_sn, pos_ew.abs() + pos_sn.abs(), direction);
             }
             Rule::moveangle => {
                 let mut pairs = amove.into_inner();
@@ -114,7 +115,7 @@ fn main() {
                         _ => unreachable!()
                     }
                 }
-                println!("Currently at {},{}. Distance {}.", pos_ew, pos_sn, pos_ew.abs() + pos_sn.abs());
+                println!("Currently at {},{}. Distance {}. Facing {:?}.", pos_ew, pos_sn, pos_ew.abs() + pos_sn.abs(), direction);
             }
             Rule::movecompass => {
                 let mut pairs = amove.into_inner();
@@ -128,7 +129,7 @@ fn main() {
                     "N" => {pos_sn += distance}
                     _ => unreachable!()
                 }
-                println!("Currently at {},{}. Distance {}.", pos_ew, pos_sn, pos_ew.abs() + pos_sn.abs());
+                println!("Currently at {},{}. Distance {}. Facing {:?}.", pos_ew, pos_sn, pos_ew.abs() + pos_sn.abs(), direction);
             }
             Rule::EOI => (),
             _ => unreachable!(),
