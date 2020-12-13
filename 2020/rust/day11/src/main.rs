@@ -136,7 +136,7 @@ impl Seats {
         for x in 0..self.rows.len() {
             for y in 0..self.rows[0].len() {
                 let mut count_occupied = 0;
-                let mut count_space = 0;
+                // let mut count_space = 0;
                 for xi in (x as i32) - 1..(x as i32) + 2 {
                     for yi in (y as i32) -1..(y as i32) + 2 {
                         if xi >= 0 &&
@@ -145,7 +145,7 @@ impl Seats {
                             yi < self.rows[0].len() as i32 &&
                             !(xi == x as i32 && yi == y as i32)
                         {
-                            count_space += 1;
+                            // count_space += 1;
                             if self.rows_prev[xi as usize][yi as usize] == '#'
                             {
                                 count_occupied += 1;
@@ -189,9 +189,9 @@ fn main() {
     let filename = "inputexample.txt";
     // let filename = "inputexample.txt";
     let mut seats = Seats::from_filename(filename);
-    println!("{:?}", seats);
+    // println!("{:?}", seats);
     while seats.rows_prev != seats.rows {
-        seats.pprint();
+        // seats.pprint();
         seats.step();
     }
     seats.pprint();
