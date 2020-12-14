@@ -1,0 +1,6 @@
+bitmask = { ("X" | "0" | "1" )+ }
+commandmask = { "mask = " ~ bitmask ~ "\n" }
+number = { ASCII_DIGIT+ }
+commandmem = { "mem[" ~ number ~ "] = " ~ number ~ "\n"}
+program = { (commandmask | commandmem)+ }
+file = { SOI  ~ program ~ EOI }
