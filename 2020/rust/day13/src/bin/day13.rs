@@ -157,6 +157,15 @@ use pest::Parser;
 #[grammar = "busses.pest"]
 pub struct BussesParser;
 
+// x % y but returns y if x % y == 0
+fn myremainder(x: usize, y: usize) -> usize {
+    let r = x % y;
+    match r {
+        0 => {y}
+        _ => {r}
+    }
+}
+
 fn main() {
     println!("Advent of Code 2020 Day 13!");
 
@@ -185,11 +194,15 @@ fn main() {
     println!("Waiting {} minutes for bus {}. {}", wait, bus, waitbus);
     // assert_eq!(295, waitbus);
 
-    for timetest in 1060000..1070000 {
-        let busses_ok = busses.iter().map(|bus| timetest % bus.0 == bus.1).collect::<Vec<_>>();
-        let all_busses_ok = busses.iter().all(|bus| timetest % bus.0 == bus.1);
-        if all_busses_ok || timetest == 1068781 {
+    // for timetest in 1060000..1070000 {
+    for timetest in 0..1070000 {
+        let timeleft = busses.iter().map(|bus| (bus.0, bus.1, bus.0 - myremainder(timetest, bus.0))).collect::<Vec<_>>();
+        let busses_ok = busses.iter().map(|bus| bus.0 - myremainder(timetest, bus.0) == bus.1).collect::<Vec<_>>();
+        let all_busses_ok = busses_ok.iter().all(|bus| bus == &true);
+        // if all_busses_ok || timetest == 1068781 {
+        if all_busses_ok {
             println!("{} {} {:?}", timetest, all_busses_ok, busses_ok);
+            println!("{:?}", timeleft);
         }
     }
 }
