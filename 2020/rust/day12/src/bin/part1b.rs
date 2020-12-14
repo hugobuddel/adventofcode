@@ -54,19 +54,11 @@ extern crate pest_derive;
 use pest::Parser;
 
 use std::fs;
-use std::num;
+use num;
 
 #[derive(Parser)]
 #[grammar = "directions.pest"]
 pub struct DirectionsParser;
-
-#[derive(Debug)]
-enum Compass {
-    East,
-    South,
-    West,
-    North,
-}
 
 fn main() {
     println!("Advent of Code 2020 Day 12!");
@@ -79,9 +71,17 @@ fn main() {
         .expect("Unsuccessful parse")
         .next().unwrap();
 
-    let mut pos_ew: i32 = 0;  // East to West
-    let mut pos_sn: i32 = 0;  // South to North
-    let mut direction = Compass::East;
+    let north = num::complex::Complex::new(0, 1);
+    let east = num::complex::Complex::new(1, 0);
+    let south = num::complex::Complex::new(0, -1);
+    let west = num::complex::Complex::new(-1, 0);
+    let left = num::complex::Complex::new(0, -1);
+    let right = num::complex::Complex::new(0, 1);
+    let origin = num::complex::Complex::new(0, 0);
+
+    let mut posc = origin;
+    let mut direction = east;
+    println!("Currently at {}. Distance {}. Facing {:?}.", posc, false, direction);
 
     for amove in directions.into_inner() {
         println!("Move: {:?}", amove.as_str());
@@ -89,13 +89,8 @@ fn main() {
             Rule::moveforward => {
                 let distance = amove.into_inner().as_str().parse::<i32>().unwrap();
                 println!("Moving forward by {}!", distance);
-                match direction {
-                    Compass::East => {pos_ew -= distance}
-                    Compass::South => {pos_sn -= distance}
-                    Compass::West => {pos_ew += distance}
-                    Compass::North => {pos_sn += distance}
-                }
-                println!("Currently at {},{}. Distance {}. Facing {:?}.", pos_ew, pos_sn, pos_ew.abs() + pos_sn.abs(), direction);
+                posc += distance * direction;
+                println!("Currently at {}. Distance {}. Facing {:?}.", posc, false, direction);
             }
             Rule::moveangle => {
                 let mut pairs = amove.into_inner();
@@ -103,19 +98,13 @@ fn main() {
                 let angle = pairs.next().unwrap().as_str().parse::<i32>().unwrap() / 90;
                 println!("Turning 90 degrees to the {} {} times!", leftright, angle);
                 for _ in 0..angle {
-                    match (direction, leftright) {
-                        (Compass::East, "L") => {direction = Compass::North}
-                        (Compass::East, "R") => {direction = Compass::South}
-                        (Compass::South, "L") => {direction = Compass::East}
-                        (Compass::South, "R") => {direction = Compass::West}
-                        (Compass::West, "L") => {direction = Compass::South}
-                        (Compass::West, "R") => {direction = Compass::North}
-                        (Compass::North, "L") => {direction = Compass::West}
-                        (Compass::North, "R") => {direction = Compass::East}
+                    match leftright {
+                        "L" => {direction *= left}
+                        "R" => {direction *= right}
                         _ => unreachable!()
                     }
                 }
-                println!("Currently at {},{}. Distance {}. Facing {:?}.", pos_ew, pos_sn, pos_ew.abs() + pos_sn.abs(), direction);
+                println!("Currently at {}. Distance {}. Facing {:?}.", posc, false, direction);
             }
             Rule::movecompass => {
                 let mut pairs = amove.into_inner();
@@ -123,13 +112,13 @@ fn main() {
                 let distance = pairs.next().unwrap().as_str().parse::<i32>().unwrap();
                 println!("Moving {} in direction {}!", distance, compass);
                 match compass {
-                    "E" => {pos_ew -= distance}
-                    "S" => {pos_sn -= distance}
-                    "W" => {pos_ew += distance}
-                    "N" => {pos_sn += distance}
+                    "E" => {posc -= distance * east}
+                    "S" => {posc -= distance * south}
+                    "W" => {posc -= distance * west}
+                    "N" => {posc -= distance * north}
                     _ => unreachable!()
                 }
-                println!("Currently at {},{}. Distance {}. Facing {:?}.", pos_ew, pos_sn, pos_ew.abs() + pos_sn.abs(), direction);
+                println!("Currently at {}. Distance {}. Facing {:?}.", posc, false, direction);
             }
             Rule::EOI => (),
             _ => unreachable!(),
