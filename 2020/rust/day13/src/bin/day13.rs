@@ -206,10 +206,47 @@ fn main() {
     println!("Waiting {} minutes for bus {}. {}", wait, bus, waitbus);
     // assert_eq!(295, waitbus);
 
+    // Experiment how slicing works.
+    fn mypr(vv: &Vec<usize>) {
+        println!("V {:?}", vv);
+    }
+    let xx = vec![2, 3, 4, 5];
+    println!("{:?}", &xx);
+    println!("{:?}", &xx[1..3]);
+    println!("{:?}", &xx[..1]);
+    println!("{:?}", &xx[..]);
+    mypr(&xx);
+    mypr(&xx[1..3].to_vec());
+
     // for timetest in 1060000..1070000 {
     for timetest in 0..1070000 {
         if check_timestamp(timetest, &busses) {
             println!("Found!");
         }
     }
+
+    let mut timetest = 0;
+    let mut nr_of_busses = 1;
+    let mut stepsize: usize = 1;
+    if check_timestamp(timetest, &busses[..nr_of_busses].to_vec()) {
+        println!("Found!");
+    }
+
+    while nr_of_busses < busses.len() {
+        // We assume the bus numbers are mutually prime.
+        stepsize *= busses[nr_of_busses - 1].0;
+        nr_of_busses += 1;
+
+        while !check_timestamp(timetest, &busses[..nr_of_busses].to_vec()) {
+            timetest += stepsize;
+        }
+
+        if check_timestamp(timetest, &busses[..nr_of_busses].to_vec()) {
+            println!("Found! {}", timetest);
+        } else {
+            println!("Not found");
+        }
+    }
+
+
 }
