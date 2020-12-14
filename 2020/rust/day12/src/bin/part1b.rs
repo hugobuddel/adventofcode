@@ -62,7 +62,24 @@ use num::complex::{Complex};
 pub struct DirectionsParser;
 
 fn printship(posc: Complex<i32>, direction: Complex<i32>) {
-    println!("Currently at {}. Distance {}. Facing {:?}.", posc, false, direction);
+    let north = Complex::new(0, 1);
+    let east = Complex::new(1, 0);
+    let south = Complex::new(0, -1);
+    let west = Complex::new(-1, 0);
+    // TODO: How to match this?
+    let mut d = "Nothing";
+    if direction == north {
+        d = "North";
+    } else if direction == east {
+        d = "East";
+    } else if direction == south {
+        d = "South";
+    } else if direction == west {
+        d = "West";
+    }
+    println!("Currently at {},{}. Distance {}. Facing {}.", posc.re, posc.im, posc.re.abs() + posc.im.abs(), d);
+    // println!("Currently at {},{}. Distance {}. Facing {:?}.", posc.re, posc.im, posc.re.abs() + posc.im.abs(), direction);
+    // println!("Currently at {},{}. Distance {}. Facing {:?}. {}", posc.re, posc.im, posc.re.abs() + posc.im.abs(), d, direction);
 }
 
 fn main() {
