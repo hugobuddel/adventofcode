@@ -159,7 +159,11 @@ pub struct BussesParser;
 
 // x % y but returns y if x % y == 0
 fn myremainder(x: usize, y: usize) -> usize {
-    let r = x % y;
+    let r = if y > 0 {
+        x % y
+    } else {
+        x
+    };
     match r {
         0 => {y}
         _ => {r}
@@ -181,8 +185,8 @@ fn check_timestamp(timetest: usize, busses: &Vec<(usize, usize)>) -> bool {
 fn main() {
     println!("Advent of Code 2020 Day 13!");
 
-    // let filename = "inputexample.txt";
-    let filename = "input.txt";
+    let filename = "inputexample.txt";
+    // let filename = "input.txt";
     let unparsed_file = fs::read_to_string(filename).expect("Error reading file.");
 
     let busfile = BussesParser::parse(Rule::file, &unparsed_file)
@@ -191,12 +195,18 @@ fn main() {
 
     let mut pair = busfile.into_inner();
     let timenow: usize = pair.next().unwrap().as_str().parse().unwrap();
-    let busses = pair.next().unwrap().into_inner().enumerate()
+    let busses_o = pair.next().unwrap().into_inner().enumerate()
         .filter(|x| x.1.as_str() != "x")
         .map(|x| (x.1.as_str().parse::<usize>().unwrap(), x.0))
+        // .map(|x| (x.1, myremainder(x.0 , x.1)))
+        .collect::<Vec<_>>();
+    let busses = busses_o.iter()
+        // .map(|x| (x.0, myremainder(x.1 , x.0)))
+        .map(|x| (x.0, x.1 % x.0))
         .collect::<Vec<_>>();
     println!("Time: {}", timenow);
-    println!("Busses: {:?}", busses);
+    println!("Busses Old: {:?}", busses_o);
+    println!("Busses New: {:?}", busses);
 
     let mut timeleft = busses.iter().map(|bus| (bus.0 - timenow % bus.0, bus.0)).collect::<Vec<_>>();
     println!("Timeleft: {:?}", timeleft);
@@ -219,11 +229,11 @@ fn main() {
     mypr(&xx[1..3].to_vec());
 
     // for timetest in 1060000..1070000 {
-    for timetest in 0..1070000 {
-        if check_timestamp(timetest, &busses) {
-            println!("Found!");
-        }
-    }
+    // for timetest in 0..1070000 {
+    //     if check_timestamp(timetest, &busses) {
+    //         println!("Found!");
+    //     }
+    // }
 
     let mut timetest = 0;
     let mut nr_of_busses = 1;
@@ -252,6 +262,7 @@ fn main() {
             println!("Found! {}", timetest);
         } else {
             println!("Not found");
+            break;
         }
     }
 
