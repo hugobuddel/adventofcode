@@ -67,6 +67,7 @@
 // memory after it completes?
 
 use std::fs;
+use std::collections::HashMap;
 
 extern crate pest;
 #[macro_use]
@@ -80,19 +81,30 @@ pub struct ProgramParser;
 fn main() {
     println!("Advent of Code 2020 Day 14!");
     let filename = "inputexample.txt";
+    let mut maskor: usize = 0;
+    let mut maskand: usize = 0;
+    let mut memory: HashMap<usize, usize> = HashMap::new();
     let file_unparsed = fs::read_to_string(filename).expect("Error reading file.");
     let pprogram = ProgramParser::parse(Rule::program, &file_unparsed)
         .expect("Error parsing program.").next().unwrap();
-    // let vv: Vec<Command> = pprogram.into_inner()
-    //     .map(|command| CommandMask { value: 3 })
-        // match command.as_rule() {
-        //     Rule::commandmask => {
-        //
-        //     }
-        //     Rule::commandmem => {
-        //
-        //     }
-        //     _ => unreachable!()
-        // }
-        // .collect::<Vec<_>>();
+    for command in pprogram.into_inner() {
+        match command.as_rule() {
+            Rule::commandmask => {
+                let maskstring = command.into_inner().next().unwrap().as_str();
+                println!("Mask: {}", maskstring);
+                maskor = maskstring.chars().rev()
+                    .enumerate().filter(|x| x.1 == '1')
+                    .map(|x| 2_usize.pow(x.0 as u32))
+                    .sum();
+                maskand = maskstring.chars().rev()
+                    .enumerate().filter(|x| x.1 == '0')
+                    .map(|x| 2_usize.pow(x.0 as u32))
+                    .sum();
+                println!("maskor:{} maskand:{}", maskor, maskand);
+            }
+            Rule::commandmem => {
+            }
+            _ => unreachable!()
+        }
+    }
 }
