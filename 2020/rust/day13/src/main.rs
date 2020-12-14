@@ -90,6 +90,10 @@ fn main() {
         .expect("Unsuccessful parse")
         .next().unwrap();
 
-    for amove in busfile.into_inner() {
-    }
+    let mut pair = busfile.into_inner();
+    let timenow: usize = pair.next().unwrap().as_str().parse().unwrap();
+    let busses = pair.next().unwrap().into_inner()
+        .map(|x| x.as_str().parse::<usize>().unwrap()).collect::<Vec<_>>();
+    println!("Time: {}", timenow);
+    println!("Busses: {:?}", busses);
 }
