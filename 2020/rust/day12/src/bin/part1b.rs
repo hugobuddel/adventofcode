@@ -55,10 +55,15 @@ use pest::Parser;
 
 use std::fs;
 use num;
+use num::complex::{Complex};
 
 #[derive(Parser)]
 #[grammar = "directions.pest"]
 pub struct DirectionsParser;
+
+fn printship(posc: Complex<i32>, direction: Complex<i32>) {
+    println!("Currently at {}. Distance {}. Facing {:?}.", posc, false, direction);
+}
 
 fn main() {
     println!("Advent of Code 2020 Day 12!");
@@ -71,17 +76,17 @@ fn main() {
         .expect("Unsuccessful parse")
         .next().unwrap();
 
-    let north = num::complex::Complex::new(0, 1);
-    let east = num::complex::Complex::new(1, 0);
-    let south = num::complex::Complex::new(0, -1);
-    let west = num::complex::Complex::new(-1, 0);
-    let left = num::complex::Complex::new(0, -1);
-    let right = num::complex::Complex::new(0, 1);
-    let origin = num::complex::Complex::new(0, 0);
+    let north = Complex::new(0, 1);
+    let east = Complex::new(1, 0);
+    let south = Complex::new(0, -1);
+    let west = Complex::new(-1, 0);
+    let left = Complex::new(0, -1);
+    let right = Complex::new(0, 1);
+    let origin = Complex::new(0, 0);
 
     let mut posc = origin;
     let mut direction = east;
-    println!("Currently at {}. Distance {}. Facing {:?}.", posc, false, direction);
+    printship(posc, direction);
 
     for amove in directions.into_inner() {
         println!("Move: {:?}", amove.as_str());
@@ -90,7 +95,7 @@ fn main() {
                 let distance = amove.into_inner().as_str().parse::<i32>().unwrap();
                 println!("Moving forward by {}!", distance);
                 posc += distance * direction;
-                println!("Currently at {}. Distance {}. Facing {:?}.", posc, false, direction);
+                printship(posc, direction);
             }
             Rule::moveangle => {
                 let mut pairs = amove.into_inner();
@@ -104,7 +109,7 @@ fn main() {
                         _ => unreachable!()
                     }
                 }
-                println!("Currently at {}. Distance {}. Facing {:?}.", posc, false, direction);
+                printship(posc, direction);
             }
             Rule::movecompass => {
                 let mut pairs = amove.into_inner();
@@ -118,7 +123,7 @@ fn main() {
                     "N" => {posc -= distance * north}
                     _ => unreachable!()
                 }
-                println!("Currently at {}. Distance {}. Facing {:?}.", posc, false, direction);
+                printship(posc, direction);
             }
             Rule::EOI => (),
             _ => unreachable!(),
