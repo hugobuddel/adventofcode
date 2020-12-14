@@ -172,15 +172,16 @@ fn main() {
     let timenow: usize = pair.next().unwrap().as_str().parse().unwrap();
     let busses = pair.next().unwrap().into_inner().enumerate()
         .filter(|x| x.1.as_str() != "x")
-        .map(|x| x.1.as_str().parse::<usize>().unwrap()).collect::<Vec<_>>();
+        .map(|x| (x.1.as_str().parse::<usize>().unwrap(), x.0))
+        .collect::<Vec<_>>();
     println!("Time: {}", timenow);
     println!("Busses: {:?}", busses);
 
-    let mut timeleft = busses.iter().map(|bus| (bus - timenow % bus, bus)).collect::<Vec<_>>();
+    let mut timeleft = busses.iter().map(|bus| (bus.0 - timenow % bus.0, bus.0)).collect::<Vec<_>>();
     println!("Timeleft: {:?}", timeleft);
     timeleft.sort();
     let (wait, bus) = timeleft.first().unwrap();
-    let waitbus = *wait * **bus;
+    let waitbus = *wait * bus;
     println!("Waiting {} minutes for bus {}. {}", wait, bus, waitbus);
     // assert_eq!(295, waitbus);
 }
