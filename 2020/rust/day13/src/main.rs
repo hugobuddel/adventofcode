@@ -96,4 +96,8 @@ fn main() {
         .map(|x| x.as_str().parse::<usize>().unwrap()).collect::<Vec<_>>();
     println!("Time: {}", timenow);
     println!("Busses: {:?}", busses);
+
+    let timeleft = busses.iter().map(|bus| (bus - timenow % bus, bus)).collect::<Vec<_>>();
+    println!("Timeleft: {:?}", timeleft);
+
 }
