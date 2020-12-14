@@ -107,9 +107,14 @@ fn main() {
                 let location: usize = pair.next().unwrap().as_str().parse().unwrap();
                 let value: usize = pair.next().unwrap().as_str().parse().unwrap();
                 let valuemasked = (value | maskor) & maskand;
-                println!("value:{} valuemasked:{}", value, valuemasked);
+                println!("location:{} value:{} valuemasked:{}", location, value, valuemasked);
+                memory.insert(location, valuemasked);
             }
             _ => unreachable!()
         }
     }
+    // println!("Memory: {:?}", memory);
+    let total: usize = memory.iter().map(|x| x.1).sum();
+    println!("Total: {}", total);
+    assert_eq!(165, total);
 }
