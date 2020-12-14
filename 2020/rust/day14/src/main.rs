@@ -80,7 +80,8 @@ pub struct ProgramParser;
 
 fn main() {
     println!("Advent of Code 2020 Day 14!");
-    let filename = "inputexample.txt";
+    // let filename = "inputexample.txt";
+    let filename = "input.txt";
     let mut maskor: usize = 0;
     let mut maskand: usize = 0;
     let mut memory: HashMap<usize, usize> = HashMap::new();
@@ -116,5 +117,5 @@ fn main() {
     // println!("Memory: {:?}", memory);
     let total: usize = memory.iter().map(|x| x.1).sum();
     println!("Total: {}", total);
-    assert_eq!(165, total);
+    // assert_eq!(165, total);
 }
