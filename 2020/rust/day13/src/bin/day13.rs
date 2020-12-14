@@ -187,6 +187,9 @@ fn main() {
 
     for timetest in 1060000..1070000 {
         let busses_ok = busses.iter().map(|bus| timetest % bus.0 == bus.1).collect::<Vec<_>>();
-        println!("{} {:?}", timetest, busses_ok);
+        let all_busses_ok = busses.iter().all(|bus| timetest % bus.0 == bus.1);
+        if all_busses_ok || timetest == 1068781 {
+            println!("{} {} {:?}", timetest, all_busses_ok, busses_ok);
+        }
     }
 }
