@@ -97,7 +97,11 @@ fn main() {
     println!("Time: {}", timenow);
     println!("Busses: {:?}", busses);
 
-    let timeleft = busses.iter().map(|bus| (bus - timenow % bus, bus)).collect::<Vec<_>>();
+    let mut timeleft = busses.iter().map(|bus| (bus - timenow % bus, bus)).collect::<Vec<_>>();
     println!("Timeleft: {:?}", timeleft);
-
+    timeleft.sort();
+    let (wait, bus) = timeleft.first().unwrap();
+    let waitbus = *wait * **bus;
+    println!("Waiting {} minutes for bus {}. {}", wait, bus, waitbus);
+    assert_eq!(295, waitbus);
 }
