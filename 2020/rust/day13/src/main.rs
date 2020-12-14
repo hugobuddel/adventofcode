@@ -170,8 +170,9 @@ fn main() {
 
     let mut pair = busfile.into_inner();
     let timenow: usize = pair.next().unwrap().as_str().parse().unwrap();
-    let busses = pair.next().unwrap().into_inner()
-        .map(|x| x.as_str().parse::<usize>().unwrap()).collect::<Vec<_>>();
+    let busses = pair.next().unwrap().into_inner().enumerate()
+        .filter(|x| x.1.as_str() != "x")
+        .map(|x| x.1.as_str().parse::<usize>().unwrap()).collect::<Vec<_>>();
     println!("Time: {}", timenow);
     println!("Busses: {:?}", busses);
 
