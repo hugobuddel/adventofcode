@@ -166,6 +166,18 @@ fn myremainder(x: usize, y: usize) -> usize {
     }
 }
 
+fn check_timestamp(timetest: usize, busses: &Vec<(usize, usize)>) -> bool {
+    let timeleft = busses.iter().map(|bus| (bus.0, bus.1, bus.0 - myremainder(timetest, bus.0))).collect::<Vec<_>>();
+    let busses_ok = busses.iter().map(|bus| bus.0 - myremainder(timetest, bus.0) == bus.1).collect::<Vec<_>>();
+    let all_busses_ok = busses_ok.iter().all(|bus| bus == &true);
+    // if all_busses_ok || timetest == 1068781 {
+    if all_busses_ok {
+        println!("{} {} {:?}", timetest, all_busses_ok, busses_ok);
+        println!("{:?}", timeleft);
+    }
+    all_busses_ok
+}
+
 fn main() {
     println!("Advent of Code 2020 Day 13!");
 
@@ -196,13 +208,8 @@ fn main() {
 
     // for timetest in 1060000..1070000 {
     for timetest in 0..1070000 {
-        let timeleft = busses.iter().map(|bus| (bus.0, bus.1, bus.0 - myremainder(timetest, bus.0))).collect::<Vec<_>>();
-        let busses_ok = busses.iter().map(|bus| bus.0 - myremainder(timetest, bus.0) == bus.1).collect::<Vec<_>>();
-        let all_busses_ok = busses_ok.iter().all(|bus| bus == &true);
-        // if all_busses_ok || timetest == 1068781 {
-        if all_busses_ok {
-            println!("{} {} {:?}", timetest, all_busses_ok, busses_ok);
-            println!("{:?}", timeleft);
+        if check_timestamp(timetest, &busses) {
+            println!("Found!");
         }
     }
 }
