@@ -160,8 +160,8 @@ pub struct BussesParser;
 fn main() {
     println!("Advent of Code 2020 Day 13!");
 
-    // let filename = "inputexample.txt";
-    let filename = "input.txt";
+    let filename = "inputexample.txt";
+    // let filename = "input.txt";
     let unparsed_file = fs::read_to_string(filename).expect("Error reading file.");
 
     let busfile = BussesParser::parse(Rule::file, &unparsed_file)
@@ -184,4 +184,9 @@ fn main() {
     let waitbus = *wait * bus;
     println!("Waiting {} minutes for bus {}. {}", wait, bus, waitbus);
     // assert_eq!(295, waitbus);
+
+    for timetest in 1060000..1070000 {
+        let busses_ok = busses.iter().map(|bus| timetest % bus.0 == bus.1).collect::<Vec<_>>();
+        println!("{} {:?}", timetest, busses_ok);
+    }
 }
