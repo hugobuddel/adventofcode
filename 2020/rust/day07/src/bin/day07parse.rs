@@ -84,9 +84,6 @@
 // How many individual bags are required inside your single shiny gold bag?
 
 use std::fs;
-use std::fs::File;
-use std::io::{self, BufRead};
-use std::path::Path;
 use petgraph::Graph;
 use petgraph::algo;
 use std::collections::HashMap;
@@ -99,21 +96,10 @@ use pest::Parser;
 #[grammar = "bags.pest"]
 pub struct BagsParser;
 
-// from https://doc.rust-lang.org/stable/rust-by-example/std_misc/file/read_lines.html
-// The output is wrapped in a Result to allow matching on errors
-// Returns an Iterator to the Reader of the lines of the file.
-fn read_lines<P>(filename: P) -> io::Result<io::Lines<io::BufReader<File>>>
-where P: AsRef<Path>, {
-    let file = File::open(filename)?;
-    Ok(io::BufReader::new(file).lines())
-}
-
 fn count_contents(deps: &Graph::<&str, &str>, node:petgraph::prelude::NodeIndex) -> i32 {
     // println!("Getting contents of bag {:?}", node);
     let mut count_bags = 0;
     for neighbor in deps.neighbors_directed(node, petgraph::Direction::Outgoing) {
-        let name_bag = deps[neighbor];
-        // println!("Neighbor {:?}", name_bag);
         // Add the contents of neighbor.
         count_bags += count_contents(deps, neighbor);
         // Add neighbor itself.
@@ -133,43 +119,31 @@ fn main () {
     let bagfile = BagsParser::parse(Rule::bags, &unparsed_file)
         .expect("Unsuccessful parse")
         .next().unwrap();
-    // println!("{}", bagfile.as_str());
 
     let mut bagrules: Vec<(String, Vec<(i32, String)>)> = Vec::new();
 
-    // if let Ok(lines) = read_lines("./inputexample.txt") {
-    if let Ok(lines) = read_lines("./input.txt") {
-        for line in lines {
-            // println!("{:?}", line.unwrap());
-            let lineu = line.unwrap();
-            let rr = lineu.split(" bags contain ").collect::<Vec<_>>();
-            let name = rr[0];
-            let rest = rr[1];
-            let mut contains: Vec<(i32, String)> = Vec::new();
-            if rest != "no other bags." {
-                let rest_split = rest.replace(".", " ");
-                let rest_split2 = rest_split.trim();
-                let rest_split3 = rest_split2.split(", ");
-                for count_type in rest_split3 {
-                    // println!("{:?}", count_type);
-                    let count_type_split: Vec<&str> = count_type.splitn(2, " ").collect();
-                    // println!("{:?}", count_type_split);
-                    let count = count_type_split[0].parse::<i32>().unwrap();
-                    let bagtype = count_type_split[1].rsplitn(2, " ").collect::<Vec<_>>()[1];
-                    let c_bt = (count, bagtype.to_string());
-                    // println!("{:?}", c_bt);
-                    contains.push(c_bt);
-                }
-            }
-            bagrules.push((name.to_string(), contains.clone()));
-            // println!("{} {:?}", name, contains);
+    for line in bagfile.into_inner() {
+        if line.as_rule() == Rule::EOI {
+            break;
         }
+        let mut pair = line.into_inner();
+        let name = pair.next().unwrap().as_str();
+        let mut contains: Vec<(i32, String)> = Vec::new();
+        let rules = pair.next().unwrap();
+        if rules.as_rule() == Rule::bagrules {
+            for rule in rules.into_inner() {
+                let mut countname = rule.into_inner();
+                let count = countname.next().unwrap().as_str().parse::<i32>().unwrap();
+                let bagtype = countname.next().unwrap().as_str();
+                contains.push((count, bagtype.to_string()));
+            }
+        }
+        bagrules.push((name.to_string(), contains.clone()));
     }
 
     let mut deps = Graph::<&str, &str>::new();
     let bagrules2 = bagrules.clone();
     let nodes = bagrules2.iter().map(|n_cc| (n_cc.0.clone(), deps.add_node(n_cc.0.as_str()))).collect::<HashMap<_, _>>();
-    // deps.add_edge(nodes["bright white"], nodes["shiny gold"], "1");
     for (name, rule) in bagrules {
         for (count, name2) in rule {
             // Add the edge count number of times.
@@ -180,13 +154,6 @@ fn main () {
         }
     }
 
-    // println!("Graph: {:?}", deps);
-    println!("Node: {:?}", nodes["shiny gold"]);
-
-    let p1 = algo::has_path_connecting(&deps, nodes["shiny gold"], nodes["dark orange"], None);
-    let p2 = algo::has_path_connecting(&deps, nodes["dark orange"], nodes["shiny gold"], None);
-    let p3 = algo::has_path_connecting(&deps, nodes["shiny gold"], nodes["shiny gold"], None);
-    println!("Testpaths {} {} {}", p1, p2, p3);
     let nodes_to_gold = nodes.iter().filter(
         |bag| algo::has_path_connecting(&deps, *bag.1, nodes["shiny gold"], None)
     ).collect::<Vec<_>>();
