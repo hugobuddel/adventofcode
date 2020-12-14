@@ -6,3 +6,5 @@ edition = "2018"
 
 [dependencies]
 petgraph = "0.5.1"
+pest = "2.0"
+pest_derive = "2.0"

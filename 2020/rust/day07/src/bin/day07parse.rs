@@ -83,12 +83,21 @@
 //
 // How many individual bags are required inside your single shiny gold bag?
 
+use std::fs;
 use std::fs::File;
 use std::io::{self, BufRead};
 use std::path::Path;
 use petgraph::Graph;
 use petgraph::algo;
 use std::collections::HashMap;
+extern crate pest;
+#[macro_use]
+extern crate pest_derive;
+use pest::Parser;
+
+#[derive(Parser)]
+#[grammar = "bags.pest"]
+pub struct BagsParser;
 
 // from https://doc.rust-lang.org/stable/rust-by-example/std_misc/file/read_lines.html
 // The output is wrapped in a Result to allow matching on errors
@@ -115,6 +124,16 @@ fn count_contents(deps: &Graph::<&str, &str>, node:petgraph::prelude::NodeIndex)
 
 fn main () {
     println!("Advent of Code 2020 Day 7.");
+
+    let filename = "inputexample.txt";
+    // let filename = "input.txt";
+
+    let unparsed_file = fs::read_to_string(filename).expect("Error reading file.");
+
+    let bagfile = BagsParser::parse(Rule::bags, &unparsed_file)
+        .expect("Unsuccessful parse")
+        .next().unwrap();
+
 
     let mut bagrules: Vec<(String, Vec<(i32, String)>)> = Vec::new();
 

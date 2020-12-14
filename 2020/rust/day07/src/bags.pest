@@ -1,0 +1,7 @@
+bagname = { ASCII_ALPHA+ ~ " " ~ ASCII_ALPHA+ }
+nootherbags = { " no other bags" }
+bagcounter = { ASCII_DIGIT+ }
+bagrule = {" " ~ bagcounter ~ " " ~ bagname ~ ("bag" | "bags") }
+bagrules = {bagrule ~ ("," ~ bagrule)*}
+bag = { bagname ~ " bags contain" ~ (bagrules | nootherbags) ~ ".\n" }
+bags = { bag+ }
