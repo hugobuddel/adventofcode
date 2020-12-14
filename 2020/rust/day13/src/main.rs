@@ -68,6 +68,28 @@
 // What is the ID of the earliest bus you can take to the airport multiplied by
 // the number of minutes you'll need to wait for that bus?
 
+use std::fs;
+
+extern crate pest;
+#[macro_use]
+extern crate pest_derive;
+use pest::Parser;
+
+#[derive(Parser)]
+#[grammar = "busses.pest"]
+pub struct BussesParser;
+
 fn main() {
     println!("Advent of Code 2020 Day 13!");
+
+    let filename = "inputexample.txt";
+    // let filename = "input.txt";
+    let unparsed_file = fs::read_to_string(filename).expect("Error reading file.");
+
+    let busfile = BussesParser::parse(Rule::file, &unparsed_file)
+        .expect("Unsuccessful parse")
+        .next().unwrap();
+
+    for amove in busfile.into_inner() {
+    }
 }

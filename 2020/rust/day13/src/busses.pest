@@ -1,0 +1,4 @@
+time = { ASCII_DIGIT+ }
+bus = { ASCII_DIGIT+ }
+busses = { (bus | "x") ~ ("," ~ (bus | "x")) *}
+file = { SOI ~ time ~ "\n" ~ busses ~ "\n" ~ EOI }
