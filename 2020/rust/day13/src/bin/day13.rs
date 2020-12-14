@@ -185,8 +185,8 @@ fn check_timestamp(timetest: usize, busses: &Vec<(usize, usize)>) -> bool {
 fn main() {
     println!("Advent of Code 2020 Day 13!");
 
-    let filename = "inputexample.txt";
-    // let filename = "input.txt";
+    // let filename = "inputexample.txt";
+    let filename = "input.txt";
     let unparsed_file = fs::read_to_string(filename).expect("Error reading file.");
 
     let busfile = BussesParser::parse(Rule::file, &unparsed_file)
@@ -201,6 +201,7 @@ fn main() {
         // .map(|x| (x.1, myremainder(x.0 , x.1)))
         .collect::<Vec<_>>();
     let busses = busses_o.iter()
+        // This fixes the (13, 36)
         // .map(|x| (x.0, myremainder(x.1 , x.0)))
         .map(|x| (x.0, x.1 % x.0))
         .collect::<Vec<_>>();
