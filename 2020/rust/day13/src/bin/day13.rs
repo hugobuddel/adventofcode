@@ -181,8 +181,8 @@ fn check_timestamp(timetest: usize, busses: &Vec<(usize, usize)>) -> bool {
 fn main() {
     println!("Advent of Code 2020 Day 13!");
 
-    let filename = "inputexample.txt";
-    // let filename = "input.txt";
+    // let filename = "inputexample.txt";
+    let filename = "input.txt";
     let unparsed_file = fs::read_to_string(filename).expect("Error reading file.");
 
     let busfile = BussesParser::parse(Rule::file, &unparsed_file)
@@ -235,10 +235,17 @@ fn main() {
     while nr_of_busses < busses.len() {
         // We assume the bus numbers are mutually prime.
         stepsize *= busses[nr_of_busses - 1].0;
+        let timemax = stepsize * busses[nr_of_busses].0;
         nr_of_busses += 1;
+
+        println!("Adding {:?}", busses[nr_of_busses - 1]);
+        println!("Stepsize: {} {}", stepsize, timemax);
 
         while !check_timestamp(timetest, &busses[..nr_of_busses].to_vec()) {
             timetest += stepsize;
+            if timetest > timemax {
+                break;
+            }
         }
 
         if check_timestamp(timetest, &busses[..nr_of_busses].to_vec()) {
