@@ -82,8 +82,8 @@ pub struct BussesParser;
 fn main() {
     println!("Advent of Code 2020 Day 13!");
 
-    let filename = "inputexample.txt";
-    // let filename = "input.txt";
+    // let filename = "inputexample.txt";
+    let filename = "input.txt";
     let unparsed_file = fs::read_to_string(filename).expect("Error reading file.");
 
     let busfile = BussesParser::parse(Rule::file, &unparsed_file)
@@ -103,5 +103,5 @@ fn main() {
     let (wait, bus) = timeleft.first().unwrap();
     let waitbus = *wait * **bus;
     println!("Waiting {} minutes for bus {}. {}", wait, bus, waitbus);
-    assert_eq!(295, waitbus);
+    // assert_eq!(295, waitbus);
 }
