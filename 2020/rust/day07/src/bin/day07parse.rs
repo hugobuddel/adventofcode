@@ -125,15 +125,15 @@ fn count_contents(deps: &Graph::<&str, &str>, node:petgraph::prelude::NodeIndex)
 fn main () {
     println!("Advent of Code 2020 Day 7.");
 
-    let filename = "inputexample.txt";
-    // let filename = "input.txt";
+    // let filename = "inputexample.txt";
+    let filename = "input.txt";
 
     let unparsed_file = fs::read_to_string(filename).expect("Error reading file.");
 
     let bagfile = BagsParser::parse(Rule::bags, &unparsed_file)
         .expect("Unsuccessful parse")
         .next().unwrap();
-
+    // println!("{}", bagfile.as_str());
 
     let mut bagrules: Vec<(String, Vec<(i32, String)>)> = Vec::new();
 
@@ -162,7 +162,7 @@ fn main () {
                 }
             }
             bagrules.push((name.to_string(), contains.clone()));
-            println!("{} {:?}", name, contains);
+            // println!("{} {:?}", name, contains);
         }
     }
 
@@ -180,7 +180,7 @@ fn main () {
         }
     }
 
-    println!("Graph: {:?}", deps);
+    // println!("Graph: {:?}", deps);
     println!("Node: {:?}", nodes["shiny gold"]);
 
     let p1 = algo::has_path_connecting(&deps, nodes["shiny gold"], nodes["dark orange"], None);
