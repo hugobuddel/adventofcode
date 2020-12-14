@@ -97,12 +97,17 @@ fn main() {
                     .map(|x| 2_usize.pow(x.0 as u32))
                     .sum();
                 maskand = maskstring.chars().rev()
-                    .enumerate().filter(|x| x.1 == '0')
+                    .enumerate().filter(|x| x.1 != '0')
                     .map(|x| 2_usize.pow(x.0 as u32))
                     .sum();
                 println!("maskor:{} maskand:{}", maskor, maskand);
             }
             Rule::commandmem => {
+                let mut pair = command.into_inner();
+                let location: usize = pair.next().unwrap().as_str().parse().unwrap();
+                let value: usize = pair.next().unwrap().as_str().parse().unwrap();
+                let valuemasked = (value | maskor) & maskand;
+                println!("value:{} valuemasked:{}", value, valuemasked);
             }
             _ => unreachable!()
         }
