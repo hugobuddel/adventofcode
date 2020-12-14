@@ -97,8 +97,8 @@ fn main() {
     let east = Complex::new(1, 0);
     let south = Complex::new(0, -1);
     let west = Complex::new(-1, 0);
-    let left = Complex::new(0, -1);
-    let right = Complex::new(0, 1);
+    let left = Complex::new(0, 1);
+    let right = Complex::new(0, -1);
     let origin = Complex::new(0, 0);
 
     let mut posc = origin;
