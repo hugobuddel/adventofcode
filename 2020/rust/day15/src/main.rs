@@ -65,4 +65,23 @@
 
 fn main() {
     println!("Advent of Code 2020 Day 15!");
+    let mut numbers: Vec<usize> = vec![0, 3];
+    let mut last: usize = 6;
+    let mut turn = numbers.len();
+    for (i, num) in numbers.iter().enumerate() {
+        println!("Turn {}: {}", i + 1, num);
+    }
+    loop {
+        turn += 1;
+        println!("Turn {}: {}", turn, last);
+        let next = match numbers.iter().rev().position(|x| x == &last) {
+            Some(pos) => { pos + 1 }
+            None => { 0 }
+        };
+        numbers.push(last);
+        last = next;
+        if turn > 2030 {
+            break;
+        }
+    }
 }
