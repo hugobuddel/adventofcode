@@ -82,10 +82,10 @@ use std::collections::HashMap;
 
 fn main() {
     println!("Advent of Code 2020 Day 15!");
-    let numbers: Vec<usize> = vec![0, 3];
-    let mut last: usize = 6;
-    // let numbers: Vec<usize> = vec![6, 3, 15, 13, 1];
-    // let mut last: usize = 0;
+    // let numbers: Vec<usize> = vec![0, 3];
+    // let mut last: usize = 6;
+    let numbers: Vec<usize> = vec![6, 3, 15, 13, 1];
+    let mut last: usize = 0;
     let mut hmnumbers: HashMap<usize, usize> = numbers.iter().enumerate().map(|x| (*x.1, x.0 + 1)).collect();
     let mut turn = numbers.len();
     for (i, num) in numbers.iter().enumerate() {
