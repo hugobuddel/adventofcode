@@ -120,7 +120,7 @@ fn main() {
                     .map(|x| 2_usize.pow(x.0 as u32))
                     .sum();
                 maskand = maskstring.chars().rev()
-                    .enumerate().filter(|x| x.1 != '0')
+                    .enumerate().filter(|x| x.1 != 'X')
                     .map(|x| 2_usize.pow(x.0 as u32))
                     .sum();
                 floating_values = maskstring.chars().rev()
