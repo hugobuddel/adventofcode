@@ -65,8 +65,10 @@
 
 fn main() {
     println!("Advent of Code 2020 Day 15!");
-    let mut numbers: Vec<usize> = vec![0, 3];
-    let mut last: usize = 6;
+    // let mut numbers: Vec<usize> = vec![0, 3];
+    // let mut last: usize = 6;
+    let mut numbers: Vec<usize> = vec![6, 3, 15, 13, 1];
+    let mut last: usize = 0;
     let mut turn = numbers.len();
     for (i, num) in numbers.iter().enumerate() {
         println!("Turn {}: {}", i + 1, num);
