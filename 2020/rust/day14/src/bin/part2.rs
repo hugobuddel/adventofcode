@@ -92,8 +92,8 @@ fn powerset<T>(s: &[T]) -> Vec<Vec<T>> where T: Clone {
 
 fn main() {
     println!("Advent of Code 2020 Day 14!");
-    let filename = "inputexample2.txt";
-    // let filename = "input.txt";
+    // let filename = "inputexample2.txt";
+    let filename = "input.txt";
     let mut maskor: usize = 0;
     let mut maskand: usize = 0;
     let mut memory: HashMap<usize, usize> = HashMap::new();
