@@ -78,6 +78,15 @@ use pest::Parser;
 #[grammar = "program.pest"]
 pub struct ProgramParser;
 
+// https://stackoverflow.com/questions/40718975/how-to-get-every-subset-of-a-vector-in-rust
+fn powerset<T>(s: &[T]) -> Vec<Vec<T>> where T: Clone {
+    (0..2usize.pow(s.len() as u32)).map(|i| {
+         s.iter().enumerate().filter(|&(t, _)| (i >> t) % 2 == 1)
+                             .map(|(_, element)| element.clone())
+                             .collect()
+     }).collect()
+}
+
 fn main() {
     println!("Advent of Code 2020 Day 14!");
     // let filename = "inputexample.txt";
@@ -88,11 +97,20 @@ fn main() {
     let file_unparsed = fs::read_to_string(filename).expect("Error reading file.");
     let pprogram = ProgramParser::parse(Rule::program, &file_unparsed)
         .expect("Error parsing program.").next().unwrap();
+    let mut count_floats: usize = 0; // 2 ** floaning bits in mask
+    let mut count_mem: usize = 0;
+    let mut count_mem_mask: usize = 0;
+    let mut floating_values: Vec<usize> = Vec::new();
     for command in pprogram.into_inner() {
         match command.as_rule() {
             Rule::commandmask => {
+                // add the previous counted values to the total
+                count_mem += count_floats * count_mem_mask;
+                // reset the counter
+                count_mem_mask = 0;
                 let maskstring = command.into_inner().next().unwrap().as_str();
-                println!("Mask: {}", maskstring);
+                count_floats = 2_usize.pow(maskstring.chars().filter(|x| *x == 'X').count() as u32);
+                println!("Mask: {} {}", maskstring, count_floats);
                 maskor = maskstring.chars().rev()
                     .enumerate().filter(|x| x.1 == '1')
                     .map(|x| 2_usize.pow(x.0 as u32))
@@ -101,15 +119,23 @@ fn main() {
                     .enumerate().filter(|x| x.1 != '0')
                     .map(|x| 2_usize.pow(x.0 as u32))
                     .sum();
-                println!("maskor:{} maskand:{}", maskor, maskand);
+                floating_values = maskstring.chars().rev()
+                    .enumerate().filter(|x| x.1 == 'X')
+                    .map(|x| 2_usize.pow(x.0 as u32))
+                    .collect();
+                println!("maskor:{} maskand:{} fv:{:?}", maskor, maskand, floating_values);
             }
             Rule::commandmem => {
+                count_mem_mask += 1;
                 let mut pair = command.into_inner();
                 let location: usize = pair.next().unwrap().as_str().parse().unwrap();
                 let value: usize = pair.next().unwrap().as_str().parse().unwrap();
-                let valuemasked = (value | maskor) & maskand;
-                println!("location:{} value:{} valuemasked:{}", location, value, valuemasked);
-                memory.insert(location, valuemasked);
+                let locationmasked = (location | maskor) & maskand;
+                println!("location:{} value:{} locationmasked:{}", location, value, locationmasked);
+                for pset in powerset(&floating_values) {
+                    let location_floated = locationmasked + pset.iter().sum::<usize>();
+                    memory.insert(location_floated, value);
+                }
             }
             _ => unreachable!()
         }
@@ -117,5 +143,7 @@ fn main() {
     // println!("Memory: {:?}", memory);
     let total: usize = memory.iter().map(|x| x.1).sum();
     println!("Total: {}", total);
+    // We're missing the last mask, doesn't matter.
+    println!("Max memory requirements: {}", count_mem);
     // assert_eq!(165, total);
 }
