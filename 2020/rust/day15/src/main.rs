@@ -63,6 +63,21 @@
 //
 // Your puzzle input is 6,3,15,13,1,0.
 
+// --- Part Two ---
+//
+// Impressed, the Elves issue you a challenge: determine the 30000000th number
+// spoken. For example, given the same starting numbers as above:
+//
+//     Given 0,3,6, the 30000000th number spoken is 175594.
+//     Given 1,3,2, the 30000000th number spoken is 2578.
+//     Given 2,1,3, the 30000000th number spoken is 3544142.
+//     Given 1,2,3, the 30000000th number spoken is 261214.
+//     Given 2,3,1, the 30000000th number spoken is 6895259.
+//     Given 3,2,1, the 30000000th number spoken is 18.
+//     Given 3,1,2, the 30000000th number spoken is 362.
+//
+// Given your starting numbers, what will be the 30000000th number spoken?
+
 fn main() {
     println!("Advent of Code 2020 Day 15!");
     // let mut numbers: Vec<usize> = vec![0, 3];
@@ -73,16 +88,20 @@ fn main() {
     for (i, num) in numbers.iter().enumerate() {
         println!("Turn {}: {}", i + 1, num);
     }
+    let frac: usize = 10000;
+    let max: usize = 30000000;
     loop {
         turn += 1;
-        println!("Turn {}: {}", turn, last);
+        if (turn == 2020) || (turn % frac == 0) {
+            println!("Turn {} ({}/{}): {}", turn, turn / frac, max / frac, last);
+        }
         let next = match numbers.iter().rev().position(|x| x == &last) {
             Some(pos) => { pos + 1 }
             None => { 0 }
         };
         numbers.push(last);
         last = next;
-        if turn > 2030 {
+        if turn > 30000000 {
             break;
         }
     }
