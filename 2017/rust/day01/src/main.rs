@@ -44,6 +44,38 @@
 //
 // What is the solution to your captcha?
 
+fn captcha(digits: &str) -> usize {
+    4
+}
+
+#[cfg(test)]
+mod tests {
+    // Note this useful idiom: importing names from outer (for mod tests) scope.
+    use super::*;
+
+    #[test]
+    fn test_captcha1() {
+        assert_eq!(3, captcha("1122"));
+    }
+
+    #[test]
+    fn test_captcha2() {
+        assert_eq!(4, captcha("1111"));
+    }
+
+    #[test]
+    fn test_captcha3() {
+        assert_eq!(0, captcha("1234"));
+    }
+
+    #[test]
+    fn test_captcha4() {
+        assert_eq!(9, captcha("91212129"));
+    }
+
+
+}
+
 fn main() {
     println!("Advent of Code 2017 Day 1!");
 }
