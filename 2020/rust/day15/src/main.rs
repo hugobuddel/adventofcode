@@ -78,12 +78,15 @@
 //
 // Given your starting numbers, what will be the 30000000th number spoken?
 
+use std::collections::HashMap;
+
 fn main() {
     println!("Advent of Code 2020 Day 15!");
-    // let mut numbers: Vec<usize> = vec![0, 3];
-    // let mut last: usize = 6;
-    let mut numbers: Vec<usize> = vec![6, 3, 15, 13, 1];
-    let mut last: usize = 0;
+    let numbers: Vec<usize> = vec![0, 3];
+    let mut last: usize = 6;
+    // let numbers: Vec<usize> = vec![6, 3, 15, 13, 1];
+    // let mut last: usize = 0;
+    let mut hmnumbers: HashMap<usize, usize> = numbers.iter().enumerate().map(|x| (*x.1, x.0 + 1)).collect();
     let mut turn = numbers.len();
     for (i, num) in numbers.iter().enumerate() {
         println!("Turn {}: {}", i + 1, num);
@@ -92,15 +95,24 @@ fn main() {
     let max: usize = 30000000;
     loop {
         turn += 1;
-        if (turn == 2020) || (turn % frac == 0) {
+        if (turn < 11) || (turn == 2020) || (turn % frac == 0) {
             println!("Turn {} ({}/{}): {}", turn, turn / frac, max / frac, last);
         }
-        let next = match numbers.iter().rev().position(|x| x == &last) {
-            Some(pos) => { pos + 1 }
-            None => { 0 }
+        match &hmnumbers.get(&last) {
+            Some(pos) => {
+                let pos2 = (**pos).clone();
+                // The number was said, so update it to the current turn.
+                *hmnumbers.get_mut(&last).unwrap() = turn;
+                // The next number is the amount of turns ago it was found.
+                last = turn - pos2;
+            }
+            None => {
+                // The number was not found, so add it.
+                hmnumbers.insert(last.clone(), turn);
+                // The next number is 0.
+                last = 0;
+            }
         };
-        numbers.push(last);
-        last = next;
         if turn > 30000000 {
             break;
         }
