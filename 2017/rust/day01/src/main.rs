@@ -44,8 +44,14 @@
 //
 // What is the solution to your captcha?
 
-fn captcha(digits: &str) -> usize {
-    4
+fn captcha(digits: &str) -> u32 {
+    let dign: Vec<u32> = digits.chars().map(|x| x.to_digit(10).unwrap()).collect();
+
+    let mut dign2: Vec<u32> = dign.clone();
+    let start = dign2.remove(0);
+    dign2.push(start);
+
+    dign.iter().zip(dign2.iter()).filter(|x| x.0 == x.1).map(|x| x.0).sum()
 }
 
 #[cfg(test)]
