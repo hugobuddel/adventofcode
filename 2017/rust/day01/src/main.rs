@@ -44,7 +44,38 @@
 //
 // What is the solution to your captcha?
 
+// --- Part Two ---
+//
+// You notice a progress bar that jumps to 50% completion. Apparently, the door
+// isn't yet satisfied, but it did emit a star as encouragement. The
+// instructions change:
+//
+// Now, instead of considering the next digit, it wants you to consider the
+// digit halfway around the circular list. That is, if your list contains 10
+// items, only include a digit in your sum if the digit 10/2 = 5 steps forward
+// matches it. Fortunately, your list has an even number of elements.
+//
+// For example:
+//
+//     1212 produces 6: the list contains 4 items, and all four digits match the digit 2 items ahead.
+//     1221 produces 0, because every comparison is between a 1 and a 2.
+//     123425 produces 4, because both 2s match each other, but no other digit has a match.
+//     123123 produces 12.
+//     12131415 produces 4.
+//
+// What is the solution to your new captcha?
+
 fn captcha(digits: &str) -> u32 {
+    let dign: Vec<u32> = digits.chars().map(|x| x.to_digit(10).unwrap()).collect();
+
+    let mut dign2: Vec<u32> = dign.clone();
+    let start = dign2.remove(0);
+    dign2.push(start);
+
+    dign.iter().zip(dign2.iter()).filter(|x| x.0 == x.1).map(|x| x.0).sum()
+}
+
+fn captcha2(digits: &str) -> u32 {
     let dign: Vec<u32> = digits.chars().map(|x| x.to_digit(10).unwrap()).collect();
 
     let mut dign2: Vec<u32> = dign.clone();
@@ -79,6 +110,30 @@ mod tests {
         assert_eq!(9, captcha("91212129"));
     }
 
+    #[test]
+    fn test_captcha5() {
+        assert_eq!(6, captcha2("1212"));
+    }
+
+    #[test]
+    fn test_captcha6() {
+        assert_eq!(0, captcha2("1221"));
+    }
+
+    #[test]
+    fn test_captcha7() {
+        assert_eq!(4, captcha("123425"));
+    }
+
+    #[test]
+    fn test_captcha8() {
+        assert_eq!(12, captcha("123123"));
+    }
+
+    #[test]
+    fn test_captcha9() {
+        assert_eq!(4, captcha("12131415"));
+    }
 
 }
 
