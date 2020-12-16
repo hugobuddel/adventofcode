@@ -276,4 +276,18 @@ fn main() {
         println!("Lengths: {} {}", singles.len(), fieldposibilities.len());
     }
 
+    let fieldnames: Vec<&str> = fieldposibilities.iter()
+        .map(|fp| *fp.iter().next().unwrap()).collect();
+    println!("Field Names: {:?}", fieldnames);
+
+    let sixvalues: Vec<usize> = ticket.iter().zip(fieldnames)
+        .filter(|tf| tf.1.starts_with("departure"))
+        .map(|tf| *tf.0)
+        .collect();
+    let mut p: usize = 1;
+    for v in &sixvalues {
+        p *= v;
+    }
+    println!("Six Values: {:?} {}", sixvalues, p);
+
 }
