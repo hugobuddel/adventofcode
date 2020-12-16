@@ -181,7 +181,7 @@ fn main() {
     // println!("Other Tickets: {:?}", othertickets);
 
     let mut number_bad: usize = 0;
-    for ticket in othertickets {
+    for ticket in othertickets.clone() {
         let ok_ticket = validate(&ticket, &rules);
         // println!("Ticket {:?} is {}!", ticket, ok_ticket);
         number_bad += ok_ticket;
@@ -189,4 +189,10 @@ fn main() {
 
     println!("Total badness is {}", number_bad);
     // assert_eq!(27911, number_bad);
+
+    let tickets_good:Vec<&Vec<usize>> = othertickets.iter()
+        .filter(|ticket| validate(&ticket, &rules) == 0)
+        .collect();
+    println!("Number of good tickets is {}.", tickets_good.len());
+
 }
