@@ -129,8 +129,8 @@ fn validate(ticket: &Vec<usize>, rules: &Vec<TicketRule>) -> usize {
 fn main() {
     println!("Advent of Code 2020 Day 16!");
 
-    let filename = "inputexample.txt";
-    // let filename = "input.txt";
+    // let filename = "inputexample.txt";
+    let filename = "input.txt";
     let unparsed_file = fs::read_to_string(filename).expect("Error reading file.");
 
     let ticketsfile = TicketParser::parse(Rule::file, &unparsed_file)
