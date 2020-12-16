@@ -257,7 +257,23 @@ fn main() {
         .map(|row| rules.iter().filter(|rule| validaterule(row, &rule))
             .map(|rule| rule.name.as_str()).collect()).collect();
 
-    for (i, fields) in fieldposibilities.iter().enumerate() {
-        println!("Field {} matches: {:?}", i, fields);
+    let mut singles: HashSet<&str> = HashSet::new();
+
+    while singles.len() < fieldposibilities.len() {
+        singles = fieldposibilities.iter()
+            .filter(|fp| fp.len() == 1).map(|fp| *fp.iter().next().unwrap()).collect();
+        println!("Singles: {:?}", singles);
+
+        fieldposibilities = fieldposibilities.iter().map(|fp| match fp.len() {
+            1 => fp.clone(),
+            _ => fp.difference(&singles).map(|x| *x).collect(),
+        }).collect();
+
+        for (i, fields) in fieldposibilities.iter().enumerate() {
+            println!("Field {} matches: {:?}", i, fields);
+        }
+
+        println!("Lengths: {} {}", singles.len(), fieldposibilities.len());
     }
+
 }
