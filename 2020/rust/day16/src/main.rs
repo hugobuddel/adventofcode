@@ -70,6 +70,26 @@
 // Consider the validity of the nearby tickets you scanned. What is your ticket
 // scanning error rate?
 
+use std::fs;
+
+extern crate pest;
+#[macro_use]
+extern crate pest_derive;
+use pest::Parser;
+
+#[derive(Parser)]
+#[grammar = "tickets.pest"]
+pub struct TicketParser;
+
 fn main() {
     println!("Advent of Code 2020 Day 16!");
+
+    let filename = "inputexample.txt";
+    // let filename = "input.txt";
+    let unparsed_file = fs::read_to_string(filename).expect("Error reading file.");
+
+    let ticketsfile = TicketParser::parse(Rule::file, &unparsed_file)
+        .expect("Unsuccessful parse")
+        .next().unwrap();
+    println!("{}", ticketsfile.as_str());
 }

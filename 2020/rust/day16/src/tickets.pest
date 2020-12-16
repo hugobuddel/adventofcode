@@ -1,0 +1,10 @@
+name = { (ASCII_ALPHA | " ")+ }
+number = { ASCII_DIGIT+ }
+start = { ASCII_DIGIT+ }
+end = { ASCII_DIGIT+ }
+range = {start ~ "-" ~ end}
+rule = { name ~ ": " ~ range ~ " or " ~ range ~ "\n"}
+rules = { rule+ }
+ticket = { number ~ ("," ~ number)+ ~ "\n"}
+tickets = { ticket+ }
+file = { SOI ~ rules ~ "\nyour ticket:\n" ~ ticket ~ "\nnearby tickets:\n" ~ tickets ~ EOI }
