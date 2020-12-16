@@ -76,10 +76,33 @@ extern crate pest;
 #[macro_use]
 extern crate pest_derive;
 use pest::Parser;
+use pest::iterators::{Pair};
 
 #[derive(Parser)]
 #[grammar = "tickets.pest"]
 pub struct TicketParser;
+
+#[derive(Debug)]
+struct TicketRule {
+    name: String,
+    start1: usize,
+    end1: usize,
+    start2: usize,
+    end2: usize,
+}
+
+impl TicketRule {
+    fn from_pair(pair: &Pair<Rule>) -> TicketRule {
+        let mut pairs = pair.clone().into_inner();
+        TicketRule {
+            name: pairs.next().unwrap().as_str().to_string(),
+            start1: pairs.next().unwrap().as_str().parse().unwrap(),
+            end1: pairs.next().unwrap().as_str().parse().unwrap(),
+            start2: pairs.next().unwrap().as_str().parse().unwrap(),
+            end2: pairs.next().unwrap().as_str().parse().unwrap(),
+        }
+    }
+}
 
 fn main() {
     println!("Advent of Code 2020 Day 16!");
@@ -92,4 +115,18 @@ fn main() {
         .expect("Unsuccessful parse")
         .next().unwrap();
     println!("{}", ticketsfile.as_str());
+
+    let mut pairs = ticketsfile.into_inner();
+    let rules:Vec<TicketRule> = pairs.next().unwrap().into_inner().map(|x| TicketRule::from_pair(&x)).collect();
+    println!("Rules: {:?}", rules);
+
+    // List of integers.
+    let ticket:Vec<usize> = pairs.next().unwrap().into_inner().map(|x| x.as_str().parse().unwrap()).collect();
+    println!("Ticket: {:?}", ticket);
+
+    // List of lists of integers.
+    let othertickets:Vec<Vec<usize>> = pairs.next().unwrap().into_inner()
+        .map(|ts| ts.into_inner().map(|t| t.as_str().parse().unwrap()).collect())
+        .collect();
+    println!("Other Tickets: {:?}", othertickets);
 }
