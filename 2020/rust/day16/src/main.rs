@@ -105,24 +105,25 @@ impl TicketRule {
 }
 
 // A number is correct if it matches at least one of the rules.
-fn validateone(number: &usize, rules: &Vec<TicketRule>) -> bool {
+fn validateone(number: &usize, rules: &Vec<TicketRule>) -> usize {
     for rule in rules {
         if (*number >= rule.start1 && rule.end1 >= *number) ||
            (*number >= rule.start2 && rule.end2 >= *number) {
             println!("Correct: {}, {}-{}, {}-{}", number, rule.start1, rule.end1, rule.start2, rule.end2);
-            return true
+            return 0
         }
     }
-    false
+    *number
 }
 
-fn validate(ticket: &Vec<usize>, rules: &Vec<TicketRule>) -> bool {
+fn validate(ticket: &Vec<usize>, rules: &Vec<TicketRule>) -> usize {
+    let mut bad_number = 0;
     for number in ticket {
-        if ! validateone(number, rules) {
-            return false
+        if validateone(number, rules) > 0 {
+            bad_number += number;
         }
     }
-    true
+    bad_number
 }
 
 fn main() {
@@ -151,8 +152,12 @@ fn main() {
         .collect();
     println!("Other Tickets: {:?}", othertickets);
 
+    let mut number_bad: usize = 0;
     for ticket in othertickets {
         let ok_ticket = validate(&ticket, &rules);
         println!("Ticket {:?} is {}!", ticket, ok_ticket);
+        number_bad += ok_ticket;
     }
+
+    println!("Total badness is {}", number_bad);
 }
