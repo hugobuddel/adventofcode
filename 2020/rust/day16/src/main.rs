@@ -137,11 +137,16 @@ impl TicketRule {
     }
 }
 
+// Validate one number with one rule.
+fn validateonenumberrule(number: &usize, rule: &TicketRule) -> bool {
+    (*number >= rule.start1 && rule.end1 >= *number) ||
+           (*number >= rule.start2 && rule.end2 >= *number)
+}
+
 // A number is correct if it matches at least one of the rules.
 fn validateone(number: &usize, rules: &Vec<TicketRule>) -> usize {
     for rule in rules {
-        if (*number >= rule.start1 && rule.end1 >= *number) ||
-           (*number >= rule.start2 && rule.end2 >= *number) {
+        if validateonenumberrule(number, rule) {
             // println!("Correct: {}, {}-{}, {}-{}", number, rule.start1, rule.end1, rule.start2, rule.end2);
             return 0
         }
@@ -149,8 +154,14 @@ fn validateone(number: &usize, rules: &Vec<TicketRule>) -> usize {
     *number
 }
 
+// Does a ticket match all the rules?
 fn validate(ticket: &Vec<usize>, rules: &Vec<TicketRule>) -> usize {
     ticket.iter().map(|number| validateone(number, rules)).sum()
+}
+
+// Are all values correct for the rule?
+fn validaterule(values: &Vec<usize>, rule: &TicketRule) -> bool {
+    values.iter().all(|v| validateonenumberrule(v, rule))
 }
 
 // https://stackoverflow.com/questions/29669287/how-can-i-zip-more-than-two-iterators
@@ -171,8 +182,8 @@ fn main() {
     println!("Advent of Code 2020 Day 16!");
 
     // let filename = "inputexample.txt";
-    let filename = "inputexample2.txt";
-    // let filename = "input.txt";
+    // let filename = "inputexample2.txt";
+    let filename = "input.txt";
     let unparsed_file = fs::read_to_string(filename).expect("Error reading file.");
 
     let ticketsfile = TicketParser::parse(Rule::file, &unparsed_file)
@@ -226,8 +237,16 @@ fn main() {
     }
     // Not clear how to scale this to Vec<Vec<usize>>
 
-    println!("Good Tickets: {:?}", tickets_good);
+    // println!("Good Tickets: {:?}", tickets_good);
     let rowvalues: Vec<Vec<usize>> = transpose_records(&tickets_good);
-    println!("Row Values:   {:?}", rowvalues);
+    // println!("Row Values:   {:?}", rowvalues);
 
+    for (i, row) in rowvalues.iter().enumerate() {
+        println!("Field {} matches:", i);
+        for rule in &rules {
+            if validaterule(row, &rule) {
+                println!(" {}", rule.name);
+            }
+        }
+    }
 }
