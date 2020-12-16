@@ -160,4 +160,5 @@ fn main() {
     }
 
     println!("Total badness is {}", number_bad);
+    assert_eq!(27911, number_bad);
 }
