@@ -109,7 +109,7 @@ fn validateone(number: &usize, rules: &Vec<TicketRule>) -> usize {
     for rule in rules {
         if (*number >= rule.start1 && rule.end1 >= *number) ||
            (*number >= rule.start2 && rule.end2 >= *number) {
-            println!("Correct: {}, {}-{}, {}-{}", number, rule.start1, rule.end1, rule.start2, rule.end2);
+            // println!("Correct: {}, {}-{}, {}-{}", number, rule.start1, rule.end1, rule.start2, rule.end2);
             return 0
         }
     }
@@ -117,13 +117,7 @@ fn validateone(number: &usize, rules: &Vec<TicketRule>) -> usize {
 }
 
 fn validate(ticket: &Vec<usize>, rules: &Vec<TicketRule>) -> usize {
-    let mut bad_number = 0;
-    for number in ticket {
-        if validateone(number, rules) > 0 {
-            bad_number += number;
-        }
-    }
-    bad_number
+    ticket.iter().map(|number| validateone(number, rules)).sum()
 }
 
 fn main() {
@@ -136,7 +130,7 @@ fn main() {
     let ticketsfile = TicketParser::parse(Rule::file, &unparsed_file)
         .expect("Unsuccessful parse")
         .next().unwrap();
-    println!("{}", ticketsfile.as_str());
+    // println!("{}", ticketsfile.as_str());
 
     let mut pairs = ticketsfile.into_inner();
     let rules:Vec<TicketRule> = pairs.next().unwrap().into_inner().map(|x| TicketRule::from_pair(&x)).collect();
@@ -150,12 +144,12 @@ fn main() {
     let othertickets:Vec<Vec<usize>> = pairs.next().unwrap().into_inner()
         .map(|ts| ts.into_inner().map(|t| t.as_str().parse().unwrap()).collect())
         .collect();
-    println!("Other Tickets: {:?}", othertickets);
+    // println!("Other Tickets: {:?}", othertickets);
 
     let mut number_bad: usize = 0;
     for ticket in othertickets {
         let ok_ticket = validate(&ticket, &rules);
-        println!("Ticket {:?} is {}!", ticket, ok_ticket);
+        // println!("Ticket {:?} is {}!", ticket, ok_ticket);
         number_bad += ok_ticket;
     }
 
