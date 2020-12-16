@@ -153,6 +153,20 @@ fn validate(ticket: &Vec<usize>, rules: &Vec<TicketRule>) -> usize {
     ticket.iter().map(|number| validateone(number, rules)).sum()
 }
 
+// https://stackoverflow.com/questions/29669287/how-can-i-zip-more-than-two-iterators
+// fn transpose_records<T: Clone>(records: &Vec<Vec<T>>) -> Vec<Vec<T>> {
+fn transpose_records<T: Clone>(records: &Vec<&Vec<T>>) -> Vec<Vec<T>> {
+    let mut transposed: Vec<Vec<T>> = vec![Vec::new(); records[0].len()];
+
+    for record in records {
+        for (index, element) in record.iter().enumerate() {
+            transposed[index].push(element.clone());
+        }
+    }
+
+    transposed
+}
+
 fn main() {
     println!("Advent of Code 2020 Day 16!");
 
@@ -194,5 +208,26 @@ fn main() {
         .filter(|ticket| validate(&ticket, &rules) == 0)
         .collect();
     println!("Number of good tickets is {}.", tickets_good.len());
+
+    // let rowvalues: Vec<Vec<usize>> = tickets_good.iter().zip
+
+
+    // Interlude! Lets learn how to transpose a Vec<Vec<usize>>
+    // https://stackoverflow.com/questions/29669287/how-can-i-zip-more-than-two-iterators
+    use itertools::izip;
+
+    let a = [1, 2, 3];
+    let b = [4, 5, 6];
+    let c = [7, 8, 9];
+
+    // izip!() accepts iterators and/or values with IntoIterator.
+    for (x, y, z) in izip!(&a, &b, &c) {
+        println!("XYZ1 {} {} {}", x, y, z);
+    }
+    // Not clear how to scale this to Vec<Vec<usize>>
+
+    println!("Good Tickets: {:?}", tickets_good);
+    let rowvalues: Vec<Vec<usize>> = transpose_records(&tickets_good);
+    println!("Row Values:   {:?}", rowvalues);
 
 }
