@@ -104,6 +104,7 @@
 // those six values together?
 
 use std::fs;
+use std::collections::HashSet;
 
 extern crate pest;
 #[macro_use]
@@ -248,5 +249,15 @@ fn main() {
                 println!(" {}", rule.name);
             }
         }
+    }
+
+    // Store the names of all possible fields for each row.
+    // let mut fieldposibilities: Vec<HashSet<&str>> = Vec::new();
+    let mut fieldposibilities: Vec<HashSet<&str>> = rowvalues.iter()
+        .map(|row| rules.iter().filter(|rule| validaterule(row, &rule))
+            .map(|rule| rule.name.as_str()).collect()).collect();
+
+    for (i, fields) in fieldposibilities.iter().enumerate() {
+        println!("Field {} matches: {:?}", i, fields);
     }
 }
