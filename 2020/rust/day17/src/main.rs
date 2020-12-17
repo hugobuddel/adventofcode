@@ -176,7 +176,7 @@ const X_START: usize = 2 + 6;
 // const SIZE_FIELD: usize = 11;
 // const X_START: usize = 4;
 
-fn printfield(field: &[[[u8; SIZE_FIELD]; SIZE_FIELD]; SIZE_FIELD]) {
+fn printfield(field: &[[[u32; SIZE_FIELD]; SIZE_FIELD]; SIZE_FIELD]) {
     for (z, plane) in field.iter().enumerate() {
         println!("");
         println!("z={}", z);
@@ -190,7 +190,7 @@ fn printfield(field: &[[[u8; SIZE_FIELD]; SIZE_FIELD]; SIZE_FIELD]) {
     }
 }
 
-fn stepfield(mut field: [[[u8; SIZE_FIELD]; SIZE_FIELD]; SIZE_FIELD]) -> [[[u8; SIZE_FIELD]; SIZE_FIELD]; SIZE_FIELD] {
+fn stepfield(mut field: [[[u32; SIZE_FIELD]; SIZE_FIELD]; SIZE_FIELD]) -> [[[u32; SIZE_FIELD]; SIZE_FIELD]; SIZE_FIELD] {
     let field_old = field.clone();
     // for (z, plane) in field_old.iter().enumerate() {
     //     for (x, line) in plane.iter().enumerate() {
@@ -199,7 +199,7 @@ fn stepfield(mut field: [[[u8; SIZE_FIELD]; SIZE_FIELD]; SIZE_FIELD]) -> [[[u8; 
         for x in 1..SIZE_FIELD-1 {
             for y in 1..SIZE_FIELD-1 {
                 let c = field_old[z][x][y];
-                let mut neighbours: u8 = 0;
+                let mut neighbours: u32 = 0;
                 for zi in (z - 1)..(z + 2) {
                     for xi in (x - 1)..(x + 2) {
                         for yi in (y - 1)..(y + 2) {
@@ -225,9 +225,11 @@ fn main() {
     println!("Advent of Code 2020 Day 17!");
 
 
-    let mut field = [[[0u8; SIZE_FIELD]; SIZE_FIELD]; SIZE_FIELD];
+    let mut field = [[[0u32; SIZE_FIELD]; SIZE_FIELD]; SIZE_FIELD];
 
-    let fieldstart: String = std::fs::read_to_string("inputexample.txt")
+    // let filename = "inputexample.txt";
+    let filename = "input.txt";
+    let fieldstart: String = std::fs::read_to_string(filename)
         .expect("Error reading file.");
 
     let mut x = X_START;
@@ -252,10 +254,10 @@ fn main() {
     for cycle in 0..7 {
         printfield(&field);
 
-        let mut totalactive: u8 = 0;
+        let mut totalactive: u32 = 0;
         for p in &field {
             for l in p {
-                totalactive += l.iter().sum::<u8>();
+                totalactive += l.iter().sum::<u32>();
             }
         }
 
