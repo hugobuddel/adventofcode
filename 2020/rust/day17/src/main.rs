@@ -170,6 +170,47 @@
 // Starting with your given initial configuration, simulate six cycles. How
 // many cubes are left in the active state after the sixth cycle?
 
+// const SIZE_FIELD: usize = 2 + 6 + 8 + 6 + 2;
+const SIZE_FIELD: usize = 9;
+const X_START: usize = 3;
+
+fn printfield(field: &[[[u8; SIZE_FIELD]; SIZE_FIELD]; SIZE_FIELD - 3]) {
+    for (z, plane) in field.iter().enumerate() {
+        println!("");
+        println!("z={}", z);
+        for line in plane {
+            println!("{:?}", line);
+        }
+    }
+}
+
 fn main() {
     println!("Advent of Code 2020 Day 17!");
+
+
+    let mut field = [[[0u8; SIZE_FIELD]; SIZE_FIELD]; SIZE_FIELD - 3];
+
+    let fieldstart: String = std::fs::read_to_string("inputexample.txt")
+        .expect("Error reading file.");
+
+    let mut x = X_START;
+    let mut y = X_START;
+    for c in fieldstart.chars() {
+        match c {
+            '.' => {
+                x += 1;
+            }
+            '#' => {
+                field[X_START][x][y] = 1;
+                x += 1;
+            }
+            '\n' => {
+                x = X_START;
+                y += 1;
+            }
+            _ => unreachable!()
+        }
+    }
+
+    printfield(&field);
 }
