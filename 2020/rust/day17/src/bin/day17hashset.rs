@@ -438,6 +438,8 @@
 // 4-dimensional space. How many cubes are left in the active state after the
 // sixth cycle?
 
+use std::collections::HashSet;
+
 const SIZE_FIELD: usize = 2 + 6 + 8 + 6 + 2;
 const X_START: usize = 2 + 6;
 
@@ -456,6 +458,10 @@ fn printfield(field: &[[[u32; SIZE_FIELD]; SIZE_FIELD]; SIZE_FIELD]) {
             println!("{:?}", line2);
         }
     }
+}
+
+fn printfield3(field3: &HashSet<(usize, usize, usize)>) {
+    // zs = field3.iter()
 }
 
 fn stepfield(mut field: [[[u32; SIZE_FIELD]; SIZE_FIELD]; SIZE_FIELD]) -> [[[u32; SIZE_FIELD]; SIZE_FIELD]; SIZE_FIELD] {
@@ -488,12 +494,46 @@ fn stepfield(mut field: [[[u32; SIZE_FIELD]; SIZE_FIELD]; SIZE_FIELD]) -> [[[u32
     field
 }
 
+fn stepfield3(field: &HashSet<(usize, usize, usize)>) {
+    let field_old = field.clone();
+    for (z, x, y) in field.iter() {
+        println!("Active: {} {} {}", z, x, y);
+        
+    }
+
+    // for z in 1..SIZE_FIELD-1 {
+    //     for x in 1..SIZE_FIELD-1 {
+    //         for y in 1..SIZE_FIELD-1 {
+    //             let c = field_old[z][x][y];
+    //             let mut neighbours: u32 = 0;
+    //             for zi in (z - 1)..(z + 2) {
+    //                 for xi in (x - 1)..(x + 2) {
+    //                     for yi in (y - 1)..(y + 2) {
+    //                         neighbours += field_old[zi][xi][yi];
+    //                     }
+    //                 }
+    //             }
+    //             neighbours -= field_old[z][x][y];
+    //             match (c, neighbours) {
+    //                 (1, 2) => { field[z][x][y] = 1; }
+    //                 (1, 3) => { field[z][x][y] = 1; }
+    //                 (0, 3) => { field[z][x][y] = 1; }
+    //                 _ => { field[z][x][y] = 0; }
+    //             }
+    //         }
+    //     }
+    // }
+    // field3
+}
+
 
 fn main() {
     println!("Advent of Code 2020 Day 17!");
 
 
     let mut field = [[[0u32; SIZE_FIELD]; SIZE_FIELD]; SIZE_FIELD];
+
+    let mut field3: HashSet<(usize, usize, usize)> = HashSet::new();
 
     // let filename = "inputexample.txt";
     let filename = "input.txt";
@@ -509,6 +549,7 @@ fn main() {
             }
             '#' => {
                 field[X_START][x][y] = 1;
+                field3.insert((X_START,x,y));
                 y += 1;
             }
             '\n' => {
@@ -519,8 +560,10 @@ fn main() {
         }
     }
 
+    stepfield3(&field3);
+
     for cycle in 0..7 {
-        printfield(&field);
+        // printfield(&field);
 
         let mut totalactive: u32 = 0;
         for p in &field {
