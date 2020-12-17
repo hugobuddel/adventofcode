@@ -170,25 +170,62 @@
 // Starting with your given initial configuration, simulate six cycles. How
 // many cubes are left in the active state after the sixth cycle?
 
-// const SIZE_FIELD: usize = 2 + 6 + 8 + 6 + 2;
-const SIZE_FIELD: usize = 9;
-const X_START: usize = 3;
+const SIZE_FIELD: usize = 2 + 6 + 8 + 6 + 2;
+const X_START: usize = 2 + 6;
 
-fn printfield(field: &[[[u8; SIZE_FIELD]; SIZE_FIELD]; SIZE_FIELD - 3]) {
+// const SIZE_FIELD: usize = 11;
+// const X_START: usize = 4;
+
+fn printfield(field: &[[[u8; SIZE_FIELD]; SIZE_FIELD]; SIZE_FIELD]) {
     for (z, plane) in field.iter().enumerate() {
         println!("");
         println!("z={}", z);
         for line in plane {
-            println!("{:?}", line);
+            let line2 = line.iter().map(|c| match c {
+                1 => '#',
+                _ => '.',
+            }).collect::<String>();
+            println!("{:?}", line2);
         }
     }
 }
+
+fn stepfield(mut field: [[[u8; SIZE_FIELD]; SIZE_FIELD]; SIZE_FIELD]) -> [[[u8; SIZE_FIELD]; SIZE_FIELD]; SIZE_FIELD] {
+    let field_old = field.clone();
+    // for (z, plane) in field_old.iter().enumerate() {
+    //     for (x, line) in plane.iter().enumerate() {
+    //         for (y, c) in line.iter().enumerate() {
+    for z in 1..SIZE_FIELD-1 {
+        for x in 1..SIZE_FIELD-1 {
+            for y in 1..SIZE_FIELD-1 {
+                let c = field_old[z][x][y];
+                let mut neighbours: u8 = 0;
+                for zi in (z - 1)..(z + 2) {
+                    for xi in (x - 1)..(x + 2) {
+                        for yi in (y - 1)..(y + 2) {
+                            neighbours += field_old[zi][xi][yi];
+                        }
+                    }
+                }
+                neighbours -= field_old[z][x][y];
+                match (c, neighbours) {
+                    (1, 2) => { field[z][x][y] = 1; }
+                    (1, 3) => { field[z][x][y] = 1; }
+                    (0, 3) => { field[z][x][y] = 1; }
+                    _ => { field[z][x][y] = 0; }
+                }
+            }
+        }
+    }
+    field
+}
+
 
 fn main() {
     println!("Advent of Code 2020 Day 17!");
 
 
-    let mut field = [[[0u8; SIZE_FIELD]; SIZE_FIELD]; SIZE_FIELD - 3];
+    let mut field = [[[0u8; SIZE_FIELD]; SIZE_FIELD]; SIZE_FIELD];
 
     let fieldstart: String = std::fs::read_to_string("inputexample.txt")
         .expect("Error reading file.");
@@ -198,19 +235,31 @@ fn main() {
     for c in fieldstart.chars() {
         match c {
             '.' => {
-                x += 1;
+                y += 1;
             }
             '#' => {
                 field[X_START][x][y] = 1;
-                x += 1;
+                y += 1;
             }
             '\n' => {
-                x = X_START;
-                y += 1;
+                y = X_START;
+                x += 1;
             }
             _ => unreachable!()
         }
     }
 
-    printfield(&field);
+    for cycle in 0..7 {
+        printfield(&field);
+
+        let mut totalactive: u8 = 0;
+        for p in &field {
+            for l in p {
+                totalactive += l.iter().sum::<u8>();
+            }
+        }
+
+        println!("Cycle {}, Active {}", cycle, totalactive);
+        field = stepfield(field);
+    }
 }
