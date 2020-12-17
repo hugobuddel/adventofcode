@@ -498,8 +498,8 @@ fn main() {
 
     let mut field = [[[[0u32; SIZE_FIELD];  SIZE_FIELD]; SIZE_FIELD]; SIZE_FIELD];
 
-    let filename = "inputexample.txt";
-    // let filename = "input.txt";
+    // let filename = "inputexample.txt";
+    let filename = "input.txt";
     let fieldstart: String = std::fs::read_to_string(filename)
         .expect("Error reading file.");
 
