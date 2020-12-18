@@ -62,7 +62,7 @@ use pest::iterators::{Pair};
 #[grammar = "calculator.pest"]
 pub struct CalculatorParser;
 
-fn evaluate_term(term: &Pair<Rule>) -> i32 {
+fn evaluate_term(term: &Pair<Rule>) -> i128 {
     match term.as_rule() {
         Rule::number => {term.as_str().parse().unwrap()}
         Rule::expression => {evaluate(term)}
@@ -73,7 +73,7 @@ fn evaluate_term(term: &Pair<Rule>) -> i32 {
     }
 }
 
-fn evaluate(expression: &Pair<Rule>) -> i32 {
+fn evaluate(expression: &Pair<Rule>) -> i128 {
     let mut pair = expression.clone().into_inner();
     let mut value = evaluate_term(&pair.next().unwrap());
     let actions = &pair.next().unwrap();
@@ -94,18 +94,20 @@ fn evaluate(expression: &Pair<Rule>) -> i32 {
 fn main() {
     println!("Advent of Code 2020 Day 18!");
 
-    let filename = "inputexample.txt";
-    // let filename = "input.txt";
+    // let filename = "inputexample.txt";
+    let filename = "input.txt";
     let unparsed_file = fs::read_to_string(filename).expect("Error reading file.");
 
     let calculatorfile = CalculatorParser::parse(Rule::file, &unparsed_file)
         .expect("Unsuccessful parse")
         .next().unwrap();
 
+    let mut thesum = 0_i128;
     let mut calculator = calculatorfile.into_inner();
-
     for expression in calculator.next().unwrap().into_inner() {
         let value = evaluate(&expression);
         println!("Expression {:?} = {}", expression.as_str(), value);
+        thesum += value;
     }
+    println!("Total: {}", thesum);
 }
