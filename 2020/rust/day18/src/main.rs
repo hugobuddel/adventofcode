@@ -50,6 +50,28 @@
 // Evaluate the expression on each line of the homework; what is the sum of the
 // resulting values?
 
+use std::fs;
+
+extern crate pest;
+#[macro_use]
+extern crate pest_derive;
+use pest::Parser;
+use pest::iterators::{Pair};
+
+#[derive(Parser)]
+#[grammar = "calculator.pest"]
+pub struct CalculatorParser;
+
 fn main() {
     println!("Advent of Code 2020 Day 18!");
+
+    let filename = "inputexample.txt";
+    // let filename = "input.txt";
+    let unparsed_file = fs::read_to_string(filename).expect("Error reading file.");
+
+    let calculatorfile = CalculatorParser::parse(Rule::file, &unparsed_file)
+        .expect("Unsuccessful parse")
+        .next().unwrap();
+    println!("{}", calculatorfile.as_str());
+
 }

@@ -1,0 +1,7 @@
+number = { ASCII_DIGIT }
+term = { number | "(" ~ expression ~ ")"}
+operator = {"*" | "+" | "-"}
+expression = { term ~ (" " ~ operator ~ " " ~ term)+}
+sum = {expression ~ "\n"}
+calculator = { sum+ }
+file = {SOI ~ calculator ~ EOI}
