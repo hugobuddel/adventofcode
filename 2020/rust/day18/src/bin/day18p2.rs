@@ -54,10 +54,13 @@ fn evaluate_term(term: &Pair<Rule>) -> i128 {
 }
 
 fn evaluate_product(product: &Pair<Rule>) -> i128 {
-    let mut value = 1_128;
+    let mut value = 1;
+    // println!("ep {}", value);
     let terms = product.clone().into_inner();
-    for term in terms {
-        value *= evaluate_term(&term);
+    for (i, term) in terms.enumerate() {
+        let value2 = evaluate_term(&term);
+        value *= value2;
+        // println!("{} {} {} {}", i, value, value2, term.as_str());
     }
     value
 }
