@@ -62,8 +62,33 @@ use pest::iterators::{Pair};
 #[grammar = "calculator.pest"]
 pub struct CalculatorParser;
 
+fn evaluate_term(term: &Pair<Rule>) -> i32 {
+    match term.as_rule() {
+        Rule::number => {term.as_str().parse().unwrap()}
+        Rule::expression => {evaluate(term)}
+        _ => {
+            println!("Huh {:?}", term);
+            unreachable!()
+        }
+    }
+}
+
 fn evaluate(expression: &Pair<Rule>) -> i32 {
-    4
+    let mut pair = expression.clone().into_inner();
+    let mut value = evaluate_term(&pair.next().unwrap());
+    let actions = &pair.next().unwrap();
+    for action in actions.clone().into_inner() {
+        let mut pairaction = action.into_inner();
+        let operator = pairaction.next().unwrap();
+        let value2 = evaluate_term(&pairaction.next().unwrap());
+        match operator.as_str() {
+            "+" => {value += value2}
+            "-" => {value -= value2}
+            "*" => {value *= value2}
+            _ => {unreachable!()}
+        }
+    }
+    value
 }
 
 fn main() {
@@ -76,10 +101,11 @@ fn main() {
     let calculatorfile = CalculatorParser::parse(Rule::file, &unparsed_file)
         .expect("Unsuccessful parse")
         .next().unwrap();
-    println!("{}", calculatorfile.as_str());
+
     let mut calculator = calculatorfile.into_inner();
 
     for expression in calculator.next().unwrap().into_inner() {
-        println!("Expression {:?}", expression.as_str());
+        let value = evaluate(&expression);
+        println!("Expression {:?} = {}", expression.as_str(), value);
     }
 }

@@ -1,6 +1,10 @@
 number = { ASCII_DIGIT }
-term = { number | "(" ~ expression ~ ")"}
+// term = { number | "(" ~ expression ~ ")"}
 operator = {"*" | "+" | "-"}
-expression = { term ~ (" " ~ operator ~ " " ~ term)+}
+// action = {" " ~ operator ~ " " ~ term}
+action = {" " ~ operator ~ " " ~ (number | "(" ~ expression ~ ")")}
+actions = {action+}
+// expression = { term ~ actions}
+expression = { (number | "(" ~ expression ~ ")") ~ actions}
 calculator = { (expression ~ "\n")+ }
 file = {SOI ~ calculator ~ EOI}
