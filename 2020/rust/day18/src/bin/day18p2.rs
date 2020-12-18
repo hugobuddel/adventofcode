@@ -45,7 +45,7 @@ pub struct CalculatorParser;
 fn evaluate_term(term: &Pair<Rule>) -> i128 {
     match term.as_rule() {
         Rule::number => {term.as_str().parse().unwrap()}
-        Rule::expression => {evaluate(term)}
+        Rule::expression => {evaluate_expression(term)}
         _ => {
             println!("Huh {:?}", term);
             unreachable!()
@@ -53,18 +53,27 @@ fn evaluate_term(term: &Pair<Rule>) -> i128 {
     }
 }
 
-fn evaluate(expression: &Pair<Rule>) -> i128 {
+fn evaluate_product(product: &Pair<Rule>) -> i128 {
+    let mut value = 1_128;
+    let terms = product.clone().into_inner();
+    for term in terms {
+        value *= evaluate_term(&term);
+    }
+    value
+}
+
+fn evaluate_expression(expression: &Pair<Rule>) -> i128 {
     let mut pair = expression.clone().into_inner();
-    let mut value = evaluate_term(&pair.next().unwrap());
+    let mut value = evaluate_product(&pair.next().unwrap());
     let actions = &pair.next().unwrap();
     for action in actions.clone().into_inner() {
         let mut pairaction = action.into_inner();
         let operator = pairaction.next().unwrap();
-        let value2 = evaluate_term(&pairaction.next().unwrap());
+        let value2 = evaluate_product(&pairaction.next().unwrap());
         match operator.as_str() {
             "+" => {value += value2}
             "-" => {value -= value2}
-            "*" => {value *= value2}
+            // "*" => {value *= value2}
             _ => {unreachable!()}
         }
     }
@@ -85,7 +94,7 @@ fn main() {
     let mut thesum = 0_i128;
     let mut calculator = calculatorfile.into_inner();
     for expression in calculator.next().unwrap().into_inner() {
-        let value = evaluate(&expression);
+        let value = evaluate_expression(&expression);
         println!("Expression {:?} = {}", expression.as_str(), value);
         thesum += value;
     }
