@@ -53,32 +53,32 @@ fn evaluate_term(term: &Pair<Rule>) -> i128 {
     }
 }
 
-fn evaluate_product(product: &Pair<Rule>) -> i128 {
-    let mut value = 1;
-    // println!("ep {}", value);
-    let terms = product.clone().into_inner();
-    for (i, term) in terms.enumerate() {
-        let value2 = evaluate_term(&term);
-        value *= value2;
-        // println!("{} {} {} {}", i, value, value2, term.as_str());
-    }
-    value
-}
-
-fn evaluate_expression(expression: &Pair<Rule>) -> i128 {
-    let mut pair = expression.clone().into_inner();
-    let mut value = evaluate_product(&pair.next().unwrap());
+fn evaluate_sproduct(product: &Pair<Rule>) -> i128 {
+    let mut pair = product.clone().into_inner();
+    let mut value = evaluate_term(&pair.next().unwrap());
     let actions = &pair.next().unwrap();
     for action in actions.clone().into_inner() {
         let mut pairaction = action.into_inner();
         let operator = pairaction.next().unwrap();
-        let value2 = evaluate_product(&pairaction.next().unwrap());
+        let value2 = evaluate_term(&pairaction.next().unwrap());
         match operator.as_str() {
             "+" => {value += value2}
             "-" => {value -= value2}
             // "*" => {value *= value2}
             _ => {unreachable!()}
         }
+    }
+    value
+}
+
+fn evaluate_expression(expression: &Pair<Rule>) -> i128 {
+    let mut value = 1;
+    // println!("ep {}", value);
+    let terms = expression.clone().into_inner();
+    for (i, term) in terms.enumerate() {
+        let value2 = evaluate_sproduct(&term);
+        value *= value2;
+        // println!("{} {} {} {}", i, value, value2, term.as_str());
     }
     value
 }

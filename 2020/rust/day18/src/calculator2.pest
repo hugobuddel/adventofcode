@@ -1,9 +1,8 @@
 number = { ASCII_DIGIT }
-term = { number | "(" ~ expression ~ ")"}
 operator = {"+" | "-"}
-action = {" " ~ operator ~ " " ~ product}
+action = {" " ~ operator ~ " " ~ (number | "(" ~ expression ~ ")")}
 actions = {action*}
-product = {(number | "(" ~ expression ~ ")") ~ (" * " ~ (number | "(" ~ expression ~ ")"))*}
-expression = { product ~ actions }
+sproduct = {(number | "(" ~ expression ~ ")") ~ actions}
+expression = { sproduct ~ (" * " ~ sproduct)* }
 calculator = { (expression ~ "\n")+ }
 file = {SOI ~ calculator ~ EOI}
