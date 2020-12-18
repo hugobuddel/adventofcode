@@ -62,6 +62,10 @@ use pest::iterators::{Pair};
 #[grammar = "calculator.pest"]
 pub struct CalculatorParser;
 
+fn evaluate(expression: &Pair<Rule>) -> i32 {
+    4
+}
+
 fn main() {
     println!("Advent of Code 2020 Day 18!");
 
@@ -73,5 +77,9 @@ fn main() {
         .expect("Unsuccessful parse")
         .next().unwrap();
     println!("{}", calculatorfile.as_str());
+    let mut calculator = calculatorfile.into_inner();
 
+    for expression in calculator.next().unwrap().into_inner() {
+        println!("Expression {:?}", expression.as_str());
+    }
 }
