@@ -73,12 +73,10 @@ fn evaluate_sproduct(product: &Pair<Rule>) -> i128 {
 
 fn evaluate_expression(expression: &Pair<Rule>) -> i128 {
     let mut value = 1;
-    // println!("ep {}", value);
     let terms = expression.clone().into_inner();
     for (i, term) in terms.enumerate() {
         let value2 = evaluate_sproduct(&term);
         value *= value2;
-        // println!("{} {} {} {}", i, value, value2, term.as_str());
     }
     value
 }
@@ -86,8 +84,8 @@ fn evaluate_expression(expression: &Pair<Rule>) -> i128 {
 fn main() {
     println!("Advent of Code 2020 Day 18 part 2!");
 
-    let filename = "inputexample.txt";
-    // let filename = "input.txt";
+    // let filename = "inputexample.txt";
+    let filename = "input.txt";
     let unparsed_file = fs::read_to_string(filename).expect("Error reading file.");
 
     let calculatorfile = CalculatorParser::parse(Rule::file, &unparsed_file)
