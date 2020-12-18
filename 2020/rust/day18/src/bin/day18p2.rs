@@ -74,7 +74,7 @@ fn evaluate_sproduct(product: &Pair<Rule>) -> i128 {
 fn evaluate_expression(expression: &Pair<Rule>) -> i128 {
     let mut value = 1;
     let terms = expression.clone().into_inner();
-    for (i, term) in terms.enumerate() {
+    for term in terms {
         let value2 = evaluate_sproduct(&term);
         value *= value2;
     }
