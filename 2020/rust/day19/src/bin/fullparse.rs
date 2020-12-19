@@ -141,6 +141,17 @@ fn main() {
         .next().unwrap();
     println!("Monster: {}", monsterfile.as_str());
 
-    let rules = monsterfile.into_inner().next().unwrap();
-
+    let mut pair = monsterfile.into_inner();
+    let rules = pair.next().unwrap();
+    let monsters = pair.next().unwrap();
+    for monster in monsters.into_inner() {
+        match MonsterParser::parse(Rule::p0, &monster.as_str()) {
+            Ok(_) => {
+                println!("Good Monster: {}", monster.as_str());
+            }
+            Err(_) => {
+                println!("Bad Monster: {}", monster.as_str());
+            }
+        }
+    }
 }

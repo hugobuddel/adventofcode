@@ -103,9 +103,10 @@ fn string_from_rule(rule: &Pair<Rule>) -> String {
             let mut pairrule = rule.clone().into_inner();
             let name = string_from_rule(&pairrule.next().unwrap());
             let right = string_from_rule(&pairrule.next().unwrap());
-            name + &" = {".to_string()
-            + &right
-            + &"}".to_string()
+            match name.as_str() {
+                "p0" => {name + &" = { SOI ~ ".to_string() + &right  + &" ~ EOI}".to_string()}
+                _ => {name + &" = {".to_string() + &right  + &"}".to_string()}
+            }
         }
         Rule::name => {
             "p".to_string() + &rule.as_str().to_string()
