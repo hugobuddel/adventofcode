@@ -4,4 +4,6 @@ orterms = {andterms ~ (" | " ~ andterms)*}
 letter = {"\"" ~ ASCII_ALPHA ~ "\""}
 rule = {name ~ ": " ~ (orterms | letter)}
 rules = {(rule ~ "\n")+}
-file = { SOI ~ rules ~ "\n" }
+monster = {ASCII_ALPHA+}
+monsters = {(monster ~ "\n")+}
+file = { SOI ~ rules ~ "\n" ~ monsters ~ EOI}
