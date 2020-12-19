@@ -1,0 +1,14 @@
+name = {ASCII_DIGIT+}
+andterms = {name ~ (" " ~ name)*}
+orterms = {andterms ~ (" | " ~ andterms)*}
+letter = {"\"" ~ ASCII_ALPHA ~ "\""}
+rule = {name ~ ": " ~ (orterms | letter)}
+rules = {(rule ~ "\n")+}
+file = { SOI ~ rules ~ "\n" }
+
+p0 = {(p4 ~ p1 ~ p5)}
+p1 = {(p2 ~ p3) | (p3 ~ p2)}
+p2 = {(p4 ~ p4) | (p5 ~ p5)}
+p3 = {(p4 ~ p5) | (p5 ~ p4)}
+p4 = {"a"}
+p5 = {"b"}
