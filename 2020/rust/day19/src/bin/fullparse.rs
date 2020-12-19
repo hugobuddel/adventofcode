@@ -93,7 +93,7 @@ use pest::Parser;
 use pest::iterators::{Pair};
 
 #[derive(Parser)]
-#[grammar = "monstersimple.pest"]
+#[grammar = "monsterfull.pest"]
 pub struct MonsterParser;
 
 fn string_from_rule(rule: &Pair<Rule>) -> String {
@@ -139,20 +139,8 @@ fn main() {
     let monsterfile = MonsterParser::parse(Rule::file, &unparsed_file)
         .expect("Unsuccessful parse")
         .next().unwrap();
+    println!("Monster: {}", monsterfile.as_str());
 
     let rules = monsterfile.into_inner().next().unwrap();
-    // println!("Monster: {}", monsterfile.as_str());
 
-    let mut monster: String = fs::read_to_string("src/monstersimple.pest").expect("Error reading monster.");
-    monster += &"\n";
-
-    for rule in rules.into_inner() {
-        println!("Rule1: {}", rule.as_str());
-        let rule2 = string_from_rule(&rule);
-        println!("Rule2: {}", rule2);
-        monster += &rule2;
-        monster += &"\n";
-    }
-
-    fs::write("src/monsterfull.pest", monster).expect("Error writing monster.");
 }
