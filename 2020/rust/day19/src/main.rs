@@ -96,6 +96,39 @@ use pest::iterators::{Pair};
 #[grammar = "monstersimple.pest"]
 pub struct MonsterParser;
 
+fn string_from_rule(rule: &Pair<Rule>) -> String {
+    // println!("D {:?}", rule);
+    match rule.as_rule() {
+        Rule::rule => {
+            let mut pairrule = rule.clone().into_inner();
+            let name = string_from_rule(&pairrule.next().unwrap());
+            let right = string_from_rule(&pairrule.next().unwrap());
+            name + &" = {".to_string()
+            + &right
+            + &"}".to_string()
+        }
+        Rule::name => {
+            "p".to_string() + &rule.as_str().to_string()
+        }
+        Rule::andterms => {
+            let pairrule = rule.clone().into_inner();
+            let stringlist: Vec<String> = pairrule.map(|r| string_from_rule(&r)).collect();
+            stringlist.join(" ~ ")
+        }
+        Rule::orterms => {
+            let pairrule = rule.clone().into_inner();
+            // let stringlist: Vec<String> = pairrule.map(|r| string_from_rule(&r)).collect();
+            let stringlist: Vec<String> = pairrule.map(|r| "(".to_string() + &string_from_rule(&r) + &")".to_string()).collect();
+            stringlist.join(" | ")
+        }
+        Rule::letter => {
+            rule.as_str().to_string()
+        }
+        _ => unreachable!(rule)
+    }
+    // "2".to_string()
+}
+
 fn main() {
     println!("Advent of Code 2020 Day 19!");
 
@@ -107,5 +140,14 @@ fn main() {
         .expect("Unsuccessful parse")
         .next().unwrap();
 
-    println!("Monster: {}", monsterfile.as_str());
+    let rules = monsterfile.into_inner().next().unwrap();
+    // println!("Monster: {}", monsterfile.as_str());
+
+    for rule in rules.into_inner() {
+        println!("Rule1: {}", rule.as_str());
+        println!("Rule2: {}", string_from_rule(&rule));
+    }
+
+
+
 }
