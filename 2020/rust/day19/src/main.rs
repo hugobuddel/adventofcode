@@ -84,6 +84,28 @@
 //
 // How many messages completely match rule 0?
 
+use std::fs;
+
+extern crate pest;
+#[macro_use]
+extern crate pest_derive;
+use pest::Parser;
+use pest::iterators::{Pair};
+
+#[derive(Parser)]
+#[grammar = "monstersimple.pest"]
+pub struct MonsterParser;
+
 fn main() {
     println!("Advent of Code 2020 Day 19!");
+
+    let filename = "inputexample.txt";
+    // let filename = "input.txt";
+    let unparsed_file = fs::read_to_string(filename).expect("Error reading file.");
+
+    let monsterfile = MonsterParser::parse(Rule::file, &unparsed_file)
+        .expect("Unsuccessful parse")
+        .next().unwrap();
+
+    println!("Monster: {}", monsterfile.as_str());
 }

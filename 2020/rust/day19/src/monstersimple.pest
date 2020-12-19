@@ -1,0 +1,7 @@
+name = {ASCII_DIGIT+}
+andterms = {name ~ (" " ~ name)*}
+orterms = {andterms ~ (" | " ~ andterms)*}
+letter = {"\"" ~ ASCII_ALPHA ~ "\""}
+rule = {name ~ ": " ~ (orterms | letter)}
+rules = {(rule ~ "\n")+}
+file = { SOI ~ rules ~ "\n" }
