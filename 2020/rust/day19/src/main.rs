@@ -143,11 +143,16 @@ fn main() {
     let rules = monsterfile.into_inner().next().unwrap();
     // println!("Monster: {}", monsterfile.as_str());
 
+    let mut monster: String = fs::read_to_string("src/monstersimple.pest").expect("Error reading monster.");
+    monster += &"\n";
+
     for rule in rules.into_inner() {
         println!("Rule1: {}", rule.as_str());
-        println!("Rule2: {}", string_from_rule(&rule));
+        let rule2 = string_from_rule(&rule);
+        println!("Rule2: {}", rule2);
+        monster += &rule2;
+        monster += &"\n";
     }
 
-
-
+    fs::write("src/monsterfull.pest", monster).expect("Error writing monster.");
 }
