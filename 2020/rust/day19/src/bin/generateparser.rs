@@ -134,10 +134,10 @@ fn string_from_rule(rule: &Pair<Rule>) -> String {
 fn main() {
     println!("Advent of Code 2020 Day 19!");
 
-    let filename = "inputexample.txt";
+    // let filename = "inputexample.txt";
     // let filename = "input.txt";
     // let filename = "inputupdated.txt";
-    // let filename = "inputexample2updated.txt";
+    let filename = "inputexample2updated.txt";
     let unparsed_file = fs::read_to_string(filename).expect("Error reading file.");
 
     let monsterfile = MonsterParser::parse(Rule::file, &unparsed_file)
