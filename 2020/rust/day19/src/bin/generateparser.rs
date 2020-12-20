@@ -113,13 +113,14 @@ fn string_from_rule(rule: &Pair<Rule>) -> String {
         }
         Rule::andterms => {
             let pairrule = rule.clone().into_inner();
-            let stringlist: Vec<String> = pairrule.map(|r| string_from_rule(&r)).collect();
+            let stringlist: Vec<String> = pairrule.map(|r| string_from_rule(&r)).rev().collect();
             stringlist.join(" ~ ")
         }
         Rule::orterms => {
             let pairrule = rule.clone().into_inner();
             // let stringlist: Vec<String> = pairrule.map(|r| string_from_rule(&r)).collect();
-            let stringlist: Vec<String> = pairrule.map(|r| "(".to_string() + &string_from_rule(&r) + &")".to_string()).collect();
+            // rev() to let the recursion in part 2 work
+            let stringlist: Vec<String> = pairrule.map(|r| "(".to_string() + &string_from_rule(&r) + &")".to_string()).rev().collect();
             stringlist.join(" | ")
         }
         Rule::letter => {

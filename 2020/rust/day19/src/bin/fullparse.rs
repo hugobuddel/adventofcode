@@ -255,7 +255,8 @@ fn main() {
     //     Rule::p0k,
     // ];
     for monster in monsters.into_inner() {
-        let smonster = monster.as_str();
+        // rev to let part two work
+        let smonster = monster.as_str().chars().rev().collect::<String>();
         // let smonster = "bbabbbbaabaabba";
 
         // for rule in &
