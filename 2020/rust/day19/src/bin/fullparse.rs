@@ -185,7 +185,8 @@ use pest::Parser;
 use pest::iterators::{Pair};
 
 #[derive(Parser)]
-#[grammar = "monsterfullman.pest"]
+// #[grammar = "monsterfullman.pest"]
+#[grammar = "monsterfull.pest"]
 pub struct MonsterParser;
 
 fn string_from_rule(rule: &Pair<Rule>) -> String {
@@ -224,9 +225,9 @@ fn string_from_rule(rule: &Pair<Rule>) -> String {
 fn main() {
     println!("Advent of Code 2020 Day 19!");
 
-    // let filename = "inputexample.txt";
+    let filename = "inputexample.txt";
     // let filename = "input.txt";
-    let filename = "inputupdated.txt";
+    // let filename = "inputupdated.txt";
     // let filename = "inputexample2updated.txt";
     let unparsed_file = fs::read_to_string(filename).expect("Error reading file.");
 
@@ -239,9 +240,39 @@ fn main() {
     let rules = pair.next().unwrap();
     let monsters = pair.next().unwrap();
     let mut count = 0;
+    // let p0rules = vec![
+    //     Rule::p0,
+    //     Rule::p0a,
+    //     Rule::p0b,
+    //     Rule::p0c,
+    //     Rule::p0d,
+    //     Rule::p0e,
+    //     Rule::p0f,
+    //     Rule::p0g,
+    //     Rule::p0h,
+    //     Rule::p0i,
+    //     Rule::p0j,
+    //     Rule::p0k,
+    // ];
     for monster in monsters.into_inner() {
-    let smonster = monster.as_str();
-    // let smonster = "bbabbbbaabaabba";
+        let smonster = monster.as_str();
+        // let smonster = "bbabbbbaabaabba";
+
+        // for rule in &
+        //     p0rules {
+        //
+        //     match MonsterParser::parse(Rule::rule, &smonster) {
+        //         Ok(_) => {
+        //             println!("Good Monster: {}", smonster);
+        //             count += 1;
+        //         }
+        //         Err(_) => {
+        //             // println!("Bad Monster: {}", smonster);
+        //         }
+        //     }
+        //
+        // }
+
         match MonsterParser::parse(Rule::p0, &smonster) {
             Ok(_) => {
                 println!("Good Monster: {}", smonster);
@@ -251,6 +282,8 @@ fn main() {
                 println!("Bad Monster: {}", smonster);
             }
         }
+
+
     //     match MonsterParser::parse(Rule::p0p, &smonster) {
     //         Ok(_) => {
     //             println!("PGood Monster: {}", smonster);
