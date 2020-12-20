@@ -3,4 +3,4 @@ line = {("." | "#")+}
 lines = {(line ~ "\n")+}
 tile = {"Tile " ~ tilenumber ~ ":\n" ~ lines}
 tiles = { tile ~ ("\n" ~ tile)+ }
-file = {SOI ~ tiles ~ EOI}
+file = {SOI ~ tiles ~ "\n"* ~ EOI}
