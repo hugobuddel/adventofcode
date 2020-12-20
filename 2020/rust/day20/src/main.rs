@@ -185,6 +185,7 @@
 // the IDs of the four corner tiles?
 
 use std::fs;
+use std::collections::HashSet;
 
 extern crate pest;
 #[macro_use]
@@ -200,7 +201,14 @@ pub struct TilesParser;
 struct Tile{
     name: usize,
     lines: Vec<String>,
-    sides: [usize; 8],
+    // sides: [usize; 8],
+}
+
+enum Side {
+    North,
+    East,
+    South,
+    West,
 }
 
 impl Tile {
@@ -212,8 +220,22 @@ impl Tile {
         Tile {
             name,
             lines,
-            sides: [0, 0, 0, 0, 0, 0, 0, 0],
+            // sides: [0, 0, 0, 0, 0, 0, 0, 0],
         }
+    }
+
+    fn get_side(&self, side: Side, flipped: bool) -> String {
+        let s1: String = match side {
+            Side::West => {self.lines.iter().map(|l| l.chars().next().unwrap()).collect()}
+            Side::North => {self.lines[0].clone()}
+            Side::East => {self.lines.iter().map(|l| l.chars().last().unwrap()).collect()}
+            Side::South => {self.lines.iter().last().unwrap().clone()}
+        };
+        let s2: String = match flipped {
+            true => {s1.chars().rev().collect()}
+            false => {s1}
+        };
+        s2
     }
 }
 
@@ -236,5 +258,15 @@ fn main() {
         println!("Tile {:?}", tile);
         tiles.push(tile);
     }
+
+    let tile = &tiles.iter().last().unwrap();
+    println!("N: {}", tile.get_side(Side::North, false));
+    println!("N: {}", tile.get_side(Side::North, true));
+    println!("S: {}", tile.get_side(Side::South, false));
+    println!("S: {}", tile.get_side(Side::South, true));
+    println!("E: {}", tile.get_side(Side::East, false));
+    println!("W: {}", tile.get_side(Side::West, false));
+
+    let mut allsides: HashSet<&String> = HashSet::new();
 
 }
