@@ -204,6 +204,7 @@ struct Tile{
     // sides: [usize; 8],
 }
 
+#[derive(Debug)]
 enum Side {
     North,
     East,
@@ -224,7 +225,7 @@ impl Tile {
         }
     }
 
-    fn get_side(&self, side: Side, flipped: bool) -> String {
+    fn get_side(&self, side: &Side, flipped: bool) -> String {
         let s1: String = match side {
             Side::West => {self.lines.iter().map(|l| l.chars().next().unwrap()).collect()}
             Side::North => {self.lines[0].clone()}
@@ -260,13 +261,21 @@ fn main() {
     }
 
     let tile = &tiles.iter().last().unwrap();
-    println!("N: {}", tile.get_side(Side::North, false));
-    println!("N: {}", tile.get_side(Side::North, true));
-    println!("S: {}", tile.get_side(Side::South, false));
-    println!("S: {}", tile.get_side(Side::South, true));
-    println!("E: {}", tile.get_side(Side::East, false));
-    println!("W: {}", tile.get_side(Side::West, false));
+    println!("N: {}", tile.get_side(&Side::North, false));
+    println!("N: {}", tile.get_side(&Side::North, true));
+    println!("S: {}", tile.get_side(&Side::South, false));
+    println!("S: {}", tile.get_side(&Side::South, true));
+    println!("E: {}", tile.get_side(&Side::East, false));
+    println!("W: {}", tile.get_side(&Side::West, false));
 
-    let mut allsides: HashSet<&String> = HashSet::new();
-
+    let mut allsides: HashSet<String> = HashSet::new();
+    for tile in tiles {
+        for side in &[Side::North, Side::South, Side::East, Side::West] {
+            let edge = tile.get_side(side, false);
+            allsides.insert(edge);
+            let edge = tile.get_side(side, true);
+            allsides.insert(edge);
+        }
+    }
+    println!("Total number of uniq edges: {}", &allsides.len());
 }
