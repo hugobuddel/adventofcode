@@ -184,6 +184,30 @@
 // Assemble the tiles into an image. What do you get if you multiply together
 // the IDs of the four corner tiles?
 
+use std::fs;
+
+extern crate pest;
+#[macro_use]
+extern crate pest_derive;
+use pest::Parser;
+use pest::iterators::{Pair};
+
+#[derive(Parser)]
+#[grammar = "tiles.pest"]
+pub struct TilesParser;
+
 fn main() {
     println!("Advent of Code 2020 Day 20!");
+
+    let filename = "inputexample.txt";
+    // let filename = "input.txt";
+    let unparsed_file = fs::read_to_string(filename).expect("Error reading file.");
+
+    let tilefile = TilesParser::parse(Rule::file, &unparsed_file)
+        .expect("Unsuccessful parse")
+        .next().unwrap();
+
+    let tiles = tilefile.into_inner().next().unwrap();
+    println!("Tiles: {}", tiles.as_str());
+
 }
