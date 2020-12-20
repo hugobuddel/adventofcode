@@ -185,7 +185,7 @@
 // the IDs of the four corner tiles?
 
 use std::fs;
-use std::collections::HashSet;
+use std::collections::HashMap;
 
 extern crate pest;
 #[macro_use]
@@ -238,6 +238,24 @@ impl Tile {
         };
         s2
     }
+
+    // Must this tile be a corner tile?
+    fn must_be_corner_tile(&self, allsides: &HashMap<String, usize>) -> bool {
+        let mut count = 0;
+        for side in &[Side::North, Side::South, Side::East, Side::West] {
+            if allsides[&self.get_side(side, false)] == 1 {
+                count += 1
+            }
+        }
+        let mut count_flipped = 0;
+        for side in &[Side::North, Side::South, Side::East, Side::West] {
+            if allsides[&self.get_side(side, false)] == 1 {
+                count_flipped += 1
+            }
+        }
+        // This must be a corner tile if it has uniq edges in both orientations
+        (count >= 2) && (count_flipped >= 2)
+    }
 }
 
 fn main() {
@@ -268,14 +286,26 @@ fn main() {
     println!("E: {}", tile.get_side(&Side::East, false));
     println!("W: {}", tile.get_side(&Side::West, false));
 
-    let mut allsides: HashSet<String> = HashSet::new();
-    for tile in tiles {
+    let mut allsides: HashMap<String, usize> = HashMap::new();
+    for tile in &tiles {
         for side in &[Side::North, Side::South, Side::East, Side::West] {
-            let edge = tile.get_side(side, false);
-            allsides.insert(edge);
-            let edge = tile.get_side(side, true);
-            allsides.insert(edge);
+            for flip in &[false, true] {
+                let edge = tile.get_side(side, *flip);
+                if let Some(x) = allsides.get_mut(&edge) {
+                    *x += 1;
+                } else {
+                    allsides.insert(edge, 1);
+                }
+            }
         }
     }
     println!("Total number of uniq edges: {}", &allsides.len());
+    println!("Edges: {:?}", allsides);
+
+    let tiles_corner: Vec<&Tile> = tiles.iter().filter(|t| t.must_be_corner_tile(&allsides)).collect::<_>();
+    let mut prod: usize = 1;
+    for tile in &tiles_corner {
+        prod *= tile.name;
+    }
+    println!("Must be corner tiles: {} {}", tiles_corner.len(), prod);
 }
