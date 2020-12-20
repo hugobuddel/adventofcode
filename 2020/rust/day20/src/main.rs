@@ -198,6 +198,7 @@ use pest::iterators::{Pair};
 pub struct TilesParser;
 
 #[derive(Debug)]
+#[derive(Clone)]
 struct Tile{
     name: usize,
     lines: Vec<String>,
@@ -256,13 +257,21 @@ impl Tile {
         // This must be a corner tile if it has uniq edges in both orientations
         (count >= 2) && (count_flipped >= 2)
     }
+
+    fn flip_vertically(&mut self) {
+        self.lines = self.lines.iter().rev().map(|x| x.clone()).collect();
+    }
+
+    fn flip_horizontally(&mut self) {
+        self.lines = self.lines.iter().map(|x| x.chars().rev().collect()).collect();
+    }
 }
 
 fn main() {
     println!("Advent of Code 2020 Day 20!");
 
-    // let filename = "inputexample.txt";
-    let filename = "input.txt";
+    let filename = "inputexample.txt";
+    // let filename = "input.txt";
     let unparsed_file = fs::read_to_string(filename).expect("Error reading file.");
 
     let tilefile = TilesParser::parse(Rule::file, &unparsed_file)
@@ -301,6 +310,7 @@ fn main() {
     }
     println!("Total number of uniq edges: {}", &allsides.len());
     println!("Edges: {:?}", allsides);
+    // Apparently each edge matches only one other edge.
 
     let tiles_corner: Vec<&Tile> = tiles.iter().filter(|t| t.must_be_corner_tile(&allsides)).collect::<_>();
     let mut prod: usize = 1;
@@ -308,4 +318,32 @@ fn main() {
         prod *= tile.name;
     }
     println!("Must be corner tiles: {} {}", tiles_corner.len(), prod);
+
+    // Get a corner tile to start with.
+    let mut tile_current: Tile = (*tiles_corner[0]).clone();
+    // tile_current.flip_horizontally();
+    // Flip horizontally if the North side has a match.
+    let mnorth = allsides[&tile_current.get_side(&Side::North, false)];
+    let msouth = allsides[&tile_current.get_side(&Side::South, false)];
+    let meast = allsides[&tile_current.get_side(&Side::East, false)];
+    let mwest = allsides[&tile_current.get_side(&Side::West, false)];
+    println!("Side counts: {} {} {} {}", mnorth, msouth, meast, mwest);
+    if allsides[&tile_current.get_side(&Side::North, false)] == 2 {
+        println!("Flip vertically.");
+        tile_current.flip_vertically();
+    }
+    if allsides[&tile_current.get_side(&Side::North, false)] == 2 {
+        unreachable!("Flip vertically.");
+    }
+    if allsides[&tile_current.get_side(&Side::West, false)] == 2 {
+        println!("Flip horizontally.");
+        tile_current.flip_horizontally();
+    }
+    if allsides[&tile_current.get_side(&Side::West, false)] == 2 {
+        unreachable!("Flip horizontally.");
+    }
+
+
+    let mut image: Vec<String> = Vec::new();
+
 }
