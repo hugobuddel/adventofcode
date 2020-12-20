@@ -196,6 +196,27 @@ use pest::iterators::{Pair};
 #[grammar = "tiles.pest"]
 pub struct TilesParser;
 
+#[derive(Debug)]
+struct Tile{
+    name: usize,
+    lines: Vec<String>,
+    sides: [usize; 8],
+}
+
+impl Tile {
+    fn from_rule(rule: Pair<Rule>) -> Tile {
+        // println!("New Tile: {}", rule.as_str());
+        let mut pair = rule.into_inner();
+        let name: usize = pair.next().unwrap().as_str().parse().unwrap();
+        let lines: Vec<String> = pair.next().unwrap().into_inner().map(|x| x.as_str().to_string()).collect();
+        Tile {
+            name,
+            lines,
+            sides: [0, 0, 0, 0, 0, 0, 0, 0],
+        }
+    }
+}
+
 fn main() {
     println!("Advent of Code 2020 Day 20!");
 
@@ -207,7 +228,13 @@ fn main() {
         .expect("Unsuccessful parse")
         .next().unwrap();
 
-    let tiles = tilefile.into_inner().next().unwrap();
-    println!("Tiles: {}", tiles.as_str());
+    let rtiles = tilefile.into_inner().next().unwrap();
+    // println!("Tiles: {}", rtiles.as_str());
+    let mut tiles: Vec<Tile> = Vec::new();
+    for rtile in rtiles.into_inner() {
+        let tile = Tile::from_rule(rtile);
+        println!("Tile {:?}", tile);
+        tiles.push(tile);
+    }
 
 }
