@@ -185,7 +185,7 @@ use pest::Parser;
 use pest::iterators::{Pair};
 
 #[derive(Parser)]
-#[grammar = "monsterfull.pest"]
+#[grammar = "monsterfullman.pest"]
 pub struct MonsterParser;
 
 fn string_from_rule(rule: &Pair<Rule>) -> String {
@@ -226,8 +226,8 @@ fn main() {
 
     // let filename = "inputexample.txt";
     // let filename = "input.txt";
-    // let filename = "inputupdated.txt";
-    let filename = "inputexample2updated.txt";
+    let filename = "inputupdated.txt";
+    // let filename = "inputexample2updated.txt";
     let unparsed_file = fs::read_to_string(filename).expect("Error reading file.");
 
     let monsterfile = MonsterParser::parse(Rule::file, &unparsed_file)
@@ -240,15 +240,26 @@ fn main() {
     let monsters = pair.next().unwrap();
     let mut count = 0;
     for monster in monsters.into_inner() {
-        match MonsterParser::parse(Rule::p0, &monster.as_str()) {
+    let smonster = monster.as_str();
+    // let smonster = "bbabbbbaabaabba";
+        match MonsterParser::parse(Rule::p0, &smonster) {
             Ok(_) => {
-                println!("Good Monster: {}", monster.as_str());
+                println!("Good Monster: {}", smonster);
                 count += 1;
             }
             Err(_) => {
-                println!("Bad Monster: {}", monster.as_str());
+                println!("Bad Monster: {}", smonster);
             }
         }
+    //     match MonsterParser::parse(Rule::p0p, &smonster) {
+    //         Ok(_) => {
+    //             println!("PGood Monster: {}", smonster);
+    //             count += 1;
+    //         }
+    //         Err(_) => {
+    //             println!("PBad Monster: {}", smonster);
+    //         }
+    //     }
     }
     println!("Good monsters: {}", count);
 }
