@@ -265,6 +265,18 @@ impl Tile {
     fn flip_horizontally(&mut self) {
         self.lines = self.lines.iter().map(|x| x.chars().rev().collect()).collect();
     }
+
+    // See whether any of the sides matches.
+    fn has_matching_edge(&self, edge: String) -> bool {
+        for side in &[Side::North, Side::South, Side::East, Side::West] {
+            for flip in &[false, true] {
+                if edge == self.get_side(side, *flip) {
+                    return true
+                }
+            }
+        }
+        false
+    }
 }
 
 fn main() {
@@ -343,7 +355,64 @@ fn main() {
         unreachable!("Flip horizontally.");
     }
 
+    let mut tiles_square: Vec<Vec<Tile>> = Vec::new();
+    let mut at_bottom: bool = false;
+    let mut row_previous: Vec<Tile> = Vec::new();
+    let mut row_current: Vec<Tile> = Vec::new();
+    let mut nr_row: usize = 0;
+    let mut nr_col: usize = 1; // start at one because we have the corner already
 
-    let mut image: Vec<String> = Vec::new();
+    // Hardcode the top left tile.
+    let mut row_current = vec![tile_current.clone()];
+    println!("Found1 tile {} {}", tile_current.name, row_current.len());
+
+    // Fill the next row.
+    while ! at_bottom {
+        // OK, there are now two ways to track where we are..
+        let mut at_right_end = false;
+        if nr_row > 0 {
+            nr_col = 0;
+        }
+        while !at_right_end {
+            let tile_up = if nr_row > 0 {row_previous[nr_col].clone()} else {tile_current.clone()};
+
+            println!("Searching {} {} {} {}", nr_row, nr_col, 0, 0);
+
+            // Find the matching tile.
+            let tiles_next: Vec<&Tile> = tiles.iter()
+                // Ensure tiles match.
+                .filter(
+                    |t| if nr_col > 0 {
+                        t.has_matching_edge(tile_current.get_side(&Side::East, false))
+                        // Ensure we did not get the same tile again.
+                        && t.name != tile_current.name
+                    } else {
+                        true
+                    } && if nr_row > 0 {
+                        t.has_matching_edge(tile_current.get_side(&Side::North, false))
+                        // Ensure we did not get the same tile again.
+                        && t.name != tile_up.name
+                    } else { true }
+                )
+                .collect::<_>();
+            assert_eq!(1, tiles_next.len());
+            tile_current = tiles_next[0].clone();
+            // TODO: flip upside down if necessary
+            at_right_end = allsides[&tile_current.get_side(&Side::East, false)] == 1;
+            row_current.push(tile_current.clone());
+            nr_col += 1;
+            println!("Found tile {} {}", tile_current.name, row_current.len());
+        }
+        // Pus row onto the square.
+        tiles_square.push(row_current.clone());
+        // Set previous row.
+        row_previous = row_current.clone();
+        // Go back to start of the row.
+        tile_current = row_current[0].clone();
+        nr_row += 1;
+        // at_bottom_end =
+    }
+    // let mut image: Vec<String> = Vec::new();
+
 
 }
