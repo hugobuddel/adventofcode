@@ -489,11 +489,59 @@ fn combat(mut deck1: VecDeque<usize>, mut deck2: VecDeque<usize>) -> bool {
     deck1.len() > 0
 }
 
+// Return true if player 1 wins.
+fn combat_recurse(mut deck1: VecDeque<usize>, mut deck2: VecDeque<usize>, gamenumber: &mut usize) -> bool {
+    let mut round: usize = 1;
+    println!("=== Game {} ===", gamenumber);
+    while deck1.len() > 0 && deck2.len() > 0
+    {
+        println!("-- Round {} (Game {}) --", round, gamenumber);
+        println!("Player 1's deck: {:?}", deck1);
+        println!("Player 2's deck: {:?}", deck2);
+        let card1 = deck1.pop_front().unwrap();
+        let card2 = deck2.pop_front().unwrap();
+        println!("Player 1 plays: {}", card1);
+        println!("Player 2 plays: {}", card2);
+        if card1 <= deck1.len() && card2 <= deck2.len() {
+            // Recurse
+            println!("Playing a sub-game to determine the winner...");
+            *gamenumber += 1;
+            unreachable!("Recurse");
+        } else if card1 > card2 {
+            println!("Player 1 wins the round!");
+            deck1.push_back(card1);
+            deck1.push_back(card2);
+        } else if card2 > card1 {
+            println!("Player 2 wins the round!");
+            deck2.push_back(card2);
+            deck2.push_back(card1);
+        } else {
+            unreachable!("Two cards can never have the same value!");
+        }
+        round += 1;
+        println!();
+    }
+
+    println!();
+    println!("== Post-game results ==");
+    println!("Player 1's deck: {:?}", deck1);
+    println!("Player 2's deck: {:?}", deck2);
+
+    let mut score: usize = 0;
+    for (i, value) in deck1.iter().chain(deck2.iter()).rev().enumerate() {
+        score += (i + 1) * value;
+        // println!("{}", value);
+    }
+    println!("Final score: {}", score);
+
+    deck1.len() > 0
+}
+
 fn main() {
     println!("Advent of Code 2020 Day 22!");
 
-    // let filename = "inputexample.txt";
-    let filename = "input.txt";
+    let filename = "inputexample.txt";
+    // let filename = "input.txt";
     let unparsed_file = fs::read_to_string(filename).expect("Error reading file.");
 
     let tilefile = SpacecardsParser::parse(Rule::file, &unparsed_file)
@@ -514,6 +562,9 @@ fn main() {
         deck2.push_back(card.as_str().parse().unwrap());
     }
 
-    let did_one_win = combat(deck1.clone(), deck2.clone());
+    // let did_one_win = combat(deck1.clone(), deck2.clone());
+
+    let mut gamenumber: usize = 1;
+    let did_one_win = combat_recurse(deck1.clone(), deck2.clone(), &mut gamenumber);
 
 }
