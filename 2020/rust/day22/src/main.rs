@@ -132,7 +132,7 @@ extern crate pest;
 #[macro_use]
 extern crate pest_derive;
 use pest::Parser;
-use pest::iterators::{Pair};
+// use pest::iterators::{Pair};
 
 #[derive(Parser)]
 #[grammar = "spacecards.pest"]
@@ -148,5 +148,24 @@ fn main() {
     let tilefile = SpacecardsParser::parse(Rule::file, &unparsed_file)
         .expect("Unsuccessful parse")
         .next().unwrap();
+
+    // All cards have 0 < value < 100, so there are at most 100 cards.
+    let mut deck1: VecDeque<usize> = VecDeque::with_capacity(100);
+    let mut deck2: VecDeque<usize> = VecDeque::with_capacity(100);
+    let mut pair = tilefile.into_inner();
+    let mut pairdecks = pair.next().unwrap().into_inner();
+    for card in pairdecks.next().unwrap().into_inner() {
+        // println!("Card {:?}", card);
+        deck1.push_back(card.as_str().parse().unwrap());
+    }
+    for card in pairdecks.next().unwrap().into_inner() {
+        // println!("Card {:?}", card);
+        deck2.push_back(card.as_str().parse().unwrap());
+    }
+
+    let mut round: usize = 1;
+    println!("-- Round {} --", round);
+    println!("Player 1's deck: {:?}", deck1);
+    println!("Player 2's deck: {:?}", deck2);
 
 }
