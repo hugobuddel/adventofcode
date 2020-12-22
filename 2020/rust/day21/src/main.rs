@@ -130,7 +130,8 @@ fn main() {
     let ingredients_bad: Vec<String> = allergen_from_ingredient.clone().iter().map(|x| x.1.clone()).collect::<_>();
 
     let mut ingredients_good : Vec<String> = Vec::new();
-    for (allergens, ingredients) in foods.iter() {
+    for (ingredients, allergens) in foods.iter() {
+        println!("Ingredients {:?}", ingredients);
         for ingredient in ingredients {
             if ! ingredients_bad.contains(ingredient) {
                 ingredients_good.push(ingredient.clone());
