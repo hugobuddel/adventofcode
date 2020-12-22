@@ -59,8 +59,8 @@ pub struct IngredientsParser;
 fn main() {
     println!("Advent of Code 2020 Day 21!");
 
-    let filename = "inputexample.txt";
-    // let filename = "input.txt";
+    // let filename = "inputexample.txt";
+    let filename = "input.txt";
     let unparsed_file = fs::read_to_string(filename).expect("Error reading file.");
 
     let mut foods: Vec<(Vec<String>, Vec<String>)> = Vec::new();
