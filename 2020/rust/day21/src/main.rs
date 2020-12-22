@@ -92,6 +92,8 @@ fn main() {
         }
     }
 
+    let possibleingredients2 = possibleingredients.clone();
+
     println!("{:#?}", possibleingredients);
 
     let mut allergen_from_ingredient: HashMap<String, String> = HashMap::new();
@@ -124,6 +126,18 @@ fn main() {
             }
         }
     }
+
+    let ingredients_bad: Vec<String> = allergen_from_ingredient.clone().iter().map(|x| x.1.clone()).collect::<_>();
+
+    let mut ingredients_good : Vec<String> = Vec::new();
+    for (allergens, ingredients) in foods.iter() {
+        for ingredient in ingredients {
+            if ! ingredients_bad.contains(ingredient) {
+                ingredients_good.push(ingredient.clone());
+            }
+        }
+    }
+    println!("Number of good ingredients: {}", ingredients_good.len());
 
     // Experiment how intersection works.
     // let mut set1: HashSet<String> = ["hello", "world", "abc"].iter().map(|s| s.to_string()).collect();
