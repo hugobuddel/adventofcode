@@ -164,8 +164,32 @@ fn main() {
     }
 
     let mut round: usize = 1;
-    println!("-- Round {} --", round);
+    while deck1.len() > 0 && deck2.len() > 0
+    {
+        println!("-- Round {} --", round);
+        println!("Player 1's deck: {:?}", deck1);
+        println!("Player 2's deck: {:?}", deck2);
+        let card1 = deck1.pop_front().unwrap();
+        let card2 = deck2.pop_front().unwrap();
+        println!("Player 1 plays: {}", card1);
+        println!("Player 2 plays: {}", card2);
+        if card1 > card2 {
+            println!("Player 1 wins the round!");
+            deck1.push_back(card1);
+            deck1.push_back(card2);
+        } else if {card2 > card1} {
+            println!("Player 2 wins the round!");
+            deck2.push_back(card2);
+            deck2.push_back(card1);
+        } else {
+            unreachable!("Two cards can never have the same value!");
+        }
+        round += 1;
+        println!();
+    }
+
+    println!();
+    println!("== Post-game results ==");
     println!("Player 1's deck: {:?}", deck1);
     println!("Player 2's deck: {:?}", deck2);
-
 }
