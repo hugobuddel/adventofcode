@@ -1,0 +1,4 @@
+card = {ASCII_DIGIT+}
+deck = {(card ~ "\n")+}
+spacecards = { "Player 1:\n" ~ deck ~ "\nPlayer 2:\n" ~ deck }
+file = {SOI ~ spacecards ~ EOI}
