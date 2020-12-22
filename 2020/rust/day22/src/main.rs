@@ -506,7 +506,23 @@ fn combat_recurse(mut deck1: VecDeque<usize>, mut deck2: VecDeque<usize>, gamenu
             // Recurse
             println!("Playing a sub-game to determine the winner...");
             *gamenumber += 1;
-            unreachable!("Recurse");
+            // let mut deck1a = deck1.range(0..card1).copied().collect::<VecDeque<_>>();
+            // error[E0658]: use of unstable library feature 'deque_range'
+
+            let mut deck1a = deck1.clone();
+            deck1a.truncate(card1);
+            let mut deck2a = deck2.clone();
+            deck2a.truncate(card2);
+            
+            if combat_recurse(deck1a, deck2a, gamenumber) {
+                println!("Player 1 wins the round!");
+                deck1.push_back(card1);
+                deck1.push_back(card2);
+            } else {
+                println!("Player 2 wins the round!");
+                deck2.push_back(card2);
+                deck2.push_back(card1);
+            }
         } else if card1 > card2 {
             println!("Player 1 wins the round!");
             deck1.push_back(card1);
