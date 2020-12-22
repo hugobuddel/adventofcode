@@ -447,31 +447,8 @@ use pest::Parser;
 #[grammar = "spacecards.pest"]
 pub struct SpacecardsParser;
 
-fn main() {
-    println!("Advent of Code 2020 Day 22!");
-
-    // let filename = "inputexample.txt";
-    let filename = "input.txt";
-    let unparsed_file = fs::read_to_string(filename).expect("Error reading file.");
-
-    let tilefile = SpacecardsParser::parse(Rule::file, &unparsed_file)
-        .expect("Unsuccessful parse")
-        .next().unwrap();
-
-    // All cards have 0 < value < 100, so there are at most 100 cards.
-    let mut deck1: VecDeque<usize> = VecDeque::with_capacity(100);
-    let mut deck2: VecDeque<usize> = VecDeque::with_capacity(100);
-    let mut pair = tilefile.into_inner();
-    let mut pairdecks = pair.next().unwrap().into_inner();
-    for card in pairdecks.next().unwrap().into_inner() {
-        // println!("Card {:?}", card);
-        deck1.push_back(card.as_str().parse().unwrap());
-    }
-    for card in pairdecks.next().unwrap().into_inner() {
-        // println!("Card {:?}", card);
-        deck2.push_back(card.as_str().parse().unwrap());
-    }
-
+// Return true if player 1 wins.
+fn combat(mut deck1: VecDeque<usize>, mut deck2: VecDeque<usize>) -> bool {
     let mut round: usize = 1;
     while deck1.len() > 0 && deck2.len() > 0
     {
@@ -508,4 +485,35 @@ fn main() {
         // println!("{}", value);
     }
     println!("Final score: {}", score);
+
+    deck1.len() > 0
+}
+
+fn main() {
+    println!("Advent of Code 2020 Day 22!");
+
+    // let filename = "inputexample.txt";
+    let filename = "input.txt";
+    let unparsed_file = fs::read_to_string(filename).expect("Error reading file.");
+
+    let tilefile = SpacecardsParser::parse(Rule::file, &unparsed_file)
+        .expect("Unsuccessful parse")
+        .next().unwrap();
+
+    // All cards have 0 < value < 100, so there are at most 100 cards.
+    let mut deck1: VecDeque<usize> = VecDeque::with_capacity(100);
+    let mut deck2: VecDeque<usize> = VecDeque::with_capacity(100);
+    let mut pair = tilefile.into_inner();
+    let mut pairdecks = pair.next().unwrap().into_inner();
+    for card in pairdecks.next().unwrap().into_inner() {
+        // println!("Card {:?}", card);
+        deck1.push_back(card.as_str().parse().unwrap());
+    }
+    for card in pairdecks.next().unwrap().into_inner() {
+        // println!("Card {:?}", card);
+        deck2.push_back(card.as_str().parse().unwrap());
+    }
+
+    let did_one_win = combat(deck1.clone(), deck2.clone());
+
 }
