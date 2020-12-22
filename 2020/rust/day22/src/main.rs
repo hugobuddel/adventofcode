@@ -177,7 +177,7 @@ fn main() {
             println!("Player 1 wins the round!");
             deck1.push_back(card1);
             deck1.push_back(card2);
-        } else if {card2 > card1} {
+        } else if card2 > card1 {
             println!("Player 2 wins the round!");
             deck2.push_back(card2);
             deck2.push_back(card1);
@@ -192,4 +192,11 @@ fn main() {
     println!("== Post-game results ==");
     println!("Player 1's deck: {:?}", deck1);
     println!("Player 2's deck: {:?}", deck2);
+
+    let mut score: usize = 0;
+    for (i, value) in deck1.iter().chain(deck2.iter()).rev().enumerate() {
+        score += (i + 1) * value;
+        // println!("{}", value);
+    }
+    println!("Final score: {}", score);
 }
