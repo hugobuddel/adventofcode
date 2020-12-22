@@ -201,40 +201,24 @@ fn main() {
 
     let filename = "input.txt";
     // let filename = "inputexample2.txt";
+
     if let Ok(lines) = read_lines(filename) {
         let mut jolts: Vec<usize> = lines.map(|line| line.unwrap().parse::<usize>().unwrap()).collect();
         jolts.sort();
-        jolts.push(jolts.last().unwrap() + 3);
+        // paths contains the paths to each jolt level
         let mut paths: HashMap<i32, i128> = (-3_i32..*jolts.last().unwrap() as i32 + 3).map(|jolt| (jolt.clone(), 0)).collect();
-        // paths[&0] = 1;
-        // trait `IndexMut` is required to modify indexed content, but it is not implemented for `std::collections::HashMap<usize, usize>`
-        // https://stackoverflow.com/questions/30414424/how-can-i-update-a-value-in-a-mutable-hashmap
+        // The socket has jolt level 0, so there is 1 path to that.
         *paths.get_mut(&0).unwrap() = 1;
 
-        println!("{:?}", paths);
-        let mut count1: usize = 0;
-        let mut count3: usize = 0;  // start with 0 because own device is explicitly added
-        let mut jolt_previous: usize = 0;
+        // Each subsequent jolt-converter can be reached from the previous
+        // two jolt levels, so add the paths that can reach that.
         for jolt in jolts {
-            match jolt - jolt_previous {
-                1 => {
-                    count1 += 1;
-                }
-                3 => {
-                    count3 += 1;
-                }
-                _ => {
-                    panic!("Weird jolt match {} {} {}", jolt, jolt_previous, jolt - jolt_previous);
-                }
-            }
-            jolt_previous = jolt;
             *paths.get_mut(&(jolt as i32)).unwrap() =
                 paths[&(jolt as i32 - 3)] +
                 paths[&(jolt as i32 - 2)] +
                 paths[&(jolt as i32 - 1)];
 
-            println!("Jolt: {:?} {} {} {}", jolt, count1, count3, paths[&(jolt as i32)]);
+            println!("Jolt: {}, Paths: {}", jolt, paths[&(jolt as i32)]);
         }
-        println!("Count1: {}, count3: {}, 1*3={}", count1, count3, count1 * count3);
     }
 }
