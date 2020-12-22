@@ -436,6 +436,7 @@
 
 use std::fs;
 use std::collections::VecDeque;
+use std::collections::HashSet;
 
 extern crate pest;
 #[macro_use]
@@ -491,7 +492,13 @@ fn combat(mut deck1: VecDeque<usize>, mut deck2: VecDeque<usize>) -> bool {
 
 // Return true if player 1 wins.
 fn combat_recurse(mut deck1: VecDeque<usize>, mut deck2: VecDeque<usize>, gamenumber: &mut usize) -> bool {
+    // Count rounds.
     let mut round: usize = 1;
+
+    // Keep log of deck 1 states. If the same state occurs twice, player 1 wins.
+    let mut gamestates: HashSet<VecDeque<usize>> = HashSet::new();
+    gamestates.insert(deck1.clone());
+
     println!("=== Game {} ===", gamenumber);
     while deck1.len() > 0 && deck2.len() > 0
     {
@@ -513,7 +520,7 @@ fn combat_recurse(mut deck1: VecDeque<usize>, mut deck2: VecDeque<usize>, gamenu
             deck1a.truncate(card1);
             let mut deck2a = deck2.clone();
             deck2a.truncate(card2);
-            
+
             if combat_recurse(deck1a, deck2a, gamenumber) {
                 println!("Player 1 wins the round!");
                 deck1.push_back(card1);
@@ -533,6 +540,13 @@ fn combat_recurse(mut deck1: VecDeque<usize>, mut deck2: VecDeque<usize>, gamenu
             deck2.push_back(card1);
         } else {
             unreachable!("Two cards can never have the same value!");
+        }
+        if gamestates.contains(&deck1) {
+            // The game state repeats, remove all cards from deck 2 to make
+            // player 1 win.
+            deck2.clear()
+        } else {
+            gamestates.insert(deck1.clone());
         }
         round += 1;
         println!();
@@ -556,8 +570,8 @@ fn combat_recurse(mut deck1: VecDeque<usize>, mut deck2: VecDeque<usize>, gamenu
 fn main() {
     println!("Advent of Code 2020 Day 22!");
 
-    let filename = "inputexample.txt";
-    // let filename = "input.txt";
+    // let filename = "inputexample.txt";
+    let filename = "input.txt";
     let unparsed_file = fs::read_to_string(filename).expect("Error reading file.");
 
     let tilefile = SpacecardsParser::parse(Rule::file, &unparsed_file)
