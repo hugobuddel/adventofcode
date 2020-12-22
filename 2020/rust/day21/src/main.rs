@@ -116,13 +116,16 @@ fn main() {
     println!("{:#?}", possibleingredients);
 
     let mut allergen_from_ingredient: HashMap<String, String> = HashMap::new();
+    let mut ingredient_from_allergen: HashMap<String, String> = HashMap::new();
 
     while possibleingredients.len() > 0 {
         for (allergen, ingredients) in possibleingredients.clone().iter() {
             if ingredients.len() == 1 {
                 // This allergen can only be found in a single ingredient.
                 println!("YES {}, {:?}", allergen, ingredients);
-                allergen_from_ingredient.insert(allergen.clone(), ingredients.iter().next().unwrap().clone());
+                let theingredient = ingredients.iter().next().unwrap();
+                allergen_from_ingredient.insert(allergen.clone(), theingredient.clone());
+                ingredient_from_allergen.insert(theingredient.clone(), allergen.clone());
                 // println!("{:#?}", allergen_from_ingredient);
 
                 possibleingredients.remove(allergen);
@@ -146,11 +149,11 @@ fn main() {
         }
     }
 
-    let ingredients_bad: Vec<String> = allergen_from_ingredient.clone().iter().map(|x| x.1.clone()).collect::<_>();
+    let mut ingredients_bad: Vec<String> = allergen_from_ingredient.clone().iter().map(|x| x.1.clone()).collect::<_>();
 
     let mut ingredients_good : Vec<String> = Vec::new();
     for (ingredients, allergens) in foods.iter() {
-        println!("Ingredients {:?}", ingredients);
+        // println!("Ingredients {:?}", ingredients);
         for ingredient in ingredients {
             if ! ingredients_bad.contains(ingredient) {
                 ingredients_good.push(ingredient.clone());
@@ -158,6 +161,17 @@ fn main() {
         }
     }
     println!("Number of good ingredients: {}", ingredients_good.len());
+
+    ingredients_bad.sort();
+    println!("{}", ingredients_bad.join(","));
+
+    let mut allergens: Vec<String> = allergen_from_ingredient.clone().iter().map(|x| x.0.clone()).collect::<_>();
+    allergens.sort();
+    println!("{:#?}", ingredient_from_allergen);
+    println!("{:#?}", allergen_from_ingredient);
+    // Something went wrong with the direction of these hashmaps.
+    let mut ingredients_bad2: Vec<String> = allergens.iter().map(|a| allergen_from_ingredient[a].clone()).collect();
+    println!("{}", ingredients_bad2.join(","));
 
     // Experiment how intersection works.
     // let mut set1: HashSet<String> = ["hello", "world", "abc"].iter().map(|s| s.to_string()).collect();
