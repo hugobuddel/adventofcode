@@ -45,7 +45,7 @@
 // your list. How many times do any of those ingredients appear?
 
 use std::fs;
-
+use std::collections::{HashMap, HashSet};
 extern crate pest;
 #[macro_use]
 extern crate pest_derive;
@@ -63,8 +63,42 @@ fn main() {
     // let filename = "input.txt";
     let unparsed_file = fs::read_to_string(filename).expect("Error reading file.");
 
+    let mut foods: Vec<(Vec<String>, Vec<String>)> = Vec::new();
+
     let file = IngredientsParser::parse(Rule::file, &unparsed_file)
         .expect("Unsuccessful parse")
-        .next().unwrap();
+        .next().unwrap().into_inner().next().unwrap();
+
+    for food in file.into_inner() {
+        let mut pair = food.into_inner();
+        let ingredients: Vec<String>  = pair.next().unwrap().into_inner().map(|x| x.as_str().to_string()).collect();
+        let allergens: Vec<String>  = pair.next().unwrap().into_inner().map(|x| x.as_str().to_string()).collect();
+        println!("Ingredients: {:?}", ingredients);
+        println!("Allegerns: {:?}", allergens);
+        foods.push((ingredients, allergens));
+    }
+
+    let mut possibleingredients: HashMap<String, HashSet<String>>=HashMap::new();
+
+    for (ingredients, allergens) in foods.iter() {
+        let singredients: HashSet<String> = ingredients.iter().map(|s| (*s).clone()).collect();
+        for allergen in allergens {
+            if possibleingredients.contains_key(allergen) {
+                let intersection: HashSet<String> = singredients.intersection(&possibleingredients[&allergen.clone()]).cloned().collect();
+                *possibleingredients.get_mut(allergen).unwrap() = intersection;
+            } else {
+                possibleingredients.insert(allergen.clone(), singredients.clone());
+            }
+        }
+    }
+
+    let mut set1: HashSet<String> = ["hello", "world", "abc"].iter().map(|s| s.to_string()).collect();
+    let mut set2: HashSet<String> = ["tef", "world", "abc"].iter().map(|s| s.to_string()).collect();
+    println!("Set 1: {:?}", set1);
+    println!("Set 2: {:?}", set2);
+    let intersection: HashSet<_> = set1.intersection(&set2).collect();
+    println!("Set X: {:?}", intersection);
+    println!("Set 1: {:?}", set1);
+    println!("Set 2: {:?}", set2);
 
 }
