@@ -92,13 +92,47 @@ fn main() {
         }
     }
 
-    let mut set1: HashSet<String> = ["hello", "world", "abc"].iter().map(|s| s.to_string()).collect();
-    let mut set2: HashSet<String> = ["tef", "world", "abc"].iter().map(|s| s.to_string()).collect();
-    println!("Set 1: {:?}", set1);
-    println!("Set 2: {:?}", set2);
-    let intersection: HashSet<_> = set1.intersection(&set2).collect();
-    println!("Set X: {:?}", intersection);
-    println!("Set 1: {:?}", set1);
-    println!("Set 2: {:?}", set2);
+    println!("{:#?}", possibleingredients);
+
+    let mut allergen_from_ingredient: HashMap<String, String> = HashMap::new();
+
+    while possibleingredients.len() > 0 {
+        for (allergen, ingredients) in possibleingredients.clone().iter() {
+            if ingredients.len() == 1 {
+                // This allergen can only be found in a single ingredient.
+                println!("YES {}, {:?}", allergen, ingredients);
+                allergen_from_ingredient.insert(allergen.clone(), ingredients.iter().next().unwrap().clone());
+                // println!("{:#?}", allergen_from_ingredient);
+
+                possibleingredients.remove(allergen);
+            }
+
+        }
+        for (allergen, ingredient) in allergen_from_ingredient.iter() {
+            for (mut allergen2, mut ingredients2) in possibleingredients.clone().iter() {
+                if ingredients2.contains(ingredient) {
+                    // ingredients2.remove(&ingredient.clone());
+
+                    let mut ingredients3 = ingredients2.clone();
+                    ingredients3.remove(ingredient);
+                    *possibleingredients.get_mut(allergen2).unwrap() = ingredients3;
+
+                    // ingredients2.remove(ingredient);
+
+                    // (*ingredients2).remove(ingredient);
+                }
+            }
+        }
+    }
+
+    // Experiment how intersection works.
+    // let mut set1: HashSet<String> = ["hello", "world", "abc"].iter().map(|s| s.to_string()).collect();
+    // let mut set2: HashSet<String> = ["tef", "world", "abc"].iter().map(|s| s.to_string()).collect();
+    // println!("Set 1: {:?}", set1);
+    // println!("Set 2: {:?}", set2);
+    // let intersection: HashSet<_> = set1.intersection(&set2).collect();
+    // println!("Set X: {:?}", intersection);
+    // println!("Set 1: {:?}", set1);
+    // println!("Set 2: {:?}", set2);
 
 }
