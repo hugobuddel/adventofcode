@@ -1,0 +1,6 @@
+name = {ASCII_ALPHA+}
+ingredients = {(name ~ " ")+}
+allergens = {name ~ (", " ~ name)*}
+food = {ingredients ~ "(contains " ~ allergens ~ ")\n" }
+foods = {food+}
+file = {SOI ~ foods ~ EOI}
