@@ -216,11 +216,9 @@ fn main() {
         // Each subsequent jolt-converter can be reached from the previous
         // two jolt levels, so add the paths that can reach that.
         for jolt in jolts {
-            paths.insert(
-                jolt,
-                (jolt-3..jolt).map(|i| paths.get(&i).unwrap_or(&0)).sum(),
-            );
-            println!("Jolt: {}, Paths: {}", jolt, paths[&jolt]);
+            let path: i128 = (jolt-3..jolt).map(|i| paths.get(&i).unwrap_or(&0)).sum();
+            println!("Jolt: {}, Paths: {}", jolt, path);
+            paths.insert(jolt, path);
         }
     }
 }
