@@ -108,8 +108,8 @@ fn main() {
     println!("Advent of Code 2020 Day 23!");
 
     // Put the current cup at the end instead of at the beginning.
-    // let mut cups = vec![8, 9, 1, 2, 5, 4, 6, 7, 3];
-    let mut cups = vec![5, 8, 9, 1, 7, 4, 2, 6, 3];
+    let mut cups = vec![8, 9, 1, 2, 5, 4, 6, 7, 3];  // example
+    // let mut cups = vec![5, 8, 9, 1, 7, 4, 2, 6, 3];  // puzzle
     // let nr_of_moves = 10;
     let nr_of_moves = 100;
 
@@ -123,13 +123,14 @@ fn main() {
         while picked_up.contains(&destination) {
             destination = subtract1(destination);
         }
-        println!("Destination {}", destination);
+        // println!("Destination {}", destination);
         let position = cups.iter().position(|x| x == &destination).unwrap();
         println!("Destination {} at position {}", destination, position);
         for cup in picked_up.iter().rev() {
             cups.insert(position + 1, *cup);
         }
         cups.rotate_left(1);
+        println!();
     }
 
     println!{"Cups {:?}", cups};
