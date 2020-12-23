@@ -209,17 +209,14 @@ fn main() {
         let mut paths: HashMap<i32, i128> = HashMap::new();
         // The socket has jolt level 0, so there is 1 combination of adapters
         // to reach that, namely no adapters.
-        *paths.entry(0).or_insert(42) = 1;
+        paths.insert(0, 1);
 
         // Each subsequent jolt-converter can be reached from the previous
         // two jolt levels, so add the paths that can reach that.
         for jolt in jolts {
-            *paths.entry(jolt).or_insert(42) =
-                *paths.entry(&jolt - 3).or_insert(0) +
-                *paths.entry(&jolt - 2).or_insert(0) +
-                *paths.entry(&jolt - 1).or_insert(0);
-
-            println!("Jolt: {}, Paths: {}", jolt, paths[&(jolt)]);
+            let value = *paths.entry(&jolt - 3).or_insert(0) + *paths.entry(&jolt - 2).or_insert(0) + *paths.entry(&jolt - 1).or_insert(0);
+            paths.insert(jolt, value);
+            println!("Jolt: {}, Paths: {}", jolt, paths[&jolt]);
         }
     }
 }
