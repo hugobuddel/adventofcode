@@ -203,7 +203,7 @@ fn main() {
     // let filename = "inputexample2.txt";
 
     if let Ok(lines) = read_lines(filename) {
-        let mut jolts: Vec<i32> = lines.map(|line| line.unwrap().parse::<i32>().unwrap()).collect();
+        let mut jolts: Vec<i32> = lines.map(|l| l.unwrap().parse::<i32>().unwrap()).collect();
         jolts.sort();
 
         // paths will contain the number of ways to reach a jolt level.
@@ -216,8 +216,10 @@ fn main() {
         // Each subsequent jolt-converter can be reached from the previous
         // two jolt levels, so add the paths that can reach that.
         for jolt in jolts {
-            let value: i128 = (jolt-3..jolt).map(|i| paths.get(&i).unwrap_or(&0)).sum();
-            paths.insert(jolt, value);
+            paths.insert(
+                jolt,
+                (jolt-3..jolt).map(|i| paths.get(&i).unwrap_or(&0)).sum(),
+            );
             println!("Jolt: {}, Paths: {}", jolt, paths[&jolt]);
         }
     }
