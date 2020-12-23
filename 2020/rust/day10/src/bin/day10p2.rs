@@ -203,22 +203,22 @@ fn main() {
     // let filename = "inputexample2.txt";
 
     if let Ok(lines) = read_lines(filename) {
-        let mut jolts: Vec<usize> = lines.map(|line| line.unwrap().parse::<usize>().unwrap()).collect();
+        let mut jolts: Vec<i32> = lines.map(|line| line.unwrap().parse::<i32>().unwrap()).collect();
         jolts.sort();
         // paths contains the paths to each jolt level
-        let mut paths: HashMap<i32, i128> = (-3_i32..*jolts.last().unwrap() as i32 + 3).map(|jolt| (jolt.clone(), 0)).collect();
+        let mut paths: HashMap<i32, i128> = (-2 ..= *jolts.last().unwrap()).map(|jolt| (jolt.clone(), 0)).collect();
         // The socket has jolt level 0, so there is 1 path to that.
         *paths.get_mut(&0).unwrap() = 1;
 
         // Each subsequent jolt-converter can be reached from the previous
         // two jolt levels, so add the paths that can reach that.
         for jolt in jolts {
-            *paths.get_mut(&(jolt as i32)).unwrap() =
-                paths[&(jolt as i32 - 3)] +
-                paths[&(jolt as i32 - 2)] +
-                paths[&(jolt as i32 - 1)];
+            *paths.get_mut(&(jolt)).unwrap() =
+                paths[&(jolt - 3)] +
+                paths[&(jolt - 2)] +
+                paths[&(jolt - 1)];
 
-            println!("Jolt: {}, Paths: {}", jolt, paths[&(jolt as i32)]);
+            println!("Jolt: {}, Paths: {}", jolt, paths[&(jolt)]);
         }
     }
 }
