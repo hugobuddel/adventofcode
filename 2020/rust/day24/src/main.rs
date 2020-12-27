@@ -208,6 +208,10 @@ fn main() {
     ];
 
     for day in 1..=100 {
+        let x_min: i32 = flipped.iter().map(|x| x.0.0).min().unwrap();
+        let x_max: i32 = flipped.iter().map(|x| x.0.0).max().unwrap();
+        let y_min: i32 = flipped.iter().map(|x| x.0.1).min().unwrap();
+        let y_max: i32 = flipped.iter().map(|x| x.0.1).max().unwrap();
         let flipped_old = flipped.clone();
         for x in (x_min - 1)..=(x_max + 1) {
             for y in (y_min - 1)..=(y_max + 1) {
