@@ -197,4 +197,36 @@ fn main() {
         // println!("={:3} {}", x, line2);
         // println!("=");
     }
+
+    let xyoffsets = vec![
+        (0, 1),
+        (-1, 1),
+        (-1, 0),
+        (0, -1),
+        (1, 0),
+        (1, -1),
+    ];
+
+    for day in 1..=100 {
+        let flipped_old = flipped.clone();
+        for x in (x_min - 1)..=(x_max + 1) {
+            for y in (y_min - 1)..=(y_max + 1) {
+                let mut count = 0;
+                for (xi, yi) in xyoffsets.iter() {
+                    if *flipped_old.get(&(x + xi, y + yi)).unwrap_or(&false) {
+                        count += 1;
+                    }
+                }
+                let old = flipped_old.get(&(x, y)).unwrap_or(&false);
+                if *old && (count == 0 || count > 2) {
+                    *flipped.entry((x, y)).or_insert(false) = false;
+                } else if (!*old) && (count == 2) {
+                    *flipped.entry((x, y)).or_insert(false) = true;
+                }
+            }
+        }
+
+        let total: usize = flipped.iter().map(|x| (if *x.1 { 1 } else { 0 })).sum();
+        println!("Day {}: {}", day, total);
+    }
 }
