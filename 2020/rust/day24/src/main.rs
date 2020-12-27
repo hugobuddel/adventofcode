@@ -110,7 +110,13 @@ fn main() {
         }
         println!("Flipped: {:?}", flipped);
     }
-    
+
     let total: usize = flipped.iter().map(|x| (if *x.1 {1} else {0})).sum();
     println!("Black: {}", total);
+
+    let x_min: i32 = flipped.iter().map(|x| x.0.0).min().unwrap();
+    let x_max: i32 = flipped.iter().map(|x| x.0.0).max().unwrap();
+    let y_min: i32 = flipped.iter().map(|x| x.0.1).min().unwrap();
+    let y_max: i32 = flipped.iter().map(|x| x.0.1).max().unwrap();
+    println!("x_min, x_max: {}, {}; y_min, y_max: {}, {}", x_min, x_max, y_min, y_max);
 }
