@@ -119,4 +119,20 @@ fn main() {
     let y_min: i32 = flipped.iter().map(|x| x.0.1).min().unwrap();
     let y_max: i32 = flipped.iter().map(|x| x.0.1).max().unwrap();
     println!("x_min, x_max: {}, {}; y_min, y_max: {}, {}", x_min, x_max, y_min, y_max);
+    for x in x_min..=x_max {
+        let mut line = match x.abs() % 2 {
+            0 => "".to_string(),
+            1 => " ".to_string(),
+            _ => unreachable!(),
+        };
+        for y in y_min..=y_max {
+            let t = match flipped.get(&(x, y)) {
+                Some(true) => "BB",
+                Some(false) => "WW",
+                None => "..",
+            };
+            line += t;
+        }
+        println!("={:3} {}", x, line);
+    }
 }
