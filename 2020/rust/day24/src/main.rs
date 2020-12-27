@@ -137,15 +137,18 @@ fn main() {
         let mut line2 = line.clone();
         for y in y_min..=y_max {
             let t = match flipped.get(&(x, y)) {
-                Some(true) => " BB",
-                Some(false) => " WW",
-                None => " ..",
+                // Some(true) => " BB",
+                // Some(false) => " WW",
+                // None => " ..",
+                Some(true) => "BB",
+                Some(false) => "WW",
+                None => "..",
             };
             line += t;
             line2 += format!("{:2}{:1}", x, y.abs()).as_str();
         }
         println!("={:3} {}", x, line);
-        println!("={:3} {}", x, line2);
-        println!("=");
+        // println!("={:3} {}", x, line2);
+        // println!("=");
     }
 }
