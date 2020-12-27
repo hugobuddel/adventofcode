@@ -127,8 +127,8 @@ pub struct RenovationsParser;
 fn main() {
     println!("Advent of Code 2020 Day 24!");
 
-    let filename = "inputexample.txt";
-    // let filename = "input.txt";
+    // let filename = "inputexample.txt";
+    let filename = "input.txt";
     let unparsed_file = fs::read_to_string(filename).expect("Error reading file.");
 
 
