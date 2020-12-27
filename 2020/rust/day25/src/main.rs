@@ -82,6 +82,25 @@
 //
 // What encryption key is the handshake trying to establish?
 
+fn brute_force_loopsize(key: usize) -> usize {
+    let mut value :usize = 1;
+    let mut loopsize :usize = 0;
+    let subject_number: usize = 7;
+    while value != key {
+        loopsize += 1;
+        value *= subject_number;
+        value %= 20201227;
+    }
+    loopsize
+}
+
 fn main() {
     println!("Advent of Code 2020 Day 25!");
+
+    let key_public_card: usize = 5764801;
+    let key_public_door: usize = 17807724;
+    let loopsize_card = brute_force_loopsize(key_public_card);
+    let loopsize_door = brute_force_loopsize(key_public_door);
+    assert_eq!(loopsize_card, 8);
+    assert_eq!(loopsize_door, 11);
 }
