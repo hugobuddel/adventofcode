@@ -1,3 +1,4 @@
 step = {"e" | "ne" | "nw" | "w" | "sw" | "se"}
 renovation = {step+ ~ "\n"}
-renovations = {SOI ~ renovation+ ~ EOI}
+renovations = {renovation+}
+file = {SOI ~ renovations ~ EOI}

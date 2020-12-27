@@ -86,20 +86,21 @@ fn main() {
     let unparsed_file = fs::read_to_string(filename).expect("Error reading file.");
 
 
-    let unparsed_file = "nwwswee\n".to_string();
+    // let unparsed_file = "nwwswee\n".to_string();
     // nw w sw e e
     //   2211
     //  334400
     //
 
-    let tilefile = RenovationsParser::parse(Rule::renovations, &unparsed_file)
+    let tilefile = RenovationsParser::parse(Rule::file, &unparsed_file)
         .expect("Unsuccessful parse")
         .next().unwrap();
 
     // true is flipped
     let mut flipped: HashMap<(i32, i32), bool> = HashMap::new();
 
-    for renovation in tilefile.into_inner() {
+    let mut renovations = tilefile.into_inner();
+    for renovation in renovations.next().unwrap().into_inner() {
         let (mut x, mut y) = (0, 0);
         println!("Renovation: {}", renovation.as_str());
         for step in renovation.into_inner() {
@@ -113,8 +114,9 @@ fn main() {
                 _ => unreachable!()
             }
             println!("Step {}, {}, {}", step.as_str(), x, y);
-            *flipped.entry((x, y)).or_insert(false) = ! flipped.get(&(x, y)).unwrap_or(&true);
+            // *flipped.entry((x, y)).or_insert(false) = ! flipped.get(&(x, y)).unwrap_or(&false);
         }
+        *flipped.entry((x, y)).or_insert(false) = ! flipped.get(&(x, y)).unwrap_or(&false);
         println!("Flipped: {:?}", flipped);
     }
 
@@ -139,9 +141,6 @@ fn main() {
                 Some(false) => " WW",
                 None => " ..",
             };
-            // let t = if (x, y) == (0, 0) {
-            //     "SS"
-            // } else {t};
             line += t;
             line2 += format!("{:2}{:1}", x, y.abs()).as_str();
         }
