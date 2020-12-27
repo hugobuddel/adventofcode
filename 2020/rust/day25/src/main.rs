@@ -94,6 +94,15 @@ fn brute_force_loopsize(key: usize) -> usize {
     loopsize
 }
 
+fn transform_subject_number(subject_number: usize, loopsize: usize) -> usize {
+    let mut value = 1;
+    for _ in 0..loopsize {
+        value *= subject_number;
+        value %= 20201227;
+    }
+    value
+}
+
 fn main() {
     println!("Advent of Code 2020 Day 25!");
 
@@ -103,4 +112,14 @@ fn main() {
     let loopsize_door = brute_force_loopsize(key_public_door);
     assert_eq!(loopsize_card, 8);
     assert_eq!(loopsize_door, 11);
+    let key_public_card2 = transform_subject_number(7, loopsize_card);
+    let key_public_door2 = transform_subject_number(7, loopsize_door);
+    assert_eq!(key_public_card, key_public_card2);
+    assert_eq!(key_public_door, key_public_door2);
+    let key_encryption_1 = transform_subject_number(key_public_door, loopsize_card);
+    let key_encryption_2 = transform_subject_number(key_public_card, loopsize_door);
+    assert_eq!(key_encryption_1, key_encryption_2);
+    assert_eq!(key_encryption_1, 14897079);
+    assert_eq!(key_encryption_2, 14897079);
+    println!("Encryption key: {}", key_encryption_1);
 }
