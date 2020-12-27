@@ -84,6 +84,7 @@ fn main() {
     let filename = "inputexample.txt";
     // let filename = "input.txt";
     let unparsed_file = fs::read_to_string(filename).expect("Error reading file.");
+    let unparsed_file = "nwwswee\n".to_string();
 
     let tilefile = RenovationsParser::parse(Rule::renovations, &unparsed_file)
         .expect("Unsuccessful parse")
@@ -131,6 +132,9 @@ fn main() {
                 Some(false) => "WW",
                 None => "..",
             };
+            let t = if (x, y) == (0, 0) {
+                "SS"
+            } else {t};
             line += t;
         }
         println!("={:3} {}", x, line);
