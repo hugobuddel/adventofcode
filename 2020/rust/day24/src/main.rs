@@ -84,7 +84,13 @@ fn main() {
     let filename = "inputexample.txt";
     // let filename = "input.txt";
     let unparsed_file = fs::read_to_string(filename).expect("Error reading file.");
+
+
     let unparsed_file = "nwwswee\n".to_string();
+    // nw w sw e e
+    //   2211
+    //  334400
+    //
 
     let tilefile = RenovationsParser::parse(Rule::renovations, &unparsed_file)
         .expect("Unsuccessful parse")
@@ -97,16 +103,16 @@ fn main() {
         let (mut x, mut y) = (0, 0);
         println!("Renovation: {}", renovation.as_str());
         for step in renovation.into_inner() {
-            // println!("Step {}", step.as_str());
             match step.as_str() {
-                "e" => {x += 1;}
-                "ne" => {x += 1; y += 1;}
-                "nw" => {y += 1;}
-                "w" => {x -= 1;}
-                "sw" => {y -= 1;}
-                "se" => {y -= 1; x -= 1;}
+                "e" => {y += 1;}
+                "ne" => {y += 1; x -= 1;}
+                "nw" => {x -= 1;}
+                "w" => {y -= 1;}
+                "se" => {x += 1;}
+                "sw" => {x += 1; y -= 1;}
                 _ => unreachable!()
             }
+            println!("Step {}, {}, {}", step.as_str(), x, y);
             *flipped.entry((x, y)).or_insert(false) = ! flipped.get(&(x, y)).unwrap_or(&true);
         }
         println!("Flipped: {:?}", flipped);
@@ -122,21 +128,25 @@ fn main() {
     println!("x_min, x_max: {}, {}; y_min, y_max: {}, {}", x_min, x_max, y_min, y_max);
     for x in x_min..=x_max {
         let mut line = match x.abs() % 2 {
-            0 => "".to_string(),
-            1 => " ".to_string(),
+            0 => " ".to_string(),
+            1 => "".to_string(),
             _ => unreachable!(),
         };
+        let mut line2 = line.clone();
         for y in y_min..=y_max {
             let t = match flipped.get(&(x, y)) {
-                Some(true) => "BB",
-                Some(false) => "WW",
-                None => "..",
+                Some(true) => " BB",
+                Some(false) => " WW",
+                None => " ..",
             };
-            let t = if (x, y) == (0, 0) {
-                "SS"
-            } else {t};
+            // let t = if (x, y) == (0, 0) {
+            //     "SS"
+            // } else {t};
             line += t;
+            line2 += format!("{:2}{:1}", x, y.abs()).as_str();
         }
         println!("={:3} {}", x, line);
+        println!("={:3} {}", x, line2);
+        println!("=");
     }
 }
