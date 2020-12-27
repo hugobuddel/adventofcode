@@ -66,6 +66,7 @@
 // left with the black side up?
 
 use std::fs;
+use std::collections::HashMap;
 
 extern crate pest;
 #[macro_use]
@@ -88,4 +89,28 @@ fn main() {
         .expect("Unsuccessful parse")
         .next().unwrap();
 
+    // true is flipped
+    let mut flipped: HashMap<(i32, i32), bool> = HashMap::new();
+
+    for renovation in tilefile.into_inner() {
+        let (mut x, mut y) = (0, 0);
+        println!("Renovation: {}", renovation.as_str());
+        for step in renovation.into_inner() {
+            // println!("Step {}", step.as_str());
+            match step.as_str() {
+                "e" => {x += 1;}
+                "ne" => {x += 1; y += 1;}
+                "nw" => {y += 1;}
+                "w" => {x -= 1;}
+                "sw" => {y -= 1;}
+                "se" => {y -= 1; x -= 1;}
+                _ => unreachable!()
+            }
+            *flipped.entry((x, y)).or_insert(false) = ! flipped.get(&(x, y)).unwrap_or(&true);
+        }
+        println!("Flipped: {:?}", flipped);
+    }
+    
+    let total: usize = flipped.iter().map(|x| (if *x.1 {1} else {0})).sum();
+    println!("Black: {}", total);
 }
