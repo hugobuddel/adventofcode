@@ -156,7 +156,7 @@ fn main() {
     // 10000 moves take 5 minutes, so 10 million moves take 5000 minutes
     // so about 100 hours, so 4 days. Doable, but not really.
 
-    // let nr_of_moves = 100;
+    let nr_of_moves = 1000;
 
     for move_counter in 1..=nr_of_moves {
         println!("-- move {} --", move_counter);
@@ -199,6 +199,6 @@ fn main() {
     let position = cups.iter().position(|x| x == &1).unwrap();
     let p2 = cups[position + 1] * cups[position + 2];
     println!("p2: {}", p2);
-    assert_eq!(149245887792, p2);
+    // assert_eq!(149245887792, p2);
 
 }
