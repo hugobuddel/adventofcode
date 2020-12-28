@@ -131,7 +131,8 @@ use std::collections::LinkedList;
 
 /// Subtract 1 modulo 9
 fn subtract1(x: usize) -> usize {
-    ((x + 7) % 9) + 1
+    // ((x + 7) % 9) + 1
+    ((x + 10000000 - 2) % 10000000) + 1
 }
 
 fn main() {
@@ -161,7 +162,7 @@ fn main() {
     // let mut cups = vec![5, 8, 9, 1, 7, 4, 2, 6, 3];  // puzzle, without the current cup at the end, so wrong
     // cups.rotate_left(1);
     // let mut cups = vec![8, 9, 1, 7, 4, 2, 6, 3, 5];  // puzzle, moving the current cup to the end, so right
-    // let nr_of_moves = 10;
+    let nr_of_moves = 10;
     // let nr_of_moves = 100;
 
     // let nr_of_moves = 10000;
@@ -170,7 +171,9 @@ fn main() {
     // But suddenly it takes only 16 seconds, so 10 million will take 16000
     // seconds, so 300 minutes.
 
-    let nr_of_moves = 10000;
+    // let nr_of_moves = 10000;
+    // let nr_of_moves = 50000;
+    let nr_of_moves = 100000;
     // let nr_of_moves = 10000000;
 
     for move_counter in 1..=nr_of_moves {
