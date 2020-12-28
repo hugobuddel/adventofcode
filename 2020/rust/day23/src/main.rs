@@ -128,7 +128,7 @@
 // you get if you multiply their labels together?
 
 /// Subtract 1 modulo 9
-fn subtract1(x: i32) -> i32 {
+fn subtract1(x: usize) -> usize {
     ((x + 7) % 9) + 1
 }
 
@@ -137,11 +137,12 @@ fn main() {
 
     // Put the current cup at the end instead of at the beginning.
     // let mut cups = vec![8, 9, 1, 2, 5, 4, 6, 7, 3];  // example
-    let mut cups = vec![3, 8, 9, 1, 2, 5, 4, 6, 7];  // example without current cup at the end
+    let mut cups = vec![3_usize, 8, 9, 1, 2, 5, 4, 6, 7];  // example without current cup at the end
     cups.rotate_left(1);
     assert_eq!(cups.iter().map(|x| format!("{}", x)).collect::<Vec<_>>().join(""), "891254673"); // example "389125467"
 
     // let mut cups = vec![5, 8, 9, 1, 7, 4, 2, 6, 3];  // puzzle, without the current cup at the end, so wrong
+    // cups.rotate_left(1);
     // let mut cups = vec![8, 9, 1, 7, 4, 2, 6, 3, 5];  // puzzle, moving the current cup to the end, so right
     // let nr_of_moves = 10;
     let nr_of_moves = 100;
@@ -175,4 +176,9 @@ fn main() {
     println!("ll: {:?}", ll);
     // assert_eq!(ll, "92658374"); // demo 10
     assert_eq!(ll, "67384529"); // demo 100
+    // assert_eq!(ll, "43896725"); // puzzle 100
+
+    let p2 = cups[1] * cups[2];
+    println!("p2: {}", p2);
+    assert_eq!(149245887792, p2);
 }
