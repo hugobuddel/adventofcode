@@ -108,8 +108,8 @@ fn main() {
     println!("Advent of Code 2020 Day 23!");
 
     // Put the current cup at the end instead of at the beginning.
-    let mut cups = vec![8, 9, 1, 2, 5, 4, 6, 7, 3];  // example
-    // let mut cups = vec![5, 8, 9, 1, 7, 4, 2, 6, 3];  // puzzle
+    // let mut cups = vec![8, 9, 1, 2, 5, 4, 6, 7, 3];  // example
+    let mut cups = vec![5, 8, 9, 1, 7, 4, 2, 6, 3];  // puzzle
     // let nr_of_moves = 10;
     let nr_of_moves = 100;
 
@@ -133,5 +133,13 @@ fn main() {
         println!();
     }
 
-    println!{"Cups {:?}", cups};
+    println!("Cups1 {:?}", cups);
+    while cups[0] != 1 {
+        cups.rotate_left(1);
+    }
+    println!("Cups2 {:?}", cups);
+    let ll = cups.iter().skip(1).map(|x| format!("{}", x)).collect::<Vec<_>>().join("");
+    println!("ll: {:?}", ll);
+    // assert_eq!(ll, "92658374"); // demo 10
+    // assert_eq!(ll, "67384529"); // demo 100
 }
