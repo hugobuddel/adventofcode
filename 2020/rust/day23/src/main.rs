@@ -159,7 +159,7 @@ fn main() {
     // cups.rotate_left(1);
     // let mut cups = vec![8, 9, 1, 7, 4, 2, 6, 3, 5];  // puzzle, moving the current cup to the end, so right
     // let nr_of_moves = 10;
-    let nr_of_moves = 100;
+    // let nr_of_moves = 100;
 
     // let nr_of_moves = 10000;
     // 10000 moves take 5 minutes, so 10 million moves take 5000 minutes
@@ -167,13 +167,14 @@ fn main() {
     // But suddenly it takes only 16 seconds, so 10 million will take 16000
     // seconds, so 300 minutes.
 
-    // let nr_of_moves = 10000;
+    let nr_of_moves = 10000;
+    // let nr_of_moves = 10000000;
 
     for move_counter in 1..=nr_of_moves {
         println!("-- move {} --", move_counter);
         // println!("{:?}", cups);
         // Method 1
-        let picked_up = cups.drain(0..3).collect::<Vec<_>>();
+        // let picked_up = cups.drain(0..3).collect::<Vec<_>>();
         // Method 2
         // let p0 = cups.remove(0);
         // let p1 = cups.remove(0);
@@ -191,32 +192,34 @@ fn main() {
         cupsll = templl;
 
         // println!("{:?}", cups);
-        println!("{:?}", picked_up);
+        // println!("{:?}", picked_up);
         // println!("picked_up: {} {} {}", p0, p1, p2);
         println!("Picked up ll: {:?}", picked_up_ll);
 
-        let mut destination = subtract1(*cups.last().unwrap());
-        while picked_up.contains(&destination) {
+        // let mut destination = subtract1(*cups.last().unwrap());
+        // while picked_up.contains(&destination) {
         // while p0 == destination || p1 == destination || p2 == destination {
-            destination = subtract1(destination);
-        }
+        //     destination = subtract1(destination);
+        // }
+
         let mut destination_ll = subtract1(*cupsll.back().unwrap());
         while picked_up_ll.contains(&destination_ll) {
             destination_ll = subtract1(destination_ll);
         }
-        println!("Destination {} {}", destination, destination_ll);
+        // println!("Destination {} {}", destination, destination_ll);
 
-        let position = cups.iter().position(|x| x == &destination).unwrap();
+        // let position = cups.iter().position(|x| x == &destination).unwrap();
         let position_ll = cupsll.iter().position(|x| x == &destination_ll).unwrap();
-        println!("Destination    {} at position {}", destination, position);
+        // println!("Destination    {} at position {}", destination, position);
         println!("Destination LL {} at position {}", destination_ll, position_ll);
 
-        for cup in picked_up.iter().rev() {
-            cups.insert(position + 1, *cup);
-        }
-        let mut part2 = cupsll.split_off(position + 1);
+        // for cup in picked_up.iter().rev() {
+        //     cups.insert(position + 1, *cup);
+        // }
+        let mut part2 = cupsll.split_off(position_ll + 1);
         cupsll.append(&mut picked_up_ll);
         cupsll.append(&mut part2);
+
         // cups.insert(position + 1, p2);
         // cups.insert(position + 1, p1);
         // cups.insert(position + 1, p0);
@@ -231,21 +234,21 @@ fn main() {
         // println!();
     }
 
-    if true {
+    if false {
         // part 1 code
         // println!("Cups1 {:?}", cups);
-        while cups[0] != 1 {
-            cups.rotate_left(1);
-        }
+        // while cups[0] != 1 {
+        //     cups.rotate_left(1);
+        // }
         while cupsll.front().unwrap() != &1 {
             let cup_current_ll = cupsll.pop_front().unwrap();
             cupsll.push_back(cup_current_ll);
         }
         // println!("Cups2 {:?}", cups);
-        let ll = cups.iter().skip(1).map(|x| format!("{}", x)).collect::<Vec<_>>().join("");
-        println!("ll: {:?}", ll);
+        // let ll = cups.iter().skip(1).map(|x| format!("{}", x)).collect::<Vec<_>>().join("");
+        // println!("ll: {:?}", ll);
         // assert_eq!(ll, "92658374"); // demo 10
-        assert_eq!(ll, "67384529"); // demo 100
+        // assert_eq!(ll, "67384529"); // demo 100
         // assert_eq!(ll, "43896725"); // puzzle 100
 
         let llll = cupsll.iter().skip(1).map(|x| format!("{}", x)).collect::<Vec<_>>().join("");
@@ -261,7 +264,14 @@ fn main() {
 
     // let position = cups.iter().position(|x| x == &1).unwrap();
     // let p2 = cups[position + 1] * cups[position + 2];
-    // println!("p2: {}", p2);
+
+    // println!("cups: {:?}", cupsll);
+    let mut ii = cupsll.iter();
+    while ii.next().unwrap() != &1 {}
+    let pa = ii.next().unwrap();
+    let pb = ii.next().unwrap();
+    let p2 = pa * pb;
+    println!("pos, pa, pb, p2: {} {} {}", pa, pb, p2);
     // assert_eq!(149245887792, p2);
 
 }
