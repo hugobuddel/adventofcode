@@ -163,26 +163,44 @@ fn main() {
     for move_counter in 1..=nr_of_moves {
         println!("-- move {} --", move_counter);
         // println!("{:?}", cups);
-        let picked_up = cups.drain(0..3).collect::<Vec<_>>();
+        // Method 1
+        // let picked_up = cups.drain(0..3).collect::<Vec<_>>();
+        // Method 2
+        // let p0 = cups.remove(0);
+        // let p1 = cups.remove(0);
+        // let p2 = cups.remove(0);
+        // Method 3
+        let p0 = cups[0];
+        let p1 = cups[1];
+        let p2 = cups[2];
+        for _ in cups.drain(0..3) {}
+        // let cups2 = cups.split_off(3);
+        // cups = cups2;
+
         // println!("{:?}", cups);
-        println!("{:?}", picked_up);
+        // println!("{:?}", picked_up);
+        println!("picked_up: {} {} {}", p0, p1, p2);
         let mut destination = subtract1(*cups.last().unwrap());
-        while picked_up.contains(&destination) {
+        // while picked_up.contains(&destination) {
+        while p0 == destination || p1 == destination || p2 == destination {
             destination = subtract1(destination);
         }
-        // println!("Destination {}", destination);
+        println!("Destination {}", destination);
         let position = cups.iter().position(|x| x == &destination).unwrap();
-        println!("Destination {} at position {}", destination, position);
-        for cup in picked_up.iter().rev() {
-            cups.insert(position + 1, *cup);
-        }
+        // println!("Destination {} at position {}", destination, position);
+        // for cup in picked_up.iter().rev() {
+        //     cups.insert(position + 1, *cup);
+        // }
+        cups.insert(position + 1, p2);
+        cups.insert(position + 1, p1);
+        cups.insert(position + 1, p0);
 
         // remove + push is apparently a bit faster
         // cups.rotate_left(1);
         let cup_current = cups.remove(0);
         cups.push(cup_current);
 
-        println!();
+        // println!();
     }
 
     if false {
