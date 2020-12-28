@@ -152,6 +152,9 @@ fn main() {
     // for i in 10_usize..=1000000 {
     //     cups.push(i);
     // }
+    for i in 10_usize..=1000000 {
+        cupsll.push_back(i);
+    }
     // assert_eq!(*cups.last().unwrap(), 1000000_usize);
     // assert_eq!(cups.len(), 1000000_usize);
 
@@ -209,9 +212,11 @@ fn main() {
         // println!("Destination {} {}", destination, destination_ll);
 
         // let position = cups.iter().position(|x| x == &destination).unwrap();
-        let position_ll = cupsll.iter().position(|x| x == &destination_ll).unwrap();
+        // let position_llf = cupsll.iter().position(|x| x == &destination_ll).unwrap();
+        let position_ll = cupsll.len() - 1 - cupsll.iter().rev().position(|x| x == &destination_ll).unwrap();
         // println!("Destination    {} at position {}", destination, position);
         println!("Destination LL {} at position {}", destination_ll, position_ll);
+        // println!("Destination LL {} at position {} {}", destination_ll, position_llf, position_ll);
 
         // for cup in picked_up.iter().rev() {
         //     cups.insert(position + 1, *cup);
