@@ -109,7 +109,9 @@ fn main() {
 
     // Put the current cup at the end instead of at the beginning.
     // let mut cups = vec![8, 9, 1, 2, 5, 4, 6, 7, 3];  // example
-    let mut cups = vec![5, 8, 9, 1, 7, 4, 2, 6, 3];  // puzzle
+    // assert_eq!(cups.iter().map(|x| format!("{}", x)).collect::<Vec<_>>().join(""), "891254673"); // example "389125467"
+    // let mut cups = vec![5, 8, 9, 1, 7, 4, 2, 6, 3];  // puzzle, without the current cup at the end, so wrong
+    let mut cups = vec![8, 9, 1, 7, 4, 2, 6, 3, 5];  // puzzle, moving the current cup to the end, so right
     // let nr_of_moves = 10;
     let nr_of_moves = 100;
 
