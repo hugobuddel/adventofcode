@@ -140,11 +140,11 @@ fn main() {
     let mut cups = vec![3_usize, 8, 9, 1, 2, 5, 4, 6, 7];  // example without current cup at the end
     cups.rotate_left(1);
     assert_eq!(cups.iter().map(|x| format!("{}", x)).collect::<Vec<_>>().join(""), "891254673"); // example "389125467"
-    for i in 10_usize..=1000000 {
-        cups.push(i);
-    }
-    assert_eq!(*cups.last().unwrap(), 1000000_usize);
-    assert_eq!(cups.len(), 1000000_usize);
+    // for i in 10_usize..=1000000 {
+    //     cups.push(i);
+    // }
+    // assert_eq!(*cups.last().unwrap(), 1000000_usize);
+    // assert_eq!(cups.len(), 1000000_usize);
 
     // let mut cups = vec![5, 8, 9, 1, 7, 4, 2, 6, 3];  // puzzle, without the current cup at the end, so wrong
     // cups.rotate_left(1);
@@ -158,7 +158,7 @@ fn main() {
     // But suddenly it takes only 16 seconds, so 10 million will take 16000
     // seconds, so 300 minutes.
 
-    let nr_of_moves = 10000;
+    // let nr_of_moves = 10000;
 
     for move_counter in 1..=nr_of_moves {
         println!("-- move {} --", move_counter);
@@ -203,7 +203,7 @@ fn main() {
         // println!();
     }
 
-    if false {
+    if true {
         // part 1 code
         // println!("Cups1 {:?}", cups);
         while cups[0] != 1 {
@@ -216,14 +216,14 @@ fn main() {
         assert_eq!(ll, "67384529"); // demo 100
         // assert_eq!(ll, "43896725"); // puzzle 100
 
-        let p2 = cups[1] * cups[2];
-        println!("p2: {}", p2);
-        assert_eq!(149245887792, p2);
+        // let p2 = cups[1] * cups[2];
+        // println!("p2: {}", p2);
+        // assert_eq!(149245887792, p2);
     }
 
-    let position = cups.iter().position(|x| x == &1).unwrap();
-    let p2 = cups[position + 1] * cups[position + 2];
-    println!("p2: {}", p2);
+    // let position = cups.iter().position(|x| x == &1).unwrap();
+    // let p2 = cups[position + 1] * cups[position + 2];
+    // println!("p2: {}", p2);
     // assert_eq!(149245887792, p2);
 
 }
