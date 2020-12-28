@@ -155,8 +155,10 @@ fn main() {
     // let nr_of_moves = 10000;
     // 10000 moves take 5 minutes, so 10 million moves take 5000 minutes
     // so about 100 hours, so 4 days. Doable, but not really.
+    // But suddenly it takes only 16 seconds, so 10 million will take 16000
+    // seconds, so 300 minutes.
 
-    let nr_of_moves = 1000;
+    let nr_of_moves = 10000;
 
     for move_counter in 1..=nr_of_moves {
         println!("-- move {} --", move_counter);
@@ -174,7 +176,12 @@ fn main() {
         for cup in picked_up.iter().rev() {
             cups.insert(position + 1, *cup);
         }
-        cups.rotate_left(1);
+
+        // remove + push is apparently a bit faster
+        // cups.rotate_left(1);
+        let cup_current = cups.remove(0);
+        cups.push(cup_current);
+
         println!();
     }
 
