@@ -140,6 +140,11 @@ fn main() {
     let mut cups = vec![3_usize, 8, 9, 1, 2, 5, 4, 6, 7];  // example without current cup at the end
     cups.rotate_left(1);
     assert_eq!(cups.iter().map(|x| format!("{}", x)).collect::<Vec<_>>().join(""), "891254673"); // example "389125467"
+    for i in 10_usize..=1000000 {
+        cups.push(i);
+    }
+    assert_eq!(*cups.last().unwrap(), 1000000_usize);
+    assert_eq!(cups.len(), 1000000_usize);
 
     // let mut cups = vec![5, 8, 9, 1, 7, 4, 2, 6, 3];  // puzzle, without the current cup at the end, so wrong
     // cups.rotate_left(1);
@@ -147,11 +152,17 @@ fn main() {
     // let nr_of_moves = 10;
     let nr_of_moves = 100;
 
+    // let nr_of_moves = 10000;
+    // 10000 moves take 5 minutes, so 10 million moves take 5000 minutes
+    // so about 100 hours, so 4 days. Doable, but not really.
+
+    // let nr_of_moves = 100;
+
     for move_counter in 1..=nr_of_moves {
         println!("-- move {} --", move_counter);
-        println!("{:?}", cups);
+        // println!("{:?}", cups);
         let picked_up = cups.drain(0..3).collect::<Vec<_>>();
-        println!("{:?}", cups);
+        // println!("{:?}", cups);
         println!("{:?}", picked_up);
         let mut destination = subtract1(*cups.last().unwrap());
         while picked_up.contains(&destination) {
@@ -167,18 +178,27 @@ fn main() {
         println!();
     }
 
-    println!("Cups1 {:?}", cups);
-    while cups[0] != 1 {
-        cups.rotate_left(1);
-    }
-    println!("Cups2 {:?}", cups);
-    let ll = cups.iter().skip(1).map(|x| format!("{}", x)).collect::<Vec<_>>().join("");
-    println!("ll: {:?}", ll);
-    // assert_eq!(ll, "92658374"); // demo 10
-    assert_eq!(ll, "67384529"); // demo 100
-    // assert_eq!(ll, "43896725"); // puzzle 100
+    if false {
+        // part 1 code
+        // println!("Cups1 {:?}", cups);
+        while cups[0] != 1 {
+            cups.rotate_left(1);
+        }
+        // println!("Cups2 {:?}", cups);
+        let ll = cups.iter().skip(1).map(|x| format!("{}", x)).collect::<Vec<_>>().join("");
+        println!("ll: {:?}", ll);
+        // assert_eq!(ll, "92658374"); // demo 10
+        assert_eq!(ll, "67384529"); // demo 100
+        // assert_eq!(ll, "43896725"); // puzzle 100
 
-    let p2 = cups[1] * cups[2];
+        let p2 = cups[1] * cups[2];
+        println!("p2: {}", p2);
+        assert_eq!(149245887792, p2);
+    }
+
+    let position = cups.iter().position(|x| x == &1).unwrap();
+    let p2 = cups[position + 1] * cups[position + 2];
     println!("p2: {}", p2);
     assert_eq!(149245887792, p2);
+
 }
