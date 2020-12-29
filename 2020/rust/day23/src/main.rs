@@ -1,3 +1,5 @@
+#![feature(linked_list_cursors)]
+
 //! --- Day 23: Crab Cups ---
 //
 // The small crab challenges you to a game! The crab is going to mix up some
@@ -163,7 +165,7 @@ fn main() {
     // cups.rotate_left(1);
     // let mut cups = vec![8, 9, 1, 7, 4, 2, 6, 3, 5];  // puzzle, moving the current cup to the end, so right
     let nr_of_moves = 10;
-    // let nr_of_moves = 100;
+    //let nr_of_moves = 100;
 
     // let nr_of_moves = 10000;
     // 10000 moves take 5 minutes, so 10 million moves take 5000 minutes
@@ -173,8 +175,13 @@ fn main() {
 
     // let nr_of_moves = 10000;
     // let nr_of_moves = 50000;
-    let nr_of_moves = 100000;
+    // let nr_of_moves = 100000;
     // let nr_of_moves = 10000000;
+
+    let mut cursor = cupsll.cursor_back_mut();
+    println!("Cursor: {:?}", cursor.peek_prev());
+     println!("Cursor: {:?}", cursor.peek_next());
+      cursor.move_next();
 
     for move_counter in 1..=nr_of_moves {
         println!("-- move {} --", move_counter);
@@ -217,8 +224,19 @@ fn main() {
         // let position = cups.iter().position(|x| x == &destination).unwrap();
         // let position_llf = cupsll.iter().position(|x| x == &destination_ll).unwrap();
         let position_ll = cupsll.len() - 1 - cupsll.iter().rev().position(|x| x == &destination_ll).unwrap();
+
+        for _ in 0..5 {
+            cursor.move_next();
+        }
+        while cursor.peek_next() != Some(&mut destination_ll) {
+            cursor.move_prev();
+        }
+        let position_cursor = cursor.index().unwrap();
+
+
         // println!("Destination    {} at position {}", destination, position);
         println!("Destination LL {} at position {}", destination_ll, position_ll);
+        println!("Destination CC {} at position {}", destination_ll, position_cursor);
         // println!("Destination LL {} at position {} {}", destination_ll, position_llf, position_ll);
 
         // for cup in picked_up.iter().rev() {
