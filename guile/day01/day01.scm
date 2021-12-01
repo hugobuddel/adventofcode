@@ -48,3 +48,9 @@ How many measurements are larger than the previous measurement?
 
 (write "Advent of Code Day 1!")
 (newline)
+
+(use-modules (ice-9 rdelim))
+
+(let 
+    ((port (open-input-file "example.txt"))) 
+    (display (read-line port)) (newline) (close-port port))
