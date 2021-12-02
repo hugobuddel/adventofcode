@@ -94,7 +94,9 @@
 
 
 
-(define expr (f-or! eql-expr add/sub-expr))
+(define hexpr (f-list #:aab "abcd"))
+(define expr (f-or! hexpr eql-expr add/sub-expr))
+;(define expr (f-or! eql-expr add/sub-expr))
 
 ;;;;Now lets define the parser
 (define (p string) ((@ (parser stis-parser) parse)
@@ -108,6 +110,8 @@
 ;; cheme@(guile-user)> (use-modules (parser stis-parser examples calc))
 
 (display (p "1234 + 4^-3*12-3/2 - a")) (newline)
+(newline)
+(display (p "abcd"))(newline)
 (newline)
 
 
