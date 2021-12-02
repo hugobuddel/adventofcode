@@ -75,12 +75,14 @@ How many measurements are larger than the previous measurement?
         ))
         ))
 
-(let 
-    ((port (open-input-file "example.txt"))) 
-    (display "Depth increased ")
-    (display (count_depth_increases 0 port))
-    (display " times")
-    (newline)
-    (close-port port))
+(define (count_from_file filename)
+    (let
+        ((port (open-input-file filename))) 
+        (display "Depth increased ")
+        (display (count_depth_increases 0 port))
+        (display " times")
+        (newline)
+        (close-port port))
+    )
 
-
+(count_from_file "example.txt")
