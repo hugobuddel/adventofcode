@@ -62,16 +62,14 @@ How many measurements are larger than the previous measurement?
 (define (count_depth_increases old theport)
         (let ((snum (read-line theport)))
         (if (eof-object? snum)
-            (begin (display "default")
-            -1)
+            ; start with -1 because the first doesn't count
+            -1
             (begin
                 (let ((num (string->number snum)))
-                (display "a") (display num) (display old) (newline)
                 (+ (if (> num old)
-                    (begin (display "GT")
-                    1)
+                    1
                     0
-                ) 
+                )
                 (count_depth_increases num theport))
             )
         ))
@@ -81,7 +79,7 @@ How many measurements are larger than the previous measurement?
     ((port (open-input-file "example.txt"))) 
     (display "Depth increased ")
     (display (count_depth_increases 0 port))
-    (display "times")
+    (display " times")
     (newline)
     (close-port port))
 
