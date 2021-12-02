@@ -86,3 +86,4 @@ How many measurements are larger than the previous measurement?
     )
 
 (count_from_file "example.txt")
+(count_from_file "puzzle.txt")
