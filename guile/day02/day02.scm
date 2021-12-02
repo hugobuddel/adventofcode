@@ -48,6 +48,11 @@ final horizontal position by your final depth?
 
 (use-modules (parser stis-parser))
 
+(define ws (f* (f-or! f-nl (f-char #\space) (f-char #\tab))))
+
+;;;; let's define whitespace as a sequence fo nl/space/tab
+(fluid-set! *whitespace* ws)
+
 ;;number
 (define int (f+ (f-reg! "[0-9]")))
                                         ; ! means store character
@@ -69,16 +74,21 @@ final horizontal position by your final depth?
                                         ;with the uique tag tag and translate
                                         ;the result with (lambda (s in out) ..)
                                         ;most cases will use out
+;;Tag the token e.g. produce a value '(#:number 2322.2e-122.2) we also have
+;;  f-cons f-cons* that works naturally there is whitespace between the sub
+;;  expressions
+(define number (f-list #:number number-))
 
 
 (define forward (f-list #:forward "forward"))
 (define down (f-list #:down "down"))
 (define up (f-list #:up "up"))
 
-(define expr (f-or! forward))
+(define expr (f-list (f-or! forward up down) ws number))
+
 
 (define (p string) ((@ (parser stis-parser) parse)
                     string (f-seq expr f-eof)))
 
-(display (p "forward")) (newline)
+(display (p "forward 23")) (newline)
 (newline)
