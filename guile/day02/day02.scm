@@ -47,6 +47,7 @@ final horizontal position by your final depth?
 ; https://gitlab.com/tampe/stis-parser
 
 (use-modules (parser stis-parser))
+(use-modules (ice-9 rdelim))
 
 (define ws (f* (f-or! f-nl (f-char #\space) (f-char #\tab))))
 
@@ -92,3 +93,28 @@ final horizontal position by your final depth?
 
 (display (p "forward 23")) (newline)
 (newline)
+
+(define (move_from_file filename)
+    (let
+        ((port (open-input-file filename)))
+        (display (get_dir_from_port port))
+        (newline)
+        (close-port port)
+    )
+)
+
+
+
+(define (get_dir_from_port theport)
+        (let ((sline (read-line theport)))
+        (if (eof-object? sline)
+            (sline)
+            (p sline)
+        )))
+
+
+
+(move_from_file "example.txt")
+;(move_from_file "puzzle.txt")
+
+
