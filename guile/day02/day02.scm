@@ -92,8 +92,8 @@ final horizontal position by your final depth?
 (define (p string) ((@ (parser stis-parser) parse)
                     string (f-seq expr f-eof)))
 
-(display (p "forward 23")) (newline)
-(newline)
+;(display (p "forward 23")) (newline)
+;(newline)
 
 (define (move_from_file filename)
     (let
@@ -112,10 +112,10 @@ final horizontal position by your final depth?
             (let ((dir_len (p sline)))
                 (display dir_len) (newline)
                 (let ((dir (car dir_len)) (len (cdr dir_len)))
-                    (display dir) (display len) (newline)
-                    (when (equal? dir '(#:forward)) (display "FORWARD EQUAL") (newline))
-                    (when (eqv? dir '(#:forward)) (display "FORWARD EQV") (newline))
-                    (when (eq? dir '(#:forward)) (display "FORWARD EQ") (newline))
+                    ;(display dir) (display len) (newline)
+                    ;(when (equal? dir '(#:forward)) (display "FORWARD EQUAL") (newline))
+                    ;(when (eqv? dir '(#:forward)) (display "FORWARD EQV") (newline))
+                    ;(when (eq? dir '(#:forward)) (display "FORWARD EQ") (newline))
                     ;(case dir
                     ;    ('(#:forward) '(4 4))
                     ;    (else '(1 1))
@@ -129,10 +129,12 @@ final horizontal position by your final depth?
                             (+ n (get_dir_from_port theport))
                         )
                         (((#:down) (#:number n))
-                            (- (* n 0+1i) (get_dir_from_port theport))
+                            (- (get_dir_from_port theport) (* n 0+1i))
+                            ;(get_dir_from_port theport)
                         )
                         (((#:up) (#:number n))
-                            (+ (* n 0+1i) (get_dir_from_port theport))
+                            (+ (get_dir_from_port theport) (* n 0+1i))
+                            ;(get_dir_from_port theport)
                         )
                         
                         ((#:number n)
