@@ -108,7 +108,7 @@ final horizontal position by your final depth?
 (define (get_dir_from_port theport)
         (let ((sline (read-line theport)))
         (if (eof-object? sline)
-            `(0 0)
+            0+0i
             (let ((dir_len (p sline)))
                 (display dir_len) (newline)
                 (let ((dir (car dir_len)) (len (cdr dir_len)))
@@ -120,13 +120,21 @@ final horizontal position by your final depth?
                     ;    ('(#:forward) '(4 4))
                     ;    (else '(1 1))
                     ;)
-                    (cond
-                        ((equal? dir '(#:forward)) '( 4 4 ))
-                    )
+                    ;(cond
+                    ;    ((equal? dir '(#:forward)) 4+5i)
+                    ;)
                     (match dir_len 
                     ;(match len 
                         (((#:forward) (#:number n))
-                        n)
+                            (+ n (get_dir_from_port theport))
+                        )
+                        (((#:down) (#:number n))
+                            (- (* n 0+1i) (get_dir_from_port theport))
+                        )
+                        (((#:up) (#:number n))
+                            (+ (* n 0+1i) (get_dir_from_port theport))
+                        )
+                        
                         ((#:number n)
                         n)
                         (((#:number n))
