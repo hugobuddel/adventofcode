@@ -43,3 +43,17 @@ final horizontal position by your final depth?
 |#
 
 (write "Advent of Code Day 2!") (newline)
+
+; https://gitlab.com/tampe/stis-parser
+
+(use-modules (parser stis-parser))
+
+(define forward (f-list #:forward "forward"))
+
+(define expr (f-or! forward))
+
+(define (p string) ((@ (parser stis-parser) parse)
+                    string (f-seq expr f-eof)))
+
+(display (p "forward")) (newline)
+(newline)
