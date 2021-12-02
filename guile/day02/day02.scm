@@ -149,6 +149,6 @@ final horizontal position by your final depth?
 
 
 (move_from_file "example.txt")
-;(move_from_file "puzzle.txt")
+(move_from_file "puzzle.txt")
 
 
