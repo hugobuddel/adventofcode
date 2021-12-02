@@ -51,17 +51,38 @@ How many measurements are larger than the previous measurement?
 
 (use-modules (ice-9 rdelim))
 
-(define (count_depth_increases theport)
-        (let ((num (read-line theport)))
-        (display num)
-        (newline)
-        (unless (eof-object? num)
-        (count_depth_increases theport)
-        )
+(define (get_num_from_port theport)
+        (let ((snum (read-line theport)))
+        (if (eof-object? snum)
+            (snum)
+            (string->number snum)
+        )))
+        
+
+(define (count_depth_increases old theport)
+        (let ((snum (read-line theport)))
+        (if (eof-object? snum)
+            (begin (display "default")
+            -1)
+            (begin
+                (let ((num (string->number snum)))
+                (display "a") (display num) (display old) (newline)
+                (+ (if (> num old)
+                    (begin (display "GT")
+                    1)
+                    0
+                ) 
+                (count_depth_increases num theport))
+            )
+        ))
         ))
 
 (let 
     ((port (open-input-file "example.txt"))) 
-    (count_depth_increases port)
+    (display "Depth increased ")
+    (display (count_depth_increases 0 port))
+    (display "times")
+    (newline)
     (close-port port))
+
 
