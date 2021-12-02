@@ -48,7 +48,32 @@ final horizontal position by your final depth?
 
 (use-modules (parser stis-parser))
 
+;;number
+(define int (f+ (f-reg! "[0-9]")))
+                                        ; ! means store character
+                                        ; f+ mean 1 or more matches
+                                        ; f-reg mean that the character
+                                        ; should match the regular expression
+                                        ; for one character
+                                        ; does not work for multiple characters
+;; lets make a token
+(define number-
+  ;(p-freeze 'number (mk-token num)
+  (p-freeze 'number (mk-token int)
+    (lambda (s cin cout)
+      (string->number cout))))
+                                        ;(mk-token f) will combine the result of
+                                        ;f in one string
+                                        ;(p-freeze tag f translate)
+                                        ;well memoize the result of f tagging it
+                                        ;with the uique tag tag and translate
+                                        ;the result with (lambda (s in out) ..)
+                                        ;most cases will use out
+
+
 (define forward (f-list #:forward "forward"))
+(define down (f-list #:down "down"))
+(define up (f-list #:up "up"))
 
 (define expr (f-or! forward))
 
