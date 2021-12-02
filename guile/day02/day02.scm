@@ -97,8 +97,7 @@ final horizontal position by your final depth?
 (define (move_from_file filename)
     (let
         ((port (open-input-file filename)))
-        (display (get_dir_from_port port))
-        (newline)
+        (display (get_dir_from_port port)) (newline)
         (close-port port)
     )
 )
@@ -108,8 +107,23 @@ final horizontal position by your final depth?
 (define (get_dir_from_port theport)
         (let ((sline (read-line theport)))
         (if (eof-object? sline)
-            (sline)
-            (p sline)
+            `(0 0)
+            (let ((dir_len (p sline)))
+                (display dir_len) (newline)
+                (let ((dir (car dir_len)) (len (cdr dir_len)))
+                    (display dir) (display len) (newline)
+                    (when (equal? dir '(#:forward)) (display "FORWARD EQUAL") (newline))
+                    (when (eqv? dir '(#:forward)) (display "FORWARD EQV") (newline))
+                    (when (eq? dir '(#:forward)) (display "FORWARD EQ") (newline))
+                    ;(case dir
+                    ;    ('(#:forward) '(4 4))
+                    ;    (else '(1 1))
+                    ;)
+                    (cond
+                        ((equal? dir '(#:forward)) '( 4 4 ))
+                    )
+                )
+                )
         )))
 
 
