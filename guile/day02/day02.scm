@@ -48,6 +48,7 @@ final horizontal position by your final depth?
 
 (use-modules (parser stis-parser))
 (use-modules (ice-9 rdelim))
+(use-modules (ice-9 match))
 
 (define ws (f* (f-or! f-nl (f-char #\space) (f-char #\tab))))
 
@@ -121,6 +122,15 @@ final horizontal position by your final depth?
                     ;)
                     (cond
                         ((equal? dir '(#:forward)) '( 4 4 ))
+                    )
+                    (match dir_len 
+                    ;(match len 
+                        (((#:forward) (#:number n))
+                        n)
+                        ((#:number n)
+                        n)
+                        (((#:number n))
+                        n)
                     )
                 )
                 )
