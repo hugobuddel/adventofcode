@@ -62,15 +62,19 @@ decimal, not binary.)
 (define (read_line_from_port port)
     (let ((char (get-char port)))
         (display char)
-        (if (eof-object? char) 9
         (if (eq? char #\newline)
             '()
              (cons char (read_line_from_port port))
              )))
-        )
+
+(define (read_matrix_from_port port)
+    (if (eof-object? (peek-char port))
+        '()
+        (cons (read_line_from_port port) (read_matrix_from_port port))))
 
 (let
     ((port (open-input-file "example.txt")))
 
-    (display (read_line_from_port port))
+    ;(display (read_line_from_port port))
+    (display (read_matrix_from_port port))
 )
