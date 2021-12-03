@@ -56,3 +56,11 @@ decimal, not binary.)
 |#
 
 (write "Advent of Code Day 2!") (newline)
+
+(use-modules (ice-9 textual-ports))
+
+(let
+    ((port (open-input-file "example.txt")))
+
+    (display (get-char port))
+)
