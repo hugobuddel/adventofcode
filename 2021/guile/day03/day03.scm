@@ -59,8 +59,18 @@ decimal, not binary.)
 
 (use-modules (ice-9 textual-ports))
 
+(define (read_line_from_port port)
+    (let ((char (get-char port)))
+        (display char)
+        (if (eof-object? char) 9
+        (if (eq? char #\newline)
+            '()
+             (cons char (read_line_from_port port))
+             )))
+        )
+
 (let
     ((port (open-input-file "example.txt")))
 
-    (display (get-char port))
+    (display (read_line_from_port port))
 )
