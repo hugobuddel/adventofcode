@@ -95,10 +95,23 @@ data4 = [
 pprint(data4)
 
 # Now lets hope it is not very shallow and wide, or deep and narrow.
-coord_max = max(c for ccc in data3 for cc in ccc for c in cc)
+coord_max = max(c for ccc in data3 for cc in ccc for c in cc) + 1
 print(coord_max)
 
-sea = numpy.array(dtype=numpy.int32, shape=(coord_max, coord_max))
+sea = numpy.zeros(dtype=numpy.int32, shape=(coord_max, coord_max))
 
+for segment in data4:
+    print(segment)
+    if segment.start.x == segment.end.x or segment.start.y == segment.end.y:
+        xs = min(segment.start.x, segment.end.x)
+        xe = max(segment.start.x, segment.end.x)
+        ys = min(segment.start.y, segment.end.y)
+        ye = max(segment.start.y, segment.end.y)
+        sea[
+            ys:ye + 1,
+            xs:xe + 1,
+        ] += 1
+        #pprint(sea)
 
-
+pprint(sea)
+print((sea > 1).sum())
