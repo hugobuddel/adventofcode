@@ -64,7 +64,7 @@ class Segment():
 
 
 fn = "example.txt"
-fn = "puzzle.txt"
+#fn = "puzzle.txt"
 
 data1 = open(fn).readlines()
 data2 = [line.split(" -> ") for line in data1]
@@ -113,6 +113,15 @@ for segment in data4:
             xs:xe + 1,
         ] += 1
         #pprint(sea)
+    else:
+        stepx = 1 if segment.end.x > segment.start.x else -1
+        stepy = 1 if segment.end.y > segment.start.y else -1
+        ll = abs(segment.end.x - segment.start.x)
+        for di in range(ll + 1):
+            sea[
+                segment.start.y + di * stepy,
+                segment.start.x + di * stepx,
+            ] += 1
 
 pprint(sea)
 print((sea > 1).sum())
