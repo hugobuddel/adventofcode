@@ -63,8 +63,8 @@ class Segment():
     end: Point
 
 
-fn = "example.txt"
-#fn = "puzzle.txt"
+# fn = "example.txt"
+fn = "puzzle.txt"
 
 data1 = open(fn).readlines()
 data2 = [line.split(" -> ") for line in data1]
@@ -114,6 +114,7 @@ for segment in data4:
         ] += 1
         #pprint(sea)
     else:
+        # This part is only for part two of day 5
         stepx = 1 if segment.end.x > segment.start.x else -1
         stepy = 1 if segment.end.y > segment.start.y else -1
         ll = abs(segment.end.x - segment.start.x)
