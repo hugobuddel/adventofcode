@@ -64,6 +64,7 @@ class Segment():
 
 
 fn = "example.txt"
+fn = "puzzle.txt"
 
 data1 = open(fn).readlines()
 data2 = [line.split(" -> ") for line in data1]
