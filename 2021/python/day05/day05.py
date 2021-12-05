@@ -44,5 +44,50 @@ Consider only horizontal and vertical lines. At how many points do at least two 
 
 """
 
+from dataclasses import dataclass
+from pprint import pprint
 
 
+@dataclass
+class Point():
+    """Point"""
+    x: int
+    y: int
+
+
+@dataclass
+class Segment():
+    """Segment"""
+    start: Point
+    end: Point
+
+
+fn = "example.txt"
+
+data1 = open(fn).readlines()
+data2 = [line.split(" -> ") for line in data1]
+data3 = [
+    [
+        [int(c) for c in pp.split(",")]
+        for pp in line
+    ]
+    for line in data2
+]
+
+pprint(data3)
+
+data4 = [
+    Segment(
+        start=Point(
+            x=line[0][0],
+            y=line[0][1],
+        ),
+        end= Point(
+            x=line[1][0],
+            y=line[1][1],
+        ),
+    )
+    for line in data3
+]
+
+pprint(data4)
