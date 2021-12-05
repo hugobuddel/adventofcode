@@ -46,6 +46,7 @@ Consider only horizontal and vertical lines. At how many points do at least two 
 
 from dataclasses import dataclass
 from pprint import pprint
+import numpy
 
 
 @dataclass
@@ -82,7 +83,7 @@ data4 = [
             x=line[0][0],
             y=line[0][1],
         ),
-        end= Point(
+        end=Point(
             x=line[1][0],
             y=line[1][1],
         ),
@@ -90,4 +91,14 @@ data4 = [
     for line in data3
 ]
 
+
 pprint(data4)
+
+# Now lets hope it is not very shallow and wide, or deep and narrow.
+coord_max = max(c for ccc in data3 for cc in ccc for c in cc)
+print(coord_max)
+
+sea = numpy.array(dtype=numpy.int32, shape=(coord_max, coord_max))
+
+
+
