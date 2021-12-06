@@ -1,6 +1,7 @@
 from pprint import pprint
 
-fn = "example.txt"
+# fn = "example.txt"
+fn = "puzzle.txt"
 data = [int(c) for c in open(fn).read().strip().split(",")]
 age_max = max(max(data), 9)
 
