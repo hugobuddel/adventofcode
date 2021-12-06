@@ -2,7 +2,7 @@ from pprint import pprint
 import sys
 
 fn = "example.txt"
-#fn = "puzzle.txt"
+fn = "puzzle.txt"
 
 data1 = open(fn).read()
 
