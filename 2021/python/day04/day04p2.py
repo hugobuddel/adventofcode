@@ -2,7 +2,7 @@ from pprint import pprint
 import sys
 
 fn = "example.txt"
-fn = "puzzle.txt"
+#fn = "puzzle.txt"
 
 data1 = open(fn).read()
 
@@ -59,12 +59,11 @@ def check_board(board):
 
 for number in numbers:
     print("Drawing", number)
-    pprint(boards)
+    # pprint(boards)
     boards_old = boards
     boards = []
     for board in boards_old:
         board = check_number(board, number)
-        boards.append(board)
         if check_board(board):
             board2 = [
                 0 if cell == -1 else cell
@@ -74,4 +73,8 @@ for number in numbers:
             sum_board = sum(board2)
             prod = sum_board * number
             print(number, sum_board, prod)
-            sys.exit()
+            # sys.exit()
+        else:
+            boards.append(board)
+    if not boards:
+        break
