@@ -1,7 +1,7 @@
 from pprint import pprint
 import numpy
 
-fn = "example.txt"
+fn = "puzzle.txt"
 data1 = open(fn).readlines()
 nlines = len(data1)
 print(nlines, nlines/2)
