@@ -4,27 +4,39 @@ import numpy
 fn = "example.txt"
 #fn = "puzzle.txt"
 data1 = open(fn).readlines()
-nlines = len(data1)
-print(nlines, nlines/2)
+# print(nlines, nlines/2)
 data2 = [
     [int(c) for c in line.strip()]
     for line in data1
 ]
-data3 = numpy.array(data2)
-data = data3
-pprint(data)
+# pprint(data)
 
 
-sdatat = data.sum(axis=0)
-print(sdatat)
-sdatat2 = sdatat > nlines / 2
-print(sdatat2)
+def getcommon(data, digit=0, prefer=1):
+    nlines = len(data)
+    data3 = numpy.array(data)
+    sdatat = data3.sum(axis=0)
+    # print(sdatat)
+    num = sdatat[digit]
+    need = nlines / 2
+    print(sdatat), num, need
+    if num == need:
+        return prefer
+    if num > need:
+        return 1
+    return 0
 
-sdat3 = sdatat2[::-1]
-print(sdat3)
-gamma = sum(c*2**i for i, c in enumerate(sdat3))
-epsilon = sum((~c)*2**i for i, c in enumerate(sdat3))
-power = gamma * epsilon
-print(f"{gamma=}")
-print(f"{epsilon=}")
-print(f"{power=}")
+data_oxygen = data2.copy()
+digit = 0
+while len(data_oxygen) > 1:
+    pprint(data_oxygen)
+    num = getcommon(data_oxygen, digit=digit)
+    print(len(data_oxygen), digit, num)
+    data_oxygen = [
+        line for line in data_oxygen if line[digit] == num
+    ]
+    digit += 1
+
+print(data_oxygen)
+oxygen = sum(c*2**i for i, c in enumerate(data_oxygen[0][::-1]))
+print(f"{oxygen=}")
