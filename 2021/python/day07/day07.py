@@ -53,10 +53,10 @@ fuel possible. How much fuel must they spend to align to that position?
 import numpy
 
 fn = "example.txt"
-#fn = "puzzle.txt"
+fn = "puzzle.txt"
 
 data = numpy.array([int(c) for c in open(fn).read().strip().split(",")])
-print(data)
+#print(data)
 
 # start = min(data)
 start = 0
@@ -67,7 +67,7 @@ costs = [
     abs(data - x).sum()
     for x in range(end+1)
 ]
-print(costs)
+#print(costs)
 ibest = numpy.argmin(costs)
 print(ibest, costs[ibest])
 
@@ -110,13 +110,13 @@ costs = [
     ).sum()
     for x in range(end+1)
 ]
-print(costs)
+#print(costs)
 ibest = numpy.argmin(costs)
 cost = [
     abs(
         (data - ibest) * ((data - ibest) +1) /2
     )
 ]
-print(cost)
+#print(cost)
 print(ibest, costs[ibest])
 
