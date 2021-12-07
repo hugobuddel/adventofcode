@@ -1,7 +1,8 @@
 from pprint import pprint
 import numpy
 
-fn = "puzzle.txt"
+fn = "example.txt"
+#fn = "puzzle.txt"
 data1 = open(fn).readlines()
 nlines = len(data1)
 print(nlines, nlines/2)
@@ -13,9 +14,8 @@ data3 = numpy.array(data2)
 data = data3
 pprint(data)
 
-datat = data.transpose()
-print(datat)
-sdatat = datat.sum(axis=1)
+
+sdatat = data.sum(axis=0)
 print(sdatat)
 sdatat2 = sdatat > nlines / 2
 print(sdatat2)
