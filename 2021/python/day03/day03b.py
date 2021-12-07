@@ -2,7 +2,7 @@ from pprint import pprint
 import numpy
 
 fn = "example.txt"
-#fn = "puzzle.txt"
+fn = "puzzle.txt"
 data1 = open(fn).readlines()
 # print(nlines, nlines/2)
 data2 = [
