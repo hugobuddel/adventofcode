@@ -53,6 +53,7 @@ fuel possible. How much fuel must they spend to align to that position?
 import numpy
 
 fn = "example.txt"
+fn = "puzzle.txt"
 
 data = numpy.array([int(c) for c in open(fn).read().strip().split(",")])
 print(data)
