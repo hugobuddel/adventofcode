@@ -49,3 +49,23 @@ fuel), or position 10 (71 fuel).
 Determine the horizontal position that the crabs can align to using the least
 fuel possible. How much fuel must they spend to align to that position?
 """
+
+import numpy
+
+fn = "example.txt"
+
+data = numpy.array([int(c) for c in open(fn).read().strip().split(",")])
+print(data)
+
+# start = min(data)
+start = 0
+end = max(data)
+print(start, end)
+
+costs = [
+    abs(data - x).sum()
+    for x in range(end+1)
+]
+print(costs)
+ibest = numpy.argmin(costs)
+print(ibest, costs[ibest])
