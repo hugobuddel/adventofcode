@@ -40,3 +40,21 @@ while len(data_oxygen) > 1:
 print(data_oxygen)
 oxygen = sum(c*2**i for i, c in enumerate(data_oxygen[0][::-1]))
 print(f"{oxygen=}")
+
+data_co2 = data2.copy()
+digit = 0
+while len(data_co2) > 1:
+    pprint(data_co2)
+    num = 1 - getcommon(data_co2, digit=digit)
+    print(len(data_co2), digit, num)
+    data_co2 = [
+        line for line in data_co2 if line[digit] == num
+    ]
+    digit += 1
+
+print(data_co2)
+co2 = sum(c*2**i for i, c in enumerate(data_co2[0][::-1]))
+print(f"{co2=}")
+
+lifesupport = oxygen * co2
+print(f"{lifesupport=}")
