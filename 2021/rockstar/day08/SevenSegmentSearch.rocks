@@ -90,8 +90,13 @@ Say umyminus
 Let myminusnum be myminus times 1
 Say "myminusnum"
 Say myminusnum
+Say the realdarkness
 If myminusnum is 3
 Let the array at 3 be the darkness
+
+If myminusnum is 5 and the realdarkness is 6
+Say "Found 6"
+Let the array at 6 be the darkness
 
 
 Shout "The Array"
