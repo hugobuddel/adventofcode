@@ -153,6 +153,12 @@ Let the array at 0 be the darkness
 If myminusnum is 1 and the realdarkness is 6 and myminusanum is 2
 Let the array at 9 be the darkness
 
+If myminusnum is 0 and the realdarkness is 5 and myminusanum is 2
+Let the array at 5 be the darkness
+
+If myminusnum is 1 and the realdarkness is 5 and myminusanum is 3
+Let the array at 2 be the darkness
+
 
 Shout "The Array"
 The night is 0
