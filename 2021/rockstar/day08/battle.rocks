@@ -1,14 +1,12 @@
 Doctor takes friend and foe
-Shatter friend into pieces
-Let pieces be pieces of 1
+Let pieces be friend of 1
 Knock pieces down
 Until pieces are weaker than gone
 Say "Pieces"
 Say pieces
 Say friend at pieces
 New is True
-Cut foe into parts
-Let parts be parts of 1
+Let parts be foe of 1
 Knock parts down
 Until parts are less than nothing
 Say "Parts"
@@ -27,12 +25,14 @@ Say "Old"
 
 Knock pieces down
 
-Unite the boat
 Give the boat back
 
 
 X is "abcd"
 Y is "cb"
+Shatter X
+Shatter Y
 Put Doctor taking X and Y into Z
+Unite Z
 Say Z
 Say "Stop"
