@@ -1,11 +1,8 @@
 Power is megalomical
 
 Battle takes friends and foe
-Say "vvv BATTLE vvv"
 Unite friends into s
-Say s
 Unite foe into s
-Say s
 Let your castle be friends of power
 Knock your castle down
 Until your castle are weaker than nothing
@@ -24,8 +21,6 @@ Rock the empire with friends at your castle
 Knock your castle down
 
 Unite the empire into s
-Say s
-Say "^^^ BATTLE ^^^"
 Give the empire back
 
 
@@ -44,7 +39,6 @@ Away is freedom
 Split my screams with the blade
 Let the dream be my screams at 0
 Let brokendisplay be my screams at 1
-Say the dream
 Cut the dream with the dagger
 Cold is sad
 Winter is soon
@@ -53,15 +47,10 @@ The night is 10
 While the night isn't empty
 Knock the night down
 Let the darkness be the dream at the night
-Say "First Loop Inner"
-Say the night
-Say the darkness
 Shatter the darkness into the darknesssplit
-Say the darkness
 Let the realdarkness be the darknesssplit of the goal
 If the realdarkness is the day
 Let the array at the goal be the darkness
-Say the darkness
 
 If the realdarkness is 7
 Let theseven be the darkness
@@ -69,85 +58,46 @@ Cut theseven into thesevens
 Let the array at 8 be the darkness
 
 If the realdarkness is 4
-Say "Found Four"
 Let thefour be the darkness
 Cut thefour into thefours
-Say thefour
-Say thefours
 Let the array at 4 be the darkness
 
 If the realdarkness is 3
 Let the array at 7 be the darkness
 
-Say the darkness
 
-Say "Second Loop"
-Say the dream
-Say the dream at 0
-Say the dream at 1
 The nighta is 10
 While the nighta isn't empty
-Say "Second Loop Inner"
 Knock the nighta down
-Say the nighta
 Let the darkness be the dream at the nighta
-Say "Preparing for Battle"
-Say the darkness
 Shatter the darkness into the darknesssplit
 Let the realdarkness be the darknesssplit of the goal
 Let the one be the array at 1
-Say the one
 Shatter the one into theones
 Put battle taking the darknesssplit and theones into myminus
-Say myminus
 Unite myminus into umyminus
-Say "umyminus"
-Say umyminus
 Let myminusnum be myminus times 1
-Say "myminusnum"
-Say myminusnum
-Say the realdarkness
 If myminusnum is 3
 Let the array at 3 be the darkness
 
 If myminusnum is 5 and the realdarkness is 6
-Say "Found 6"
 Let thesix be the darkness
 Let the array at 6 be the darkness
 
 
-Say "Third Loop"
-Say thefour
-Say thefours
-Say the dream
-Say the dream at 0
-Say the dream at 1
 The nighta is 10
 While the nighta isn't empty
-Say "Third Loop Inner"
 Knock the nighta down
-Say the nighta
 Let the darkness be the dream at the nighta
-Say "Preparing for Battle"
-Say the darkness
 Shatter the darkness into the darknesssplit
 Let the realdarkness be the darknesssplit of the goal
 Shatter thesix into thesixs
 Put battle taking the darknesssplit and thesixs into myminus
 Put battle taking the darknesssplit and thefours into myminusa
 Let myminusanum be myminusa times 1
-Say myminus
 Unite myminus into umyminus
-Say "umyminus"
-Say umyminus
 Unite myminusa into umyminusa
-Say "umyminusa"
-Say umyminusa
 Let myminusnum be myminus times 1
-Say "myminusnum"
-Say myminusnum
-Say myminusanum
-Say the realdarkness
 If myminusnum is 1 and the realdarkness is 6 and myminusanum is 3
 Let the array at 0 be the darkness
 
@@ -161,47 +111,30 @@ If myminusnum is 1 and the realdarkness is 5 and myminusanum is 3
 Let the array at 2 be the darkness
 
 
-Say "The Array"
 The night is 0
 While the night is weaker than 10
-Say the array at the night
 Build the night up
 
 Casting wants a sacrifice
-Say "vvv Sacrifice vvv"
-Say a sacrifice
 Cut a sacrifice
 The nightb is 10
 While the nightb isn't empty
 Knock the nightb down
 Let wtt be the array at the nightb
-Say wtt
 Cut wtt
 If not battle taking a sacrifice and wtt
 If not battle taking wtt and a sacrifice 
-Say the nightb
-Say "^^^ SacrificeA ^^^"
 Send the nightb back
 
 
 
-Say "^^^ SacrificeB ^^^"
 
-Say " "
-Say "Go counting"
-Say brokendisplay
 Cut brokendisplay with the dagger
 Counter is 1000
 Pos is 0
 While Counter is stronger than 0.5
-Say "A Count"
 Let word be brokendisplay at Pos
 Put Casting taking word into digit
-Say Pos
-Say Counter
-Say word
-Say "Digit"
-Say digit
 Let the walls be the walls + digit * Counter
 Let Counter be Counter / 10
 Build Pos up
