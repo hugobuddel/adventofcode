@@ -58,6 +58,8 @@ Let the array at 4 be the darkness
 If the realdarkness is 3
 Let the array at 7 be the darkness
 
+
+Say "Second Loop"
 The night is 10
 While the night isn't empty
 Knock the night down
@@ -65,10 +67,10 @@ Let the darkness be the dream at the night
 Shatter the darkness into the darknesssplit
 Let the realdarkness be the darknesssplit of the goal
 
-
 Shout "The Array"
 The night is 0
-While the night is weaker than 10 (Shout the array at the night)
+While the night is weaker than 10
+Shout the array at the night
 Build the night up
 
 Listen to my screams
