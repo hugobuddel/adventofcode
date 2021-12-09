@@ -38,7 +38,7 @@ While my screams aren't empty
 Away is freedom
 Split my screams with the blade
 Let the dream be my screams at 0
-Let brokendisplay be my screams at 1
+Cut my screams at 1 into brokendisplay with the dagger
 Cut the dream with the dagger
 Cold is sad
 Winter is soon
@@ -53,13 +53,10 @@ If the realdarkness is the day
 Let the array at the goal be the darkness
 
 If the realdarkness is 7
-Let theseven be the darkness
-Cut theseven into thesevens
 Let the array at 8 be the darkness
 
 If the realdarkness is 4
-Let thefour be the darkness
-Cut thefour into thefours
+Cut the darkness into thefours
 Let the array at 4 be the darkness
 
 If the realdarkness is 3
@@ -129,7 +126,6 @@ Send the nightb back
 
 
 
-Cut brokendisplay with the dagger
 Counter is 1000
 Pos is 0
 While Counter is stronger than 0.5
