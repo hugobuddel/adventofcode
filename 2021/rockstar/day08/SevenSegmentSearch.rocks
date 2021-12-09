@@ -43,6 +43,7 @@ While my screams aren't empty
 Away is freedom
 Split my screams with the blade
 Let the dream be my screams at 0
+Let brokendisplay be my screams at 1
 Say the dream
 Cut the dream with the dagger
 Cold is sad
@@ -165,6 +166,44 @@ The night is 0
 While the night is weaker than 10
 Shout the array at the night
 Build the night up
+
+Casting wants a sacrifice
+Say "vvv Sacrifice vvv"
+Say a sacrifice
+Cut a sacrifice
+The nightb is 10
+While the nightb isn't empty
+Knock the nightb down
+Let wtt be the array at the nightb
+Say wtt
+Cut wtt
+If not battle taking a sacrifice and wtt
+If not battle taking wtt and a sacrifice 
+Say the nightb
+Say "^^^ SacrificeA ^^^"
+Send the nightb back
+
+
+
+Say "^^^ SacrificeB ^^^"
+
+Say " "
+Say "Go counting"
+Say brokendisplay
+Cut brokendisplay with the dagger
+Counter is 1000
+Pos is 0
+While Counter is stronger than 0.5
+Say "A Count"
+Let word be brokendisplay at Pos
+Put Casting taking word into digit
+Say Pos
+Say Counter
+Say word
+Say "Digit"
+Say digit
+Let Counter be Counter / 10
+Build Pos up
 
 Listen to my screams
 
