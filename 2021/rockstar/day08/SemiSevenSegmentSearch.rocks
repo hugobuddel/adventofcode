@@ -1,46 +1,44 @@
 Doctor Space was too dumbbfounded
 Burn Doctor Space
-Q is 0
 The knife was underhanded in kill
 Cast the knife
-Let the otherknife be Doctor Space + the knife + Doctor Space
-Shout the otherknife
+The walls are 0
+Let the blade be Doctor Space + the knife + Doctor Space
+Shout the blade
 Listen to my line
 While my line isn't empty
 Shout my line
-Split my line with the otherknife
+Split my line with the blade
 Shout my line at 1
 Let the screen be my line at 1
 Shout the screen
 Cut the screen with Doctor Space
+Cold is sad
+Winter is soon
 Shout the screen
 Shout the screen at 1
 The night is long
 While the night isn't empty
+The day is up
 Shout the night
 Knock the night down
+Away is freedom
 Let the darkness be the screen at the night
 Shout the darkness
 Shatter the darkness
 Shout the darkness
-If the darkness is 3
-Let q be q + 1
+If the darkness is cold or the darkness is winter
+Build the walls up
 
-If the darkness is 2
-Let q be q + 1
-
-If the darkness is 7
-Let q be q + 1
-
-If the darkness is 4
-Let q be q + 1
+If the darkness is the day or the darkness is away
+Build the walls up
 
 Shout "q"
-Shout q
+Shout the walls
 
 Shout my line
 Listen to my line
 
 
 Shout "q"
-Shout q
+Shout the walls
