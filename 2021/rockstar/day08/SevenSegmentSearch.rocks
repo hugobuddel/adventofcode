@@ -1,6 +1,11 @@
 Power is megalomical
 
 Battle takes friends and foe
+Say "vvv BATTLE vvv"
+Unite friends into s
+Say s
+Unite foe into s
+Say s
 Let your castle be friends of power
 Knock your castle down
 Until your castle are weaker than nothing
@@ -18,6 +23,9 @@ Rock the empire with friends at your castle
 
 Knock your castle down
 
+Unite the empire into s
+Say s
+Say "^^^ BATTLE ^^^"
 Give the empire back
 
 
@@ -55,9 +63,16 @@ Let the array at the goal be the darkness
 Say the darkness
 
 If the realdarkness is 7
+Let theseven be the darkness
+Cut theseven into thesevens
 Let the array at 8 be the darkness
 
 If the realdarkness is 4
+Say "Found Four"
+Let thefour be the darkness
+Cut thefour into thefours
+Say thefour
+Say thefours
 Let the array at 4 be the darkness
 
 If the realdarkness is 3
@@ -96,7 +111,47 @@ Let the array at 3 be the darkness
 
 If myminusnum is 5 and the realdarkness is 6
 Say "Found 6"
+Let thesix be the darkness
 Let the array at 6 be the darkness
+
+
+Say "Third Loop"
+Say thefour
+Say thefours
+Say the dream
+Say the dream at 0
+Say the dream at 1
+The nighta is 10
+While the nighta isn't empty
+Say "Third Loop Inner"
+Knock the nighta down
+Say the nighta
+Let the darkness be the dream at the nighta
+Say "Preparing for Battle"
+Say the darkness
+Shatter the darkness into the darknesssplit
+Let the realdarkness be the darknesssplit of the goal
+Shatter thesix into thesixs
+Put battle taking the darknesssplit and thesixs into myminus
+Put battle taking the darknesssplit and thefours into myminusa
+Let myminusanum be myminusa times 1
+Say myminus
+Unite myminus into umyminus
+Say "umyminus"
+Say umyminus
+Unite myminusa into umyminusa
+Say "umyminusa"
+Say umyminusa
+Let myminusnum be myminus times 1
+Say "myminusnum"
+Say myminusnum
+Say myminusanum
+Say the realdarkness
+If myminusnum is 1 and the realdarkness is 6 and myminusanum is 3
+Let the array at 0 be the darkness
+
+If myminusnum is 1 and the realdarkness is 6 and myminusanum is 2
+Let the array at 9 be the darkness
 
 
 Shout "The Array"
