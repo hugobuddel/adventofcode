@@ -44,10 +44,15 @@ The night is 10
 While the night isn't empty
 Knock the night down
 Let the darkness be the dream at the night
+Say "First Loop Inner"
+Say the night
+Say the darkness
 Shatter the darkness into the darknesssplit
+Say the darkness
 Let the realdarkness be the darknesssplit of the goal
 If the realdarkness is the day
 Let the array at the goal be the darkness
+Say the darkness
 
 If the realdarkness is 7
 Let the array at 8 be the darkness
@@ -58,14 +63,36 @@ Let the array at 4 be the darkness
 If the realdarkness is 3
 Let the array at 7 be the darkness
 
+Say the darkness
 
 Say "Second Loop"
-The night is 10
-While the night isn't empty
-Knock the night down
-Let the darkness be the dream at the night
+Say the dream
+Say the dream at 0
+Say the dream at 1
+The nighta is 10
+While the nighta isn't empty
+Say "Second Loop Inner"
+Knock the nighta down
+Say the nighta
+Let the darkness be the dream at the nighta
+Say "Preparing for Battle"
+Say the darkness
 Shatter the darkness into the darknesssplit
 Let the realdarkness be the darknesssplit of the goal
+Let the one be the array at 1
+Say the one
+Shatter the one into theones
+Put battle taking the darknesssplit and theones into myminus
+Say myminus
+Unite myminus into umyminus
+Say "umyminus"
+Say umyminus
+Let myminusnum be myminus times 1
+Say "myminusnum"
+Say myminusnum
+If myminusnum is 3
+Let the array at 3 be the darkness
+
 
 Shout "The Array"
 The night is 0
