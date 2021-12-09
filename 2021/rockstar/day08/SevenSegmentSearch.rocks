@@ -161,10 +161,10 @@ If myminusnum is 1 and the realdarkness is 5 and myminusanum is 3
 Let the array at 2 be the darkness
 
 
-Shout "The Array"
+Say "The Array"
 The night is 0
 While the night is weaker than 10
-Shout the array at the night
+Say the array at the night
 Build the night up
 
 Casting wants a sacrifice
