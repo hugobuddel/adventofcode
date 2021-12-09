@@ -1,5 +1,6 @@
 Doctor Space was too dumbbfounded
 Burn Doctor Space
+Q is 0
 The knife was underhanded in kill
 Cast the knife
 Let the otherknife be Doctor Space + the knife + Doctor Space
@@ -14,5 +15,32 @@ Shout the screen
 Cut the screen with Doctor Space
 Shout the screen
 Shout the screen at 1
+The night is long
+While the night isn't empty
+Shout the night
+Knock the night down
+Let the darkness be the screen at the night
+Shout the darkness
+Shatter the darkness
+Shout the darkness
+If the darkness is 3
+Let q be q + 1
+
+If the darkness is 2
+Let q be q + 1
+
+If the darkness is 7
+Let q be q + 1
+
+If the darkness is 4
+Let q be q + 1
+
+Shout "q"
+Shout q
+
 Shout my line
 Listen to my line
+
+
+Shout "q"
+Shout q
