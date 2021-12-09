@@ -1,38 +1,36 @@
-Doctor takes friend and foe
-Let pieces be friend of 1
-Knock pieces down
-Until pieces are weaker than gone
-Say "Pieces"
-Say pieces
-Say friend at pieces
+Power is megalomical
+
+Battle takes friend and foe
+Let your home be friend of power
+Knock your home down
+Until your home are weaker than nothing
 New is True
 Let parts be foe of 1
 Knock parts down
 Until parts are less than nothing
-Say "Parts"
-Say parts
-Say foe at parts
-If friend at pieces is foe at parts
+If friend at your home is foe at parts
 New is False
 
 Knock parts down
 
 If New
-Say "New"
-Rock the boat with friend at pieces
+Rock the boat with friend at your home
 Else
-Say "Old"
 
-Knock pieces down
+Knock your home down
 
 Give the boat back
 
 
 X is "abcd"
 Y is "cb"
+Say X
+Say " minus"
+Say Y
+Say " is"
 Shatter X
 Shatter Y
-Put Doctor taking X and Y into Z
+Put battle taking X and Y into Z
 Unite Z
 Say Z
 Say "Stop"
