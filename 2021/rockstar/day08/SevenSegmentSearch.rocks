@@ -35,6 +35,13 @@ Let the array at 4 be the darkness
 If the realdarkness is 3
 Let the array at 7 be the darkness
 
+The night is 10
+While the night isn't empty
+Knock the night down
+Let the darkness be the dream at the night
+Shatter the darkness into the darknesssplit
+Let the realdarkness be the darknesssplit of the goal
+
 
 Shout "The Array"
 The night is 0
