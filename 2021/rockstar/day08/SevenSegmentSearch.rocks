@@ -69,7 +69,7 @@ Shatter the darkness into the darknesssplit
 Let the realdarkness be the darknesssplit of the goal
 Let the one be the array at 1
 Shatter the one into theones
-Put battle taking the darknesssplit and theones into myminus
+Put battle taking the darknesssplit, and theones into myminus
 Unite myminus into umyminus
 Let myminusnum be myminus times 1
 If myminusnum is 3
@@ -87,8 +87,8 @@ Let the darkness be the dream at the nighta
 Shatter the darkness into the darknesssplit
 Let the realdarkness be the darknesssplit of the goal
 Shatter thesix into thesixs
-Put battle taking the darknesssplit and thesixs into myminus
-Put battle taking the darknesssplit and thefours into myminusa
+Put battle taking the darknesssplit, and thesixs into myminus
+Put battle taking the darknesssplit, and thefours into myminusa
 Let myminusanum be myminusa times 1
 Unite myminus into umyminus
 Unite myminusa into umyminusa
@@ -117,8 +117,8 @@ While the nightb isn't empty
 Knock the nightb down
 Let wtt be the array at the nightb
 Cut wtt
-If not battle taking a sacrifice and wtt
-If not battle taking wtt and a sacrifice 
+If not battle taking a sacrifice, and wtt
+If not battle taking wtt, and a sacrifice
 Send the nightb back
 
 
