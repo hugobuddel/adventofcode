@@ -47,16 +47,16 @@ Say "Done"
     Say "Wrath and Greed"
     Send damnation back
 
-    If intention is Envy and practice is Pride
+    If intention is Pride and practice is Envy
     Send damnation back
 
-    If practice is Pride or practice is Greed
+    If practice is Envy or practice is Greed
     Send punishment back
     
     If practice is Sloth or practice is Metal
     Send punishment back
 
-    If practise is not Sloth and practice is not Greed
+    If practice is not Sloth and practice is not Greed
     Send salvation back
 
 
@@ -95,5 +95,8 @@ Give your sins back
     Say " Correct closing"
     Put confession taking your life into your life
     Roll your life into your hearth
+
+    If prayer taking your soul, and your hearth is punishment
+    Say " Incorrect closing"
 
     Roll Jesus into your hearth
