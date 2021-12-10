@@ -1,5 +1,6 @@
 Power is megalomical
 The century is fragmenting
+A year is pulverizing revolution
 
 Battle takes friends and foe
 Let your castle be friends of power
@@ -37,12 +38,12 @@ While my screams aren't empty
 Away is freedom
 Split my screams with the blade
 Let the dream be my screams at 0
-Cut my screams at 1 into brokendisplay with the dagger
+Cut my screams at power into brokendisplay with the dagger
 Cut the dream with the dagger
 Cold is sad
 Winter is soon
 The day is up
-The night is 10
+The night is a year
 While the night isn't empty
 Knock the night down
 Let the darkness be the dream at the night
@@ -54,25 +55,26 @@ Let the party at the century be the darkness
 If the war is away
 Let the party at 8 be the darkness
 
-If the war is 4
+Lost are foes
+If the war is lost
 Cut the darkness into thefours
-Let the party at 4 be the darkness
+Let the party at lost be the darkness
 
 If the war is 3
 Let the party at 7 be the darkness
 
 
 Your place is dirty
-The nighta is 10
-While the nighta isn't empty
-Knock the nighta down
-Let the darkness be the dream at the nighta
+The night is a year
+While the night isn't empty
+Knock the night down
+Let the darkness be the dream at the night
 Shatter the darkness into the battlefield
 Let the war be the battlefield of the century
-Let the one be the party at 1
+Let the one be the party at power
 Shatter the one into theones
 Put battle taking the battlefield, and theones into my lady
-Let Queen Victoria be my lady times 1
+Let Queen Victoria be my lady of power
 If Queen Victoria is 3
 Let the party at 3 be the darkness
 
@@ -81,10 +83,10 @@ Let thesix be the darkness
 Let the party at 6 be the darkness
 
 
-The nighta is 10
-While the nighta isn't empty
-Knock the nighta down
-Let the darkness be the dream at the nighta
+The night is a year
+While the night isn't empty
+Knock the night down
+Let the darkness be the dream at the night
 Shatter the darkness into the battlefield
 Let the war be the battlefield of the century
 Shatter thesix into thesixs
@@ -101,17 +103,17 @@ Let the party at 9 be the darkness
 If Queen Victoria is 0 and the war is your place and King George is 2
 Let the party at your place be the darkness
 
-If Queen Victoria is 1 and the war is your place and King George is 3
+If Queen Victoria is power and the war is your place and King George is 3
 Let the party at 2 be the darkness
 
 
 The night is 0
-While the night is weaker than 10
+While the night is weaker than a year
 Build the night up
 
 Casting wants a sacrifice
 Cut a sacrifice
-The nightb is 10
+The nightb is a year
 While the nightb isn't empty
 Knock the nightb down
 Let wtt be the party at the nightb
@@ -129,7 +131,7 @@ While Counter is stronger than 0.5
 Let word be brokendisplay at Pos
 Put Casting taking word into digit
 Let the walls be the walls + digit * Counter
-Let Counter be Counter / 10
+Let Counter be Counter / a year
 Build Pos up
 
 Listen to my screams
