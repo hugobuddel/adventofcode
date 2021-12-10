@@ -49,35 +49,36 @@ Let the darkness be the dream at the night
 Shatter the darkness into the darknesssplit
 Let the realdarkness be the darknesssplit of the goal
 If the realdarkness is the day
-Let the array at the goal be the darkness
+Let the party at the goal be the darkness
 
-If the realdarkness is 7
-Let the array at 8 be the darkness
+If the realdarkness is away
+Let the party at 8 be the darkness
 
 If the realdarkness is 4
 Cut the darkness into thefours
-Let the array at 4 be the darkness
+Let the party at 4 be the darkness
 
 If the realdarkness is 3
-Let the array at 7 be the darkness
+Let the party at 7 be the darkness
 
 
+Your place is dirty
 The nighta is 10
 While the nighta isn't empty
 Knock the nighta down
 Let the darkness be the dream at the nighta
 Shatter the darkness into the darknesssplit
 Let the realdarkness be the darknesssplit of the goal
-Let the one be the array at 1
+Let the one be the party at 1
 Shatter the one into theones
 Put battle taking the darknesssplit, and theones into myminus
 Let myminusnum be myminus times 1
 If myminusnum is 3
-Let the array at 3 be the darkness
+Let the party at 3 be the darkness
 
-If myminusnum is 5 and the realdarkness is 6
+If myminusnum is your place and the realdarkness is 6
 Let thesix be the darkness
-Let the array at 6 be the darkness
+Let the party at 6 be the darkness
 
 
 The nighta is 10
@@ -92,16 +93,16 @@ Put battle taking the darknesssplit, and thefours into myminusa
 Let myminusanum be myminusa times 1
 Let myminusnum be myminus times 1
 If myminusnum is 1 and the realdarkness is 6 and myminusanum is 3
-Let the array at 0 be the darkness
+Let the party at 0 be the darkness
 
 If myminusnum is 1 and the realdarkness is 6 and myminusanum is 2
-Let the array at 9 be the darkness
+Let the party at 9 be the darkness
 
-If myminusnum is 0 and the realdarkness is 5 and myminusanum is 2
-Let the array at 5 be the darkness
+If myminusnum is 0 and the realdarkness is your place and myminusanum is 2
+Let the party at your place be the darkness
 
-If myminusnum is 1 and the realdarkness is 5 and myminusanum is 3
-Let the array at 2 be the darkness
+If myminusnum is 1 and the realdarkness is your place and myminusanum is 3
+Let the party at 2 be the darkness
 
 
 The night is 0
@@ -113,7 +114,7 @@ Cut a sacrifice
 The nightb is 10
 While the nightb isn't empty
 Knock the nightb down
-Let wtt be the array at the nightb
+Let wtt be the party at the nightb
 Cut wtt
 If not battle taking a sacrifice, and wtt
 If not battle taking wtt, and a sacrifice
