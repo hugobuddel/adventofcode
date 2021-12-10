@@ -32,24 +32,37 @@ Say Pride
 Say Metal
 Say "Done"
 
-Prayer takes intention and practice
-Say " vvv Prayer"
-Say intention
-Say practice
-If intention is Lust and practice is Metal
-Send punishment back
 
-If intention is Gluttony and practice is Sloth
-Send punishment back
+    Prayer takes intention and practice
+    Say " vvv Prayer"
+    Say intention
+    Say practice
+    If intention is Lust and practice is Metal
+    Send damnation back
 
-If intention is Wrath and practice is Greed
-Say "Wrath and Greed"
-Send punishment back
+    If intention is Gluttony and practice is Sloth
+    Send damnation back
 
-If intention is Envy and practice is Pride
-Send punishment back
+    If intention is Wrath and practice is Greed
+    Say "Wrath and Greed"
+    Send damnation back
 
-Send salvation back
+    If intention is Envy and practice is Pride
+    Send damnation back
+
+    If practice is Pride or practice is Greed
+    Send punishment back
+    
+    If practice is Sloth or practice is Metal
+    Send punishment back
+
+    If practise is not Sloth and practice is not Greed
+    Send salvation back
+
+
+Confession takes sins
+
+
 
 
 Split God into Jesus
@@ -64,7 +77,8 @@ If prayer taking your love, and your hearth is salvation
 Say " Incorrect"
 Rock your live with your love
 Let your love be your hearth
-Else
+
+If prayer taking your love, and your hearth is damnation
 Say " Correct"
 Shatter your live into madness
 Let madness be madness times 1
