@@ -71,7 +71,6 @@ Let the realdarkness be the darknesssplit of the goal
 Let the one be the array at 1
 Shatter the one into theones
 Put battle taking the darknesssplit, and theones into myminus
-Unite myminus into umyminus
 Let myminusnum be myminus times 1
 If myminusnum is 3
 Let the array at 3 be the darkness
@@ -91,8 +90,6 @@ Shatter thesix into thesixs
 Put battle taking the darknesssplit, and thesixs into myminus
 Put battle taking the darknesssplit, and thefours into myminusa
 Let myminusanum be myminusa times 1
-Unite myminus into umyminus
-Unite myminusa into umyminusa
 Let myminusnum be myminus times 1
 If myminusnum is 1 and the realdarkness is 6 and myminusanum is 3
 Let the array at 0 be the darkness
