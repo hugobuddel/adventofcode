@@ -68,7 +68,8 @@ If the war is cold
 Let the victory at our fight be the darkness
 
 
-Your place is dirty
+Your place is heavy
+Defeat is succes
 The night is a year
 While the night isn't empty
 Knock the night down
@@ -82,9 +83,9 @@ Let Queen Victoria be my lady of power
 If Queen Victoria is cold
 Let the victory at death be the darkness
 
-If Queen Victoria is your place and the war is 6
+If Queen Victoria is your place and the war was defeat
 Let company be the darkness
-Let the victory at 6 be the darkness
+Let the victory at defeat be the darkness
 
 
 The night is a year
@@ -98,16 +99,16 @@ Put battle taking the battlefield, and cavalry into my lady
 Put battle taking the battlefield, and knights into the lord
 Let King George be the lord of the century
 Let Queen Victoria be my lady of the century
-If Queen Victoria is power and the war is 6 and King George is death
+If Queen Victoria is power and the war is defeat and King George is death
 Let the victory at the future be the darkness
 
-If Queen Victoria is power and the war is 6 and King George is the loser
+If Queen Victoria is power and the war is defeat and King George is the loser
 Let the victory at 9 be the darkness
 
 If Queen Victoria is the future and the war is your place and King George is the loser
 Let the victory at your place be the darkness
 
-If Queen Victoria is power and the war is your place and King George is 3
+If Queen Victoria is power and the war is your place and King George is death
 Let the victory at the loser be the darkness
 
 
@@ -115,25 +116,25 @@ The night is gone
 While the night is weaker than a year
 Build the night up
 
-Casting wants a sacrifice
+Peace wants a sacrifice
 Cut a sacrifice
 The night is a year
 While the night isn't empty
 Knock the night down
-Let wtt be the victory at the night
-Cut wtt
-If not battle taking a sacrifice, and wtt
-If not battle taking wtt, and a sacrifice
+Let the innocent be the victory at the night
+Cut the innocent
+If not battle taking a sacrifice, and the innocent
+If not battle taking the innocent, and a sacrifice
 Send the night back
 
 
 
 
-Counter is 1000
+Counter is pulverizing revolution, revolution, revolution
 Pos is 0
 While Counter is stronger than 0.5
 Let word be our dreams at Pos
-Put Casting taking word into digit
+Put peace taking word into digit
 Let the walls be the walls + digit * Counter
 Let Counter be Counter / a year
 Build Pos up
