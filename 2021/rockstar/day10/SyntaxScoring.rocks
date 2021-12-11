@@ -64,7 +64,7 @@ Say "Done"
 
 Confession takes your sins
 Let regrets be your sins of 1
-Let regrets be regrets without 1
+Let regrets be regrets without 2
 While regrets are greater than nothing
 Roll your sins into penitence
 Rock your sins with penitence
@@ -87,12 +87,14 @@ If your hearth is Envy
 Let score be score with 1197
 
 If your hearth is Sloth
-Let score be score with 2537
+Let score be score with 25137
 
 
 
 
     # {([(<{}[<>[]}>{[]{[(<()>
+    # [({(<(())[]>[[{[]{<()<>>
+    While God is stronger than nothing
     Split God into Jesus
     Roll Jesus into your hearth
     Shout your hearth
@@ -109,17 +111,21 @@ Let score be score with 2537
     Say " New opening"
     Rock your life with your hearth
     Let your soul be your hearth
+    Roll Jesus into your hearth
 
     If prayer taking your soul, and your hearth is damnation
     Say " Correct closing"
     Put confession taking your life into your life
-    Roll your life into your hearth
+    Roll your life into your soul
+    Rock your life with your soul
+    Roll Jesus into your hearth
 
     If prayer taking your soul, and your hearth is punishment
     Say " Incorrect closing"
     Repent taking your hearth
     Break
 
-    Roll Jesus into your hearth
-    
+        
+    Shout "Score"
     Shout score
+                     Listen to God
