@@ -5,7 +5,7 @@
                    damnation is guaranteed
                  salvation is only for a few
 
-score is 0
+                     remorse is nothing
 
 (< 60, > 62, { 123, } 125, [ 91, ] 93, ( 40, 41)
 Lust is grotesque fornication ([)
@@ -78,16 +78,16 @@ Give your sins back
 
 Repent takes your hearth
 If your hearth is Greed
-Let score be score with 3
+Let remorse be remorse with 3
 
 If your hearth is Metal
-Let score be score with 57
+Let remorse be remorse with 57
 
 If your hearth is Envy
-Let score be score with 1197
+Let remorse be remorse with 1197
 
 If your hearth is Sloth
-Let score be score with 25137
+Let remorse be remorse with 25137
 
 
 
@@ -126,6 +126,6 @@ Let score be score with 25137
     Break
 
         
-    Shout "Score"
-    Shout score
+    Shout "remorse"
+    Shout remorse
                      Listen to God
