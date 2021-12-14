@@ -211,6 +211,6 @@ for orientation, position in folds:
         print()
         print_sheet(sheet)
 
-    # break
+    break
 
 print(sheet.sum())
