@@ -135,10 +135,10 @@ pprint(points2)
 points = numpy.array(points2)
 xmax, ymax = points.max(axis=0)
 print(xmax, ymax)
-sheet = numpy.zeros(shape=(xmax + 1, ymax + 1), dtype='bool')
+sheet = numpy.zeros(shape=(ymax + 1, xmax + 1), dtype='bool')
 print(sheet)
 for x, y in points:
-    sheet[x, y] = True
+    sheet[y, x] = True
 
 print_sheet(sheet)
 
