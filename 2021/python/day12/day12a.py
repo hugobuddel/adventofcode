@@ -116,3 +116,43 @@ start-RW
 How many paths through this cave system are there that visit small caves at
 most once?
 """
+
+import fileinput
+from pprint import pprint
+
+data1 = [line.strip().split("-") for line in fileinput.input()]
+pprint(data1)
+data2 = {}
+for a, b in data1:
+    if a not in data2:
+        data2[a] = set()
+    if b not in data2:
+        data2[b] = set()
+    data2[a].add(b)
+    data2[b].add(a)
+
+pprint(data2)
+cave = data2
+
+
+def find_paths(graph, current, visited):
+    if current == 'end':
+        yield [current]
+    neighbours = graph[current] - visited
+    if current.lower() == current:
+        visited2 = visited | {current}
+    else:
+        visited2 = visited
+    for neigh in neighbours:
+        for path in find_paths(
+            graph,
+            neigh,
+            visited2,
+        ):
+            yield [current] + path
+
+
+counter = 0
+for p in find_paths(cave, 'start', {'start'}):
+    counter += 1
+    print(counter, p)
