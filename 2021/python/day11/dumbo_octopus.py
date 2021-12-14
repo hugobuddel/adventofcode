@@ -312,25 +312,31 @@ def step(octopi):
     flashing = (octopi > 9) * (flashed == 0)
     while flashing.any():
         flashed |= flashing
+        score = flashing.astype('int')
         print("flashing before roll")
         pprint(flashing.astype('int'))
-        flashing[1:, :] |= flashing[:-1, :]
-        flashing[:-1, :] |= flashing[1:, :]
-        flashing[:, 1:] |= flashing[:, :-1]
-        flashing[:, :-1] |= flashing[:, 1:]
+        score[1:, :] += flashing[:-1, :]
+        score[:-1, :] += flashing[1:, :]
+        score[:, 1:] += flashing[:, :-1]
+        score[:, :-1] += flashing[:, 1:]
+        score[1:, 1:] += flashing[:-1, :-1]
+        score[:-1, :-1] += flashing[1:, 1:]
+        score[:-1, 1:] += flashing[1:, :-1]
+        score[1:, :-1] += flashing[:-1, 1:]
         print("flashing after roll")
         pprint(flashing.astype('int'))
-        octopi += flashing
+        print(score)
+        octopi += score
         octopi[flashed] = 0
         flashing = (octopi > 9) * (flashed == 0)
 
 
-pprint(octopi)
+print(octopi)
 print()
 print("Doing step 1")
 step(octopi)
-pprint(octopi)
+print(octopi)
 print()
 print("Doing step 2")
 f = step(octopi)
-pprint(octopi)
+print(octopi)
