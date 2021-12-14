@@ -217,6 +217,8 @@ def find_paths(graph, current, visited):
 
 
 counter = 0
+thepaths = set()
 for p in find_paths(cave, 'start', []):
     counter += 1
-    print(counter, p)
+    thepaths.add(tuple(p))
+    print(counter, len(thepaths), p)
