@@ -301,6 +301,36 @@ Given the starting energy levels of the dumbo octopuses in your cavern, simulate
 
 import fileinput
 from pprint import pprint
+import numpy
 
-octopi = [[int(c) for c in line.strip()] for line in fileinput.input()]
+octopi = numpy.array([[int(c) for c in line.strip()] for line in fileinput.input()])
+
+
+def step(octopi):
+    flashed = numpy.zeros_like(octopi).astype('bool')
+    octopi += 1
+    flashing = (octopi > 9) * (flashed == 0)
+    while flashing.any():
+        flashed |= flashing
+        print("flashing before roll")
+        pprint(flashing.astype('int'))
+        flashing[1:, :] |= flashing[:-1, :]
+        flashing[:-1, :] |= flashing[1:, :]
+        flashing[:, 1:] |= flashing[:, :-1]
+        flashing[:, :-1] |= flashing[:, 1:]
+        print("flashing after roll")
+        pprint(flashing.astype('int'))
+        octopi += flashing
+        octopi[flashed] = 0
+        flashing = (octopi > 9) * (flashed == 0)
+
+
+pprint(octopi)
+print()
+print("Doing step 1")
+step(octopi)
+pprint(octopi)
+print()
+print("Doing step 2")
+f = step(octopi)
 pprint(octopi)
