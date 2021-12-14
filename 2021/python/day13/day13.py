@@ -171,7 +171,19 @@ for orientation, position in folds:
         print()
         print_sheet(sheet2f)
         print()
-        sheet = sheet1 + sheet2f
+        # sheet = sheet1 + sheet2f
+        y1 = sheet1.shape[0]
+        y2 = sheet2f.shape[0]
+        print(sheet1.shape, sheet2f.shape)
+        print(y1, y2)
+        if y1 > y2:
+            print(sheet1[:y2, :].shape, sheet2f.shape)
+            sheet1[:y2, :] += sheet2f
+            sheet = sheet1
+        else:
+            print(sheet2f[-y1:, :].shape, sheet1.shape)
+            sheet2f[-y1:, :] += sheet1
+            sheet = sheet2f
         print_sheet(sheet)
     else:
         sheet1 = sheet[:, :position]
@@ -182,10 +194,23 @@ for orientation, position in folds:
         sheet2f = sheet2[:, ::-1]
         print()
         print_sheet(sheet2f)
-        sheet = sheet1 + sheet2f
+        # sheet = sheet1 + sheet2f
+        x1 = sheet1.shape[1]
+        x2 = sheet2f.shape[1]
+        print(sheet1.shape, sheet2f.shape)
+        print(x1, x2)
+        if x1 > x2:
+            print(sheet1[:, :x2].shape, sheet2f.shape)
+            sheet1[:, :x2] += sheet2f
+            sheet = sheet1
+        else:
+            print(sheet2f[:,-x1:].shape, sheet1.shape)
+            sheet2f[:,-x1:] += sheet1
+            sheet = sheet2f
+        print_sheet(sheet)
         print()
         print_sheet(sheet)
 
-    break
+    # break
 
 print(sheet.sum())
