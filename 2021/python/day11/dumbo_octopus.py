@@ -329,6 +329,9 @@ def step(octopi):
         octopi += score
         octopi[flashed] = 0
         flashing = (octopi > 9) * (flashed == 0)
+
+    if flashed.all():
+        return -1
     return flashed.sum()
 
 
@@ -337,6 +340,22 @@ flashed = 0
 for i in range(1, 101):
     print()
     print(f"Doing step {i}")
-    flashed += step(octopi)
+    flashed_now = step(octopi)
     print(octopi)
-    print(flashed)
+    if flashed_now < 0:
+        print(flashed)
+        break
+    else:
+        flashed += flashed_now
+        print(flashed)
+
+print(octopi)
+flashed = 0
+for i in range(101, 1301):
+    print()
+    print(f"Doing step {i}")
+    flashed_now = step(octopi)
+    print(octopi)
+    if flashed_now < 0:
+        print(i)
+        break
