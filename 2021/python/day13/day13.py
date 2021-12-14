@@ -157,6 +157,7 @@ folds4 = [
 folds = folds4
 print(folds)
 
+# for orientation, position in folds[::-1]:
 for orientation, position in folds:
     print()
     print("FOLDING!")
@@ -205,12 +206,12 @@ for orientation, position in folds:
             sheet = sheet1
         else:
             print(sheet2f[:,-x1:].shape, sheet1.shape)
-            sheet2f[:,-x1:] += sheet1
+            sheet2f[:, -x1:] += sheet1
             sheet = sheet2f
         print_sheet(sheet)
         print()
         print_sheet(sheet)
 
-    break
+    # break
 
-print(sheet.sum())
+print(sheet.shape, sheet.sum())
