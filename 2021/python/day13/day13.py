@@ -142,3 +142,35 @@ for x, y in points:
 
 print_sheet(sheet)
 
+print(folds1)
+folds2 = folds1.split("\n")
+print(folds2)
+folds3 = [
+    line.split(" ")[2].split("=")
+    for line in folds2
+    if line
+]
+print(folds3)
+folds4 = [
+    (o, int(p)) for o, p in folds3
+]
+folds = folds4
+print(folds)
+
+for orientation, position in folds:
+    if orientation == 'y':
+        sheet1 = sheet[:position]
+        sheet2 = sheet[position+1:]
+        print_sheet(sheet1)
+        print()
+        print_sheet(sheet2)
+        sheet2f = sheet2[::-1, :]
+        print()
+        print_sheet(sheet2f)
+        print()
+        sheet = sheet1 + sheet2f
+        print_sheet(sheet)
+    else:
+        pass
+    break
+
