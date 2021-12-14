@@ -299,3 +299,8 @@ After 100 steps, there have been a total of 1656 flashes.
 Given the starting energy levels of the dumbo octopuses in your cavern, simulate 100 steps. How many total flashes are there after 100 steps?
 """
 
+import fileinput
+from pprint import pprint
+
+octopi = [[int(c) for c in line.strip()] for line in fileinput.input()]
+pprint(octopi)
