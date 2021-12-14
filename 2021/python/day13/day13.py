@@ -109,3 +109,36 @@ The transparent paper is pretty big, so for now, focus on just completing the fi
 
 How many dots are visible after completing just the first fold instruction on your transparent paper?
 """
+
+import sys
+from pprint import pprint
+import numpy
+
+if len(sys.argv) > 1:
+    fn = sys.argv[1]
+else:
+    fn = "example.txt"
+
+
+def print_sheet(sheet):
+    for line in sheet:
+        line2 = "".join("#" if cell else "." for cell in line)
+        print(line2)
+
+
+data1 = open(fn).read()
+points1, folds1 = data1.split("\n\n")
+pprint(points1)
+print(len(points1))
+points2 = [tuple(int(c) for c in p.split(",")) for p in points1.split("\n")]
+pprint(points2)
+points = numpy.array(points2)
+xmax, ymax = points.max(axis=0)
+print(xmax, ymax)
+sheet = numpy.zeros(shape=(xmax + 1, ymax + 1), dtype='bool')
+print(sheet)
+for x, y in points:
+    sheet[x, y] = True
+
+print_sheet(sheet)
+
