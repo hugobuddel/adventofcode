@@ -163,6 +163,7 @@ for orientation, position in folds:
     print("FOLDING!")
     print(orientation, position)
     if orientation == 'y':
+        # continue
         sheet1 = sheet[:position]
         sheet2 = sheet[position+1:]
         print_sheet(sheet1)
@@ -187,6 +188,7 @@ for orientation, position in folds:
             sheet = sheet2f
         print_sheet(sheet)
     else:
+        # continue
         sheet1 = sheet[:, :position]
         sheet2 = sheet[:, position + 1:]
         print_sheet(sheet1)
