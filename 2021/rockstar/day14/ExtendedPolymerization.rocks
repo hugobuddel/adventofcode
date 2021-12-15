@@ -16,13 +16,15 @@ burn gt
 let arrow be space with dash, gt, space
 say arrow
 
-Listen to line
-While line
+Listen to your dealer
+Let your drugs be 1 of your dealer
+While your drugs are not gone
 cut line with arrow into pieces
 say pieces at 0
 rock elems with pieces at 0
 rock subs with pieces at 1
-listen to line
+listen to your dealer
+Let your drugs be 1 of your dealer
 
 step is 0
 while step is less than 4
