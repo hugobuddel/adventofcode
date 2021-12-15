@@ -31,9 +31,18 @@ while step is less than 4
 say "Step"
 say step
 poly2 is nothing
+Cut polymer into poly
 let polycut be poly of 1
 substep is 1
+Roll poly into cigaret
+Rock poly2 with cigaret
 while substep is less than polycut
+Roll poly into joint
+rock poly2 with joint
+Let cigaret be joint
+Build substep up
 say substep
+unite poly2 into test
+say test
 
 build step up
