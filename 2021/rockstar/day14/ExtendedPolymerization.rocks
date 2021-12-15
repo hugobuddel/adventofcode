@@ -23,11 +23,15 @@ While your drugs are not gone
 cut your drugs with arrow into pieces
 rock elems with pieces at 0
 rock subs with pieces at 1
+say pieces at 0
+say pieces at 1
 listen to your dealer
 Let your drugs be 1 of your dealer
 
+unite poly into test
+say test
 step is 0
-while step is less than 10
+while step is less than 1 (should be 10)
 say "Step"
 say step with 1
 poly2 is nothing
