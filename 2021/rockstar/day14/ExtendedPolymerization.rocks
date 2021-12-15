@@ -1,0 +1,26 @@
+
+
+
+Listen to polymer
+Say polymer
+
+Listen to aa
+Say aa
+
+space is 32
+burn space
+dash is 45
+burn dash
+gt is 62
+burn gt
+let arrow be space with dash, gt, space
+say arrow
+
+Listen to line
+While line
+cut line with arrow into pieces
+say pieces at 0
+rock elems with pieces at 0
+rock subs with pieces at 1
+listen to line
+
