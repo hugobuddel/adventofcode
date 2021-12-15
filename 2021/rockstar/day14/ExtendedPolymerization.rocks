@@ -3,6 +3,7 @@
 
 Listen to polymer
 Say polymer
+Cut polymer into poly
 
 Listen to aa
 Say aa
@@ -30,7 +31,6 @@ while step is less than 4
 say "Step"
 say step
 poly2 is nothing
-Cut polymer into poly
 let polycut be poly of 1
 substep is 1
 Roll poly into cigaret
@@ -44,6 +44,7 @@ while counter is less than max
 if together is elems at counter
 Say "Found"
 Say together
+rock poly2 with subs at counter
 
 build counter up
 
@@ -54,4 +55,5 @@ say substep
 unite poly2 into test
 say test
 
+Let poly be poly2
 build step up
