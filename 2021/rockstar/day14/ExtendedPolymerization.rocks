@@ -27,9 +27,9 @@ listen to your dealer
 Let your drugs be 1 of your dealer
 
 step is 0
-while step is less than 4
+while step is less than 10
 say "Step"
-say step
+say step with 1
 poly2 is nothing
 let polycut be poly of 1
 substep is 1
@@ -42,8 +42,6 @@ counter is 0
 max is subs of 1
 while counter is less than max
 if together is elems at counter
-Say "Found"
-Say together
 rock poly2 with subs at counter
 
 build counter up
@@ -51,9 +49,9 @@ build counter up
 rock poly2 with joint
 Let cigaret be joint
 Build substep up
-say substep
+
 unite poly2 into test
 say test
-
+say poly2
 Let poly be poly2
 build step up
