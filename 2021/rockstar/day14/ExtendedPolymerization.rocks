@@ -24,3 +24,14 @@ rock elems with pieces at 0
 rock subs with pieces at 1
 listen to line
 
+step is 0
+while step is less than 4
+say "Step"
+say step
+poly2 is nothing
+let polycut be poly of 1
+substep is 1
+while substep is less than polycut
+say substep
+
+build step up
