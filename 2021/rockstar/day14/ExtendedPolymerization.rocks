@@ -1,4 +1,4 @@
-
+(warning, this code is not idiomatic rockstar!!!)
 
 
 Listen to polymer
@@ -55,3 +55,40 @@ say test
 say poly2
 Let poly be poly2
 build step up
+
+Rock countarr
+Roll poly2 into char
+While char
+Cast char with 36
+Let q be countarr at char
+If q is mysterious
+let q be 0
+
+Let q be q with 1
+Let countarr at char be q
+Roll poly2 into char
+
+Unite countarr into aaa
+say aaa
+
+maxx is 0
+min is 1000000
+countmax is countarr times 1
+cc is 0
+while cc is less than countmax
+let qq be countarr at cc
+if qq is mysterious
+build cc up
+continue
+
+if qq is less than min
+let min be qq
+
+if qq is greater than maxx
+let maxx be qq
+
+build cc up
+
+say min
+say maxx
+say maxx without min
