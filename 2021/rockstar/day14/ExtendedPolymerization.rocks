@@ -21,10 +21,14 @@ cccc is 0
 Listen to your dealer
 Let your drugs be 1 of your dealer
 While your drugs are not gone
-cut your drugs with arrow into pieces
+say your drugs
+cut your drugs into pieces with arrow 
+Say pieces
 rock elems with pieces at 0
 rock subs with pieces at 1
-say cccc with " " with pieces at 0 with " " with pieces at 1
+say cccc with " X " 
+say pieces at 0 
+say pieces at 1
 build cccc up
 listen to your dealer
 Let your drugs be 1 of your dealer
@@ -37,11 +41,11 @@ step is 0
 while step is less than 10 (should be 10)
 say "Step"
 say step with 1
-poly2 is nothing
+polyyy is nothing
 let polycut be poly of 1
 substep is 1
 Roll poly into cigaret
-Rock poly2 with cigaret
+Rock polyyy with cigaret
 while substep is less than polycut
 Roll poly into joint
 Let together be cigaret with joint
@@ -51,7 +55,7 @@ let max be subs of 1
 while counter is less than max
 if together is elems at counter
 Say "Found " with together with max
-rock poly2 with subs at counter
+rock polyyy with subs at counter
 found is true
 
 build counter up
@@ -59,18 +63,18 @@ build counter up
 If not found
 Say "Did not find " with together with max
 
-rock poly2 with joint
+rock polyyy with joint
 Let cigaret be joint
 Build substep up
 
-unite poly2 into test
+unite polyyy into test
 say test
-say poly2
-Let poly be poly2
+say polyyy
+Let poly be polyyy
 build step up
 
 Rock countarr
-Roll poly2 into char
+Roll polyyy into char
 While char
 Cast char with 36
 Let q be countarr at char
@@ -79,7 +83,7 @@ let q be 0
 
 Let q be q with 1
 Let countarr at char be q
-Roll poly2 into char
+Roll polyyy into char
 
 Unite countarr into aaa
 say aaa
