@@ -17,21 +17,24 @@ burn gt
 let arrow be space with dash, gt, space
 say arrow
 
+cccc is 0
 Listen to your dealer
 Let your drugs be 1 of your dealer
 While your drugs are not gone
 cut your drugs with arrow into pieces
 rock elems with pieces at 0
 rock subs with pieces at 1
-say pieces at 0
-say pieces at 1
+say cccc with " " with pieces at 0 with " " with pieces at 1
+build cccc up
 listen to your dealer
 Let your drugs be 1 of your dealer
 
+let subscount be subs of 1
+Say "subscount " with subscount
 unite poly into test
 say test
 step is 0
-while step is less than 1 (should be 10)
+while step is less than 10 (should be 10)
 say "Step"
 say step with 1
 poly2 is nothing
@@ -43,12 +46,18 @@ while substep is less than polycut
 Roll poly into joint
 Let together be cigaret with joint
 counter is 0
-max is subs of 1
+found is false
+let max be subs of 1
 while counter is less than max
 if together is elems at counter
+Say "Found " with together with max
 rock poly2 with subs at counter
+found is true
 
 build counter up
+
+If not found
+Say "Did not find " with together with max
 
 rock poly2 with joint
 Let cigaret be joint
