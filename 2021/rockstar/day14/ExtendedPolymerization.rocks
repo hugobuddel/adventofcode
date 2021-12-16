@@ -41,7 +41,10 @@ step is 0
 while step is less than 10 (should be 10)
 say "Step"
 say step with 1
-polyyy is nothing
+polyyy is -1
+rock polyyy with -2
+roll polyyy
+roll polyyy
 let polycut be poly of 1
 substep is 1
 Roll poly into cigaret
@@ -67,9 +70,16 @@ rock polyyy with joint
 Let cigaret be joint
 Build substep up
 
-unite polyyy into test
+unite polyyy into test (start of debug)
 say test
-say polyyy
+say "polyyy " with polyyy
+let polyyyc be polyyy with 0
+say "polyyyc " with polyyyc
+let polyyyi be 0
+while polyyyi is less than polyyyc
+shout "polyyyi " with polyyyi with " X " with polyyy at polyyyi
+build polyyyi up (next line is end of debug)
+
 Let poly be polyyy
 build step up
 
