@@ -1,0 +1,315 @@
+# 0: Introduction
+
+Goal: attempt to figure out what the puzzle of day 17 of advent of
+code 2021 is by reading CCC's rockstar solution from
+https://old.reddit.com/r/adventofcode/comments/ri9kdq/2021_day_17_solutions/hovxq0w/
+
+
+
+# 1: Running
+
+$ rockstar day17part1byCCC.rocks 
+a
+Error: casted MYSTERIOUS
+  day17part1byCCC.rocks:23 (day17part1byCCC.rocks L0): Cast my dreams into dreams
+
+$ rockstar day17part2byCCC.rocks 
+b
+Error: casted MYSTERIOUS
+  day17part2byCCC.rocks:38 (day17part2byCCC.rocks L0): Cast my dreams into reality
+
+At least it compiles and runs!
+
+
+
+# 2: First attempt at reading part 1
+
+My poetry is gladly grammatical
+Cast my poetry into the shelves
+
+So the shelves is ASCII character 61. Which is "=", from
+https://www.asciitable.com/
+So far the poem is grammatical.
+
+My poetry is ever honest
+Cast my poetry into the spot
+
+So the spot is ASCII character 46, which is ".".
+I doubt this poem is honest though.
+
+Let meaning be my poetry between my poetry
+Let the realisation be nothing without meaning
+
+Not sure what 'between' is. Division, as expected, from
+https://codewithrockstar.com/docs
+
+So meaning is 1 and the realisation is -1.
+Nice construct and nice sentence.
+
+
+
+# 3: First Listen
+
+Listen to my heart
+
+I will
+
+
+Shatter my heart with the shelves
+
+So my heart is a = separated string. Like "love=hate"
+
+$ rockstar day17part1byCCC.rocks 
+love=hate
+Error: casted MYSTERIOUS
+  day17part1byCCC.rocks:23 (day17part1byCCC.rocks L0): Cast my dreams into dreams
+
+Nope. Maybe a digit is requested? A floating point even, given that
+the spot is a "."?
+
+$ rockstar day17part1byCCC.rocks 
+pi=3.14
+Error: casted MYSTERIOUS
+  day17part1byCCC.rocks:23 (day17part1byCCC.rocks L0): Cast my dreams into dreams
+
+$ rockstar day17part1byCCC.rocks 
+3.1=7.8
+Error: casted MYSTERIOUS
+  day17part1byCCC.rocks:23 (day17part1byCCC.rocks L0): Cast my dreams into dreams
+
+Nope, lets read further.
+
+
+
+# 4: Rolling ahead
+
+Roll my heart
+Roll my heart
+Roll my heart into your hands
+
+Okay, so we throw away the first two parts of the line. They are
+probably used for part 2 of the puzzle.
+
+$ rockstar day17part1byCCC.rocks 
+abc=def=3.14
+Error: casted MYSTERIOUS
+  day17part1byCCC.rocks:23 (day17part1byCCC.rocks L0): Cast my dreams into dreams
+
+
+
+
+# 5: Trying Satriani
+
+CCC develops with Satriani, so let's see what that does.
+
+$ node rockstar day17part1byCCC.rocks 
+abc=def=3.14
+Error: I don't know how to cast undefined
+    at mutation (rockstar/satriani/satriani.interpreter.js:229:19)
+    at evaluate (rockstar/satriani/satriani.interpreter.js:127:24)
+    at assign (rockstar/satriani/satriani.interpreter.js:249:17)
+    at evaluate (rockstar/satriani/satriani.interpreter.js:119:24)
+    at evaluate (rockstar/satriani/satriani.interpreter.js:86:30)
+    at Environment.run (rockstar/satriani/satriani.interpreter.js:53:22)
+    at Interpreter.run (rockstar/satriani/satriani.js:11:24)
+    at rockstar/satriani/rockstar.js:31:35
+    at FSReqCallback.readFileAfterClose [as oncomplete] (internal/fs/read_file_context.js:71:3)
+
+Those error messages aren't as useful as the ones from rocky.
+So lets continue using rocky for now.
+
+
+
+# 6: Reading wishes
+
+Let my wish be your hands
+
+This seems to be a lyrical expression that simply renames your hands
+into my wish.
+
+Shatter my wish with the spot
+
+Split my wish with a period. So our guess input of abc=def=3.14 seem
+sensible, as my wish should be 3.14 at this point.
+
+Roll my wish into my heart
+Roll my wish
+Roll my wish into my dreams
+
+A ha! We need at least two periods. So it is probably not a number.
+Maybe it is a version string.
+
+$ rockstar day17part1byCCC.rocks 
+numpy=develop=1.11.4
+1
+
+Yes!!! Output!
+
+$ rockstar day17part1byCCC.rocks 
+rockstar=rocks=m.e.t.a.l
+Error: NUMBER times NUMBER
+  day17part1byCCC.rocks:24 (day17part1byCCC.rocks L0): Let hope be the realisation of hope
+
+Let's continue reading.
+
+
+
+# 7: Dream on
+
+Cast my heart into hope
+Cast my dreams into dreams
+
+Make integers out of the strings. So the version numbers theory seems
+to hold.
+
+Let hope be the realisation of hope
+Let reality be the realisation of dreams
+
+Negate the integers.
+Lovely lyrical construct!
+
+If hope is greater than reality
+  Let reality be hope
+
+Make sure that reality (the last number) is never lower than hope
+(the first number). Take into account that both are negative.
+Or well, maybe they were negative and are now positive.
+Reality is now the maximum of reality and hope.
+This only makes sense when they both started positive or negative.
+Nice lyrics!
+
+
+
+# 8: Building up
+
+Let hope be reality with the realisation
+
+So hope is now -reality.
+Reality could already be hope though. Now one is negative, the other
+is positive.
+[Edit: this is wrong, see step 11.]
+
+Build meaning up
+
+What was meaning again? Oh yes, 1, so now it is 2.
+
+Let reality be hope of reality
+
+Reality = hope * reality.
+Keeping track of the signs, reality is now negative.
+
+Let reality be reality between meaning
+
+Divide reality by two.
+
+Shout reality
+
+Shouting is the most satisfying way to output things :-).
+
+
+
+# 9: Running with some representative input
+
+rockstar day17part1byCCC.rocks 
+a=b=3.x.8
+6
+
+a=b=8.x.3
+6
+
+q=p=-5.0.-9
+36
+
+==-2..3
+1
+
+
+
+# 10: Do we understand this?
+
+The format string is
+something=anything=hope.whatever.dreams
+
+Then this happens:
+
+hope = -hope
+dreams = -dreams
+reality = max(hope, dreams)
+hope = -reality
+reality = hope * reality
+reality /= 2
+print(reality)
+
+For hope, dreams = 3, 8, this results in -4.5, not 6.
+For -5, -9 this is -40.5.
+
+So our analysis failed!
+
+
+
+# 11: Debug
+
+Say meaning
+Say the realisation
+
+1
+-1
+
+as expected
+
+Oh!!
+
+Let hope be reality with the realisation
+
+That is not a negation, but a subtraction of 1!
+That is an addition of -1, not a multiplication!
+
+
+
+# 12: Do we understand it now?
+
+hope = -hope
+dreams = -dreams
+reality = max(hope, dreams)
+hope = reality - 1
+reality = hope * reality
+reality /= 2
+print(reality)
+
+For hope, dreams = 3, 8, this results in 6.
+For -5, -9 this is 36. 
+
+Hoora, Hooray!
+
+
+
+# 13: Questions?
+
+Why all the negations?
+
+reality = min(hope, dreams)
+hope = reality + 1
+reality = hope * reality
+reality /= 2
+print(reality)
+
+would work as well. Probably preparation for part two.
+
+Also, it is still absolutely not clear what is going on.
+
+
+
+# 14: Hypotheses.
+
+The calculation seems to produce the triangular number corresponding
+to the lower number. Maybe some pairing is going on, like match
+making, or shaking hands. Keeping with the story, this is the puzzle:
+
+Your submarine (manned by gnomes) is stranded at an octopus party.
+The two numbers are the number of octopi and the number of gnomes.
+The gnomes and the octopi form dance couples. Since the number of
+gnomes and octopi is not equal, some are left to be wall flowers and
+are ignored.
+
+After each song, the gnomes and octopi change partner. How many
+gnome-octopus pairings occured during the party?
