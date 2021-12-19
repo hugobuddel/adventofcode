@@ -1,0 +1,623 @@
+# 0: Introduction
+
+Goal: attempt to figure out what the puzzle of day 17 of advent of
+code 2021 is by reading CCC's rockstar solution from
+https://old.reddit.com/r/adventofcode/comments/ri9kdq/2021_day_17_solutions/hovxq0w/
+
+
+
+# 1: Running
+
+Based on our experience with the code of part 1, let's run the code.
+
+$ rockstar day17part2byCCC.rocks 
+abc=def=3.1.8
+Error: casted MYSTERIOUS
+  day17part2byCCC.rocks:39 (day17part2byCCC.rocks L0): Cast my couplet into rhyme
+
+Perhaps we need more input
+
+$ rockstar day17part2byCCC.rocks 
+1.2.3=4.5.6=7.8.9
+0
+
+Well, it does run!
+
+$ rockstar day17part2byCCC.rocks 
+30.42.17=12.76.89=11.32.44
+0
+
+$ rockstar day17part2byCCC.rocks 
+a.b.c=d.e.f=9.7.5
+Error: null
+
+$ rockstar day17part2byCCC.rocks 
+3.2.3.5=6.7.8.4=9.4.3.4=8.6.8.6
+0
+
+So let's read the code.
+
+
+
+# 2: Working
+
+My work takes my heart and my soul and my life
+  My reality is not real
+  Rock my reality
+  Roll my heart into my hands
+  Rock my hands with my soul into my reality
+  Roll my reality
+  Roll my heart into my hands
+  Rock my hands with my life into my reality
+  Give my reality
+
+Very nice lyrical function! Especially the function signature.
+Let's break it down.
+
+My work is a function with three arguments.
+
+  My reality is not real
+
+My reality is 34, which corresponds to ASCII character "
+
+  Rock my reality
+
+Not sure what rocking a number does. Testing shows it creates an array!
+Good to know. So my reality is [34].
+
+  Roll my heart into my hands
+
+Apparently my heart is an array.
+
+  Rock my hands with my soul into my reality
+
+Hmm, I'm not familiar with the rock-with-into construct.
+Some testing later.. This is just a Rock into statement, the with
+expression is the thing being rocked.
+
+Test program:
+
+handone is "hello"
+Split handone
+Rock my heart with handone
+My soul is four
+
+My reality is not real
+Rock my reality
+Roll my heart into my hands
+Rock my hands with my soul into my reality
+
+Shout my reality
+Shout my reality at 0
+Shout my reality at 1
+Unite my reality
+Shout my reality
+
+Shout ""
+Shout my hands
+Unite my hands
+Shout my hands
+
+This test does not work in rocky:
+Error: Parse problem, should not evaluate 'into' expression
+  rockwithinto.rock:9 (rockwithinto.rock L0): Rock my hands with my soul into my reality
+
+
+So this line adds my hands and my soul and adds the result to
+my reality. Assuming for now that my hands and my soul are numbers,
+but they could be arrays as well. I'm fearing arrays, given CCC's love
+for nested arrays.
+
+  Roll my reality
+
+Remove the 34 from my reality. But why put it there to begin with?
+
+  Roll my heart into my hands
+  Rock my hands with my life into my reality
+
+Take another number from my heart, add my life and store in my reality.
+
+  Give my reality
+
+Return reality
+
+So it seems the the equivalent of this function in Python would be
+
+def work(heart, soul, life):
+    return [ heart[0] + soul, heart[1] + life ]
+
+
+
+# 3: Initializing
+
+
+My poetry is gladly grammatical
+Cast my poetry into the shelves
+My poetry is ever honest
+Cast my poetry into the spot
+Let meaning be my poetry between my poetry
+Let the realisation be nothing without meaning
+
+Same as part 1
+
+the shelves = "="
+the spot = "."
+meaning = 1
+the realisation = -1
+
+
+
+# 4: Input!
+
+Listen to my heart
+
+I will!
+
+Shatter my heart with the shelves
+
+Split with "="
+
+Roll my heart
+
+Throw away the first part (why is it there?)
+
+Roll my heart into my verses
+
+Second part is my verses
+
+Roll my heart into your hands
+Let my wish be your hands
+
+Third part is my wish.
+
+So:
+
+_, my verses, my wish = input().split("=")
+
+Nice lyrics, like in part 1
+
+
+
+# 5: Parsing input
+
+Shatter my wish with the spot
+Shatter my verses with the spot
+
+Split with ".", both probably have three values. So input is like
+ignored=1.2.3=4.5.6
+
+Roll my wish into my heart
+Roll my verses into my haiku
+Roll my wish
+Roll my verses
+Roll my wish into my dreams
+Roll my verses into my couplet
+
+Read parts of the input, throwing away the middle. Or maybe they are
+ranges, and there is no middle!
+mountains=1..3=4..6
+Or just
+=1..3=4..6
+
+Cast my heart into hope
+Cast my haiku into words
+Cast my dreams into reality
+Cast my couplet into rhyme
+
+Make numbers out of the strings. Nice lyrics.
+
+Together, the input is like
+=hope..reality=words..rhyme
+
+
+
+# 6. Sanitize input
+
+If hope is greater than reality
+  Let thought be reality
+  Let reality be hope
+  Let hope be thought
+
+Ensure reality is the larger one.
+
+If words are greater than rhyme
+  Let thought be words
+  Let words be rhyme
+  Let rhyme be thought
+
+Ensure rhyme is the larger one.
+
+So input like
+=5..2=9..3
+should be treated as
+=2..5=3..9
+
+Works well lyrically
+
+
+
+# 7. Prologue
+
+My prologue is the beginning of my story
+
+I'm psyched! Tell me more.
+my prologue = 39225
+One of those magic numbers in AoC challenges it seems.
+
+Let my prologue be my prologue without my prologue
+
+Ah, my prologue is 0! It was a lyrical interlude! :)
+
+Let my book be my prologue
+While my book is less than words
+  Build my prologue up
+  Let my book be my book with my prologue
+
+Calculating triangular numbers again, but in an even more lyrical way!
+my_book = triangular_number(words)
+No! my book is the smallest triangular number higher or equal to words.
+
+Knock my prologue down
+
+But we're not interested in my book, but in my prologue.
+book = prologue * (prologue + 1) / 2
+
+Say
+    words = 8
+Then, at the end of each while loop step
+    prologue=1, book=1
+    prologue=2, book=3
+    prologue=3, book=6
+    prologue=4, book=10
+Then one is removed from prologue
+    prologue=3
+
+Maybe we are squaring something
+
+...X
+..XX
+.XXX
+XXXX
+
+Anyway, prologue is the highest number whose triangular number is
+lower than words.
+
+
+
+# 8. Main loop!
+
+Let my epilogue be rhyme
+Let my end be the realisation of hope
+Let zen be meaning without meaning
+Let my world be zen
+
+epilogue = rhyme (which is the end of the second range)
+my end = -hope (which is the start of the first range)
+my world and zen are both 0
+
+While my prologue is less than my epilogue
+
+Nice lyrical setup, we are building a story here!
+We are now combining values from the two parts of the input, because
+my prologue is derived from hope.
+But so far we have made no assumptions that rhyme is actually higher
+than hope to begin with. (Except it is in the examples we guessed.)
+
+  Build my prologue up
+
+Oh, so we probably just subtracted 1 earlier for convenience.
+
+  Let my start be hope
+  Knock my start down
+
+my start = hope - 1 (one before the first range)
+
+
+
+# 9. Middle loop!
+
+  While my start is less than my end
+
+Huh. my start is hope - 1, and my end is -hope, so was hope negative
+to begin with?
+
+    My place is at your side
+
+my place = 244, another lyrical array-starter I expect
+
+    Rock my place
+    Rock zen into my place
+    Roll my place
+    Rock zen into my place
+
+Indeed, my place is now [zen], so [0]
+Edit: No, my place is [0, 0], see 10 below.
+
+    Build my start up
+    
+OK, so the -1 was probably just to have anice loop
+
+    My time is right
+    Let my time be not my time
+
+My time is -5? No My time is false
+This construct makes way more sense than "my time is false"!
+We will probably set this to true somewhere in the loop if some
+condition is met and then break, or something similar.
+    
+    Let my frontispiece be my prologue
+    Let my paragraph be my start
+
+No clue what a frontispiece is. Something at the start of a book?
+my frontispiece is the lowest value whose triangular number is higher
+than hope
+my paragraph is hope
+
+
+
+# 10. Inner loop
+
+We must be getting close to the real action!
+
+    Until my time is right
+
+Yes indeed, something will happen! CCC's final form!
+
+      Let my place be my work taking my place, my frontispiece, and my paragraph
+
+Pfew. No nested arrays!
+Lyrically this is kinda neat, the function definition and function call
+are so different!
+
+But this will never work, because my place is an array of length one
+and my work requires an array of length two. Or well, it would run, but
+put mysterious in the second part of the return value...
+Oh wait, my place is [0, 0].
+
+      If my frontispiece is greater than zen
+        Knock my frontispiece down
+
+OK decrement my frontispiece if it is not already zero. Remember
+frontispiece is the prologue, which is the smallest number whose
+triangular number is higher than hope.
+
+      Knock my paragraph down
+
+Reduce paragraph (was hope) as well.
+
+      Let my room be my place at zen
+      Let my chair be my place at meaning
+
+Feng shui!
+room and chair are first and second half of my place.
+So my place should indeed be a size-2 array.
+And it starts as [prologue, hope]
+
+      If my room is greater than rhyme
+        My time is right
+
+rhyme is the largest value of the second range, so my room is now
+quite large.
+
+      If my chair is less than hope
+        My time is right
+
+Or my chair is is lower then the lowest value of the first range.
+But my chair is never decremented, so it must be incremented with a
+negative value! my chair is incremented with my life in work, which
+is the second argument, so with my paragraph. Which was hope. And we
+already had a reason to assume hope was negative!
+
+It seems that work is being used to calculate two triangular numbers
+at the same time, because it keeps adding numbers together that are
+decremented each loop. Or something like that.
+
+But if chair starts out as hope, then this loop is quickly over..
+So I probably misunderstood something.
+
+      If my room is as great as words and my room is as weak as rhyme and my chair is as big as hope and my chair is as small as reality
+        My time is right
+
+This looks like the main condition to exit the loop.
+If hope <= chair <= reality & words <= room <= rhyme
+The input is like =hope..reality=words..rhyme
+So we are trying to gte chain and room within the specified ranges.
+
+Visualising the conditionss:
+
+.....hope.....reality.....words.....rhyme.....
+  ^        ^                     ^         ^
+  |        |                     |         \--- my room: time is right
+  |        \-- my chair  &       \-- my room:            time is right
+  \--- my chair:                                         time is right
+
+
+    Build my world up
+
+Incrementing the main counter when the time is right.
+
+
+
+# 11. Exit
+
+Build meaning up
+
+This probably doesn't do anything exept being lyrical.
+
+Shout my world
+
+The main output. So far it is always 0
+
+
+
+
+# 12. Is hope negative?
+
+There were two indications above that hope, the lower end of our first
+range, might be negative. So lets try.
+
+$ rockstar day17part2byCCC.rocks 
+=-12..16=-10..13
+Error: Parse problem, should not evaluate 'into' expression
+  day17part2byCCC.rocks:8 (my work L1):   Rock my hands with my soul into my reality
+  day17part2byCCC.rocks:78 (day17part2byCCC.rocks L0):       Let my place be my work taking my place, my frontispiece, and my paragraph
+  day17part2byCCC.rocks:77 (day17part2byCCC.rocks L0):     Until my time is right
+  day17part2byCCC.rocks:66 (day17part2byCCC.rocks L0):   While my start is less than my end
+  day17part2byCCC.rocks:62 (day17part2byCCC.rocks L0): While my prologue is less than my epilogue
+
+So indeed the code does not work in rocky...
+
+$ node ~/rockstar/satriani/rockstar day17part2byCCC.rocks 
+=-12..16=-10..13
+357
+
+Yes, a number!!
+
+$ node ~/rockstar/satriani/rockstar day17part2byCCC.rocks 
+=-1..1=-1..1
+6
+
+=-1..0=-1..0
+3
+
+=-1..0=0..0
+1
+
+=-1..2=4..9
+0
+
+=0..0=-1..2
+3
+
+=0..0=-1..0
+3
+
+=-2..3=-4..-2
+27
+
+=-4..-2=-2..3
+0
+
+So at least one of the starting ranges must be negative. Sometimes
+both.
+
+
+
+# 13. Reconstructing the inner Until-loop in the other direction.
+
+My world is the main counter, starts at 0, incremented while by start
+is less than my end, when my time is right. This doesn't make sense.
+
+Oh! The indation of "Build my world up" is fake! It is part of the last
+If block, which is therefore indeed the main condition in the loop.
+
+So the Until my time is right block iteratively modifies my room and
+my chair with my work, until they either end up within the two ranges
+(building my world up) or fall outside it (not building the world up).
+
+It seems that my room starts at the low end and increments, and
+my chair starts at the high end and decrements. Or something like that.
+Need to investigate that further.
+
+
+
+# 14. Inspecting the center While-loop further. And the outer loop.
+
+My start loops is the loop counter here, which goes from hope, a
+negative number (the lower end of the first range) to -hope. (Give or
+take an off-by-one error.)
+
+My start is then used as the second argument (my paragraph) of my work.
+It starts negative.
+
+And the outer While loop has my prologue going from
+"the highest number whose triangular number is lower than words"
+to rhyme.
+
+And my prologue is then used as the second first of my work.
+
+These loop boundaries do not make any sense. Not at all convinced they
+are correct.
+
+Then the inner loop simply sees whether for any N
+(N * my prologue, N * my paragraph) falls within the allowed ranges.
+
+
+
+# 15. Some more experiments with input
+
+What do these ranges affect?
+
+words should show discontinuties due to the way my prologue is
+constructed
+
+$ echo "=-12..16=-10..13" | node ~/rockstar/satriani/rockstar day17part2byCCC.rocks 
+357
+$ echo "=-12..16=-11..13" | node ~/rockstar/satriani/rockstar day17part2byCCC.rocks 
+391
+$ echo "=-12..16=-12..13" | node ~/rockstar/satriani/rockstar day17part2byCCC.rocks 
+425
+$ echo "=-12..16=-9..13" | node ~/rockstar/satriani/rockstar day17part2byCCC.rocks 
+323
+$ echo "=-12..16=9..13" | node ~/rockstar/satriani/rockstar day17part2byCCC.rocks 
+0
+
+Nope, the value is always different..
+
+How about rhyme
+$ echo "=-12..16=0..13" | node ~/rockstar/satriani/rockstar day17part2byCCC.rocks 
+17
+$ echo "=-12..16=0..15" | node ~/rockstar/satriani/rockstar day17part2byCCC.rocks 
+17
+$ echo "=-12..16=0..19" | node ~/rockstar/satriani/rockstar day17part2byCCC.rocks 
+17
+
+$ echo "=-12..16=-1..19" | node ~/rockstar/satriani/rockstar day17part2byCCC.rocks 
+51
+$ echo "=-12..16=-1..12" | node ~/rockstar/satriani/rockstar day17part2byCCC.rocks 
+51
+$ echo "=-12..16=-1..1" | node ~/rockstar/satriani/rockstar day17part2byCCC.rocks 
+51
+$ echo "=-12..16=-1..201" | node ~/rockstar/satriani/rockstar day17part2byCCC.rocks 
+51
+
+So.. the value of rhyme does not matter at all??
+
+$ echo "=-12..16=-1..-201" | node ~/rockstar/satriani/rockstar day17part2byCCC.rocks 
+# takes really long
+4626
+$ echo "=-12..16=-1..-21" | node ~/rockstar/satriani/rockstar day17part2byCCC.rocks 
+486
+
+Duh, these are interchanged automatically, so here we are changing
+words again.
+
+Changing hope does not do much either:
+
+$ echo "=-12..16=-18..-1" | node ~/rockstar/satriani/rockstar day17part2byCCC.rocks 
+417
+$ echo "=-11..16=-18..-1" | node ~/rockstar/satriani/rockstar day17part2byCCC.rocks 
+417
+$ echo "=-10..16=-18..-1" | node ~/rockstar/satriani/rockstar day17part2byCCC.rocks 
+417
+ echo "=-9..16=-18..-1" | node ~/rockstar/satriani/rockstar day17part2byCCC.rocks 
+417
+$ echo "=-119..16=-18..-1" | node ~/rockstar/satriani/rockstar day17part2byCCC.rocks 
+417
+
+Unless it is positive:
+
+$ echo "=15..16=-18..-1" | node ~/rockstar/satriani/rockstar day17part2byCCC.rocks 
+70
+$ echo "=14..16=-18..-1" | node ~/rockstar/satriani/rockstar day17part2byCCC.rocks 
+90
+$ echo "=13..16=-18..-1" | node ~/rockstar/satriani/rockstar day17part2byCCC.rocks 
+117
+$ echo "=12..16=-18..-1" | node ~/rockstar/satriani/rockstar day17part2byCCC.rocks 
+137
+
+So hope can be positive...
+
+
+Giving up for now. I think I got this totally wrong....
+
