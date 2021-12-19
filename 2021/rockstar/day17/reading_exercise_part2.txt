@@ -541,6 +541,7 @@ are correct.
 
 Then the inner loop simply sees whether for any N
 (N * my prologue, N * my paragraph) falls within the allowed ranges.
+[Edit: not true, the algorithm builds triangular numbers]
 
 
 
@@ -628,5 +629,23 @@ Some points for future research:
 - the value of my epilogue, that is quite special, but I seem to
   derive it incorrectly,
 - why hope can be both negative and positive
+
+
+
+# 17. Stalactites and stalagmites.
+
+The algorithm seems to calculate two triangular numbers at the same
+time. Part one calculates on of them independently of the other, so
+whatever is calculated seems to be two things that can be considered
+separately. But combined in part two, they need to be aligned in some
+way.
+
+So my new guess is that they are stalagmites and stalactites!
+
+Starting at a certain position and growing until they reach the other
+end, or not.
+
+
+
 
 
