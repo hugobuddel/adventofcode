@@ -619,5 +619,14 @@ $ echo "=12..16=-18..-1" | node ~/rockstar/satriani/rockstar day17part2byCCC.roc
 So hope can be positive...
 
 
+
+# 16. Giving up for now.
+
 Giving up for now. I think I got this totally wrong....
+
+Some points for future research:
+- the value of my epilogue, that is quite special, but I seem to
+  derive it incorrectly,
+- why hope can be both negative and positive
+
 
