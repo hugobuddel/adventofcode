@@ -106,7 +106,7 @@ If foo is T
       If foo is E
         Roll baz into foo
 	If foo is E
-	  Shout "THREE"
+	  let baz be other taking baz, foo
 	  Let end be 3
 	  if start is mysterious
 	  let start be 3
@@ -130,7 +130,7 @@ If foo is O
   If foo is N
     Roll baz into foo
     If foo is E
-      Shout "ONE"
+      let baz be other taking baz, foo
       Let end be 1
       If start is mysterious
         Let start be 1
@@ -151,6 +151,7 @@ If foo is N
       Roll baz into foo
       If foo is E
         Shout "NINE"
+        let baz be other taking baz, foo
 	Let end be 9
 	if start is mysterious
 	  Let start be 9
@@ -175,6 +176,7 @@ If foo is E
         Roll baz into foo
 	If foo is T
 	Shout "EIGHT"
+        let baz be other taking baz, foo
 	Let end be 8
 	if start is mysterious
 	  let start be 8
@@ -199,6 +201,7 @@ If foo is F
     If foo is U
       roll baz into foo
       if foo is R
+        let baz be other taking baz, foo
         let end be 4
         if start is mysterious
           let start be 4
@@ -215,6 +218,7 @@ If foo is F
     if foo is V
       roll baz into foo
       if foo is E
+        let baz be other taking baz, foo
         let end be 5
         if start is mysterious
           let start be 5
