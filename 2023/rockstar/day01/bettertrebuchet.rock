@@ -41,13 +41,18 @@ Let the world be nothing
 Wizard wants globe
 Let tt be globe without 1
 Rock noo
-Shout tt
 While tt is as great as 0
-Shout tt
 Rock noo with globe at tt
 Knock tt down
 
 Give noo
+
+
+
+Other wants power, foot
+let powert be wizard taking power
+rock powert with foot
+give wizard taking powert
 
 
 
@@ -62,7 +67,7 @@ Give it back
 
 
 
-
+let counter be 0
 Listen to bla
 While bla
 Shout bla
@@ -114,6 +119,8 @@ If foo is T
 	(If THREE)
       (If THRE)
     (If THR)
+  Else
+  let baz be other taking baz, foo
   (If TH)
   (If TW)
 Else
@@ -167,9 +174,17 @@ If foo is E
 	if start is mysterious
 	  let start be 8
 	(if start)
+        Else
+        let baz be other taking baz, foo
 	(If EIGHT)
+      Else
+      let baz be other taking baz, foo
       (If EIGH)
+    Else
+    let baz be other taking baz, foo
     (If EIG)
+  Else
+  let baz be other taking baz, foo
   (If EI)
 Else
 If foo is F
@@ -179,25 +194,35 @@ If foo is F
     If foo is U
       roll baz into foo
       if foo is R
-      let end be 4
-      if start is mysterious
-      let start be 4
-      (if start)
+        let end be 4
+        if start is mysterious
+          let start be 4
+        (if start)
+      Else
+      let baz be other taking baz, foo
       (if four)
-    (if fou)
     Else
-    if foo is I
+    let baz be other taking baz, foo
+    (if fou)
+  Else
+  if foo is I
+    roll baz into foo
+    if foo is V
       roll baz into foo
-      if foo is V
-        roll baz into foo
-	if foo is E
-	  let end be 5
-	  if start is mysterious
-	    let start be 5
-	  (if start)
-	(if five)
-      (if fiv)
-    (if fi)
+      if foo is E
+        let end be 5
+        if start is mysterious
+          let start be 5
+        (if start)
+      Else
+      let baz be other taking baz, foo
+      (if five)
+    Else
+    let baz be other taking baz, foo
+    (if fiv)
+  Else
+  let baz be other taking baz, foo
+  (if fi)
   (if fo)
 Else
 If foo is S
@@ -209,6 +234,8 @@ If foo is S
       if start is mysterious
       let start be 6
       (if start)
+    Else
+    let baz be other taking baz, foo
     (if SIX)
   Else
   if foo is E
@@ -222,9 +249,17 @@ If foo is S
 	  if start is mysterious
 	    let start be 7
 	  (if start)
+        Else
+        let baz be other taking baz, foo
 	(if SEVEN)
+      Else
+      let baz be other taking baz, foo
       (if SEVE)
+    Else
+    let baz be other taking baz, foo
     (if SEV)
+  Else
+  let baz be other taking baz, foo
   (if SE)
   (if SI)
 (if S)
@@ -246,9 +281,11 @@ Shout " "
 Let the world be with start of 10
 Let the world be with end
 If the world is mysterious
+shout counter
 shout bla
 ooooooooo
 (if world mysterious)
+build counter up
 Listen to bla
 (While bla)
 
