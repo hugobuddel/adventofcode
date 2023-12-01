@@ -37,6 +37,21 @@ Shout T
 Shout X
 Shout R
 
+
+Wizard wants globe
+Let tt be globe without 1
+Rock noo
+Shout tt
+While tt is as great as 0
+Shout tt
+Rock noo with globe at tt
+Knock tt down
+
+Give noo
+
+
+
+
 The weather was tornadoes
 Storm takes lives
 If lives are as strong as lightning
@@ -114,6 +129,11 @@ If foo is O
         Let start be 1
       (If start)
     (If ONE)
+  Else
+  Shout "Put O back"
+  Let baza be Wizard taking baz
+  Rock baza with foo
+  Let baz be Wizard taking baza
   (If ON)
 Else
 If foo is N
