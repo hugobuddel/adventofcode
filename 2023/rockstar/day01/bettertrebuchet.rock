@@ -36,7 +36,7 @@ Shout G
 Shout T
 Shout X
 Shout R
-
+Let the world be nothing
 
 Wizard wants globe
 Let tt be globe without 1
@@ -243,16 +243,16 @@ Shout end
 Shout " "
 Shout " ==== "
 Shout " "
+Let the world be with start of 10
+Let the world be with end
 Listen to bla
 (While bla)
 
 
 
+shout the world
 
 
 
 
 
-
-Shout N
-(e f g h i n o r s t u v w x)
