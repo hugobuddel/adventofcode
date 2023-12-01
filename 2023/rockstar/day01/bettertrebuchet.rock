@@ -90,18 +90,16 @@ If start is mysterious
 If foonum is mysterious
 Shout "Foonum is mysterious"
 If foo is T
-  Shout "T"
   Roll baz into foo
   If foo is W
-    Shout "W"
     Roll baz into foo
     If foo is O
-      Shout "O"
-      Shout "TWO"
       Let end be 2
       If start is mysterious
         Let start be 2
       (If start)
+    Else
+    let baz be other taking baz, foo
     (If TWO)
   Else
   If foo is H
@@ -116,8 +114,14 @@ If foo is T
 	  if start is mysterious
 	  let start be 3
 	  (if start)
+        Else
+        let baz be other taking baz, foo
 	(If THREE)
+      Else
+      let baz be other taking baz, foo
       (If THRE)
+    Else
+    let baz be other taking baz, foo
     (If THR)
   Else
   let baz be other taking baz, foo
@@ -135,12 +139,11 @@ If foo is O
       If start is mysterious
         Let start be 1
       (If start)
+    Else
+    let baz be other taking baz, foo
     (If ONE)
   Else
-  Shout "Put O back"
-  Let baza be Wizard taking baz
-  Rock baza with foo
-  Let baz be Wizard taking baza
+  let baz be other taking baz, foo
   (If ON)
 Else
 If foo is N
@@ -156,8 +159,14 @@ If foo is N
 	if start is mysterious
 	  Let start be 9
 	(if start)
+      Else
+      let baz be other taking baz, foo
       (if NINE)
+    Else
+    let baz be other taking baz, foo
     (If NIN)
+  Else
+  let baz be other taking baz, foo
   (If NI)
 Else
 If foo is E
