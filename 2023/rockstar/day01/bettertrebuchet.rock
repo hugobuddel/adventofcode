@@ -77,10 +77,8 @@ Let end be mysterious
 Shout start
 Roll baz into foo
 While foo aint nothing
-Shout "  AAAA"
 Shout foo
 Put Storm taking foo into foonum
-Shout foonum
 If foonum aint mysterious
 Let end be foonum
 If start is mysterious
@@ -88,7 +86,6 @@ If start is mysterious
 (If start is mysterious)
 (If foonum aint mysterious)
 If foonum is mysterious
-Shout "Foonum is mysterious"
 If foo is T
   Roll baz into foo
   If foo is W
@@ -128,7 +125,6 @@ If foo is T
   (If TH)
   (If TW)
 Else
-Shout "No T"
 If foo is O
   Roll baz into foo
   If foo is N
@@ -306,3 +302,4 @@ shout the world
 
 
 
+(correct to foursixqgeight5b)
