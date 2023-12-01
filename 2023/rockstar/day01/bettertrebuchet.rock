@@ -1,0 +1,142 @@
+O was a spellcaster necromancer.
+E was 101
+Let F be E with 1
+Let G be F with 1
+Let H be G with 1
+Let I be H with 1
+
+N was 110
+R was 114
+Let S be R with 1
+Let T be S with 1
+Let U be T with 1
+Let V be U with 1
+Let W be V with 1
+Let X be W with 1
+
+Burn O
+Burn E
+Burn F
+Burn G
+Cast H
+Cast I
+Cast N
+Cast R
+Cast S
+Cast T
+Cast U
+Cast V
+Cast W
+Cast X
+
+Shout O
+Shout E
+Shout F
+Shout G
+Shout T
+Shout X
+Shout R
+
+The weather was tornadoes
+Storm takes lives
+If lives are as strong as lightning
+If lives are as weak as the weather
+Burn lives
+Give it back
+
+
+
+
+
+Listen to bla
+While bla
+Shout bla
+Shatter bla into baz
+Let start be mysterious
+Let end be mysterious
+Shout start
+Roll baz into foo
+While foo aint nothing
+Shout "  AAAA"
+Shout foo
+Put Storm taking foo into foonum
+Shout foonum
+If foonum aint mysterious
+Let end be foonum
+If start is mysterious
+  Let start be foonum
+(If start is mysterious)
+(If foonum aint mysterious)
+If foonum is mysterious
+Shout "Foonum is mysterious"
+If foo is T
+  Shout "T"
+  Roll baz into foo
+  If foo is W
+    Shout "W"
+    Roll baz into foo
+    If foo is O
+      Shout "O"
+      Shout "TWO"
+      Let end be 2
+      If start is mysterious
+        Let start be 2
+      (If start)
+    (If TWO)
+  (If TW)
+Else
+Shout "No T"
+If foo is O
+  Roll baz into foo
+  If foo is N
+    Roll baz into foo
+    If foo is E
+      Shout "ONE"
+      Let end be 1
+      If start is mysterious
+        Let start be 1
+      (If start)
+    (If ONE)
+  (If ON)
+Else
+If foo is N
+  Shout "N"
+  Roll baz into foo
+  If foo is I
+    Roll baz into foo
+    If foo is N
+      Roll baz into foo
+      If foo is E
+        Shout "NINE"
+	Let end be 9
+	if start is mysterious
+	  Let start be 9
+	(if start)
+      (if NINE)
+    (If NIN)
+  (If NI)
+(If first letter)
+
+
+(If foo mysterious)
+Roll baz into foo
+(While foo aint nothing)
+Shout "  END"
+Shout start
+Shout end
+Shout " "
+Shout " ==== "
+Shout " "
+Listen to bla
+(While bla)
+
+
+
+
+
+
+
+
+
+Shout N
+(e f g h i n o r s t u v w x)
