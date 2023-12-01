@@ -83,6 +83,23 @@ If foo is T
         Let start be 2
       (If start)
     (If TWO)
+  Else
+  If foo is H
+    Roll baz into foo
+    If foo is R
+      Roll baz into foo
+      If foo is E
+        Roll baz into foo
+	If foo is E
+	  Shout "THREE"
+	  Let end be 3
+	  if start is mysterious
+	  let start be 3
+	  (if start)
+	(If THREE)
+      (If THRE)
+    (If THR)
+  (If TH)
   (If TW)
 Else
 Shout "No T"
@@ -115,13 +132,34 @@ If foo is N
       (if NINE)
     (If NIN)
   (If NI)
-(If first letter)
-
-
+Else
+If foo is E
+  Roll baz into foo
+  If foo is I
+    Roll baz into foo
+    If foo is G
+      Roll baz into foo
+      If foo is H
+        Roll baz into foo
+	If foo is T
+	Shout "EIGHT"
+	Let end be 8
+	if start is mysterious
+	  let start be 8
+	(if start)
+	(If EIGHT)
+      (If EIGH)
+    (If EIG)
+  (If EI)
+(If E)
+(If N)
+(If O)
+(If T)
 (If foo mysterious)
 Roll baz into foo
 (While foo aint nothing)
 Shout "  END"
+Shout bla
 Shout start
 Shout end
 Shout " "
