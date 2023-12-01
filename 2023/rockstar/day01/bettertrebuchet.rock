@@ -171,6 +171,64 @@ If foo is E
       (If EIGH)
     (If EIG)
   (If EI)
+Else
+If foo is F
+  Roll baz into foo
+  if foo is O
+    Roll baz into foo
+    If foo is U
+      roll baz into foo
+      if foo is R
+      let end be 4
+      if start is mysterious
+      let start be 4
+      (if start)
+      (if four)
+    (if fou)
+    Else
+    if foo is I
+      roll baz into foo
+      if foo is V
+        roll baz into foo
+	if foo is E
+	  let end be 5
+	  if start is mysterious
+	    let start be 5
+	  (if start)
+	(if five)
+      (if fiv)
+    (if fi)
+  (if fo)
+Else
+If foo is S
+  Roll baz into foo
+  If foo is I
+    Roll baz into foo
+    If foo is X
+      let end be 6
+      if start is mysterious
+      let start be 6
+      (if start)
+    (if SIX)
+  Else
+  if foo is E
+    roll baz into foo
+    if foo is V
+      roll baz into foo
+      if foo is E
+        roll baz into foo
+	if foo is N
+	  let end be 7
+	  if start is mysterious
+	    let start be 7
+	  (if start)
+	(if SEVEN)
+      (if SEVE)
+    (if SEV)
+  (if SE)
+  (if SI)
+(if S)
+(If F)
 (If E)
 (If N)
 (If O)
