@@ -1,18 +1,41 @@
+Fire is combustible
+
 O was a spellcaster necromancer.
-E was 101
-Let F be E with 1
-Let G be F with 1
-Let H be G with 1
-Let I be H with 1
+
+
+
+A burst is a electrical destruction.
+Let a blast be a burst with fire
+Let a detonation be a blast with fire
+Let an explosion be a detonation with fire
+Let an eruption be an explosion with fire
+
+Let E be a burst
+let F be a blast
+let G be a detonation
+let H be an explosion
+let I be an eruption
 
 N was 110
-R was 114
-Let S be R with 1
-Let T be S with 1
-Let U be T with 1
-Let V be U with 1
-Let W be V with 1
-Let X be W with 1
+
+
+
+Heat was temparature fantasticly high
+Shout heat
+Let a flare be heat with fire
+Let ember be a flare with fire
+Let a flame be ember with fire
+Let a blast be a flame with fire
+Let a blaze be a blast with fire
+Let inferno be a blaze with fire
+
+Let R be heat
+Let S be a flare
+Let T be ember
+Let U be a flame
+let V be a blast
+let W be a blaze
+let X be inferno
 
 Burn O
 Burn E
@@ -29,6 +52,21 @@ Cast V
 Cast W
 Cast X
 
+Shout O
+Shout E
+Shout F
+Shout G
+Shout H
+Shout I
+Shout N
+Shout R
+Shout S
+Shout T
+Shout U
+Shout V
+Shout W
+Shout X
+
 Let the world be nothing
 
 Wizard wants globe
@@ -42,7 +80,7 @@ Give noo
 
 
 
-Other wants power, the firet
+Destroyed wants power, the firet
 let powert be wizard taking power
 rock powert with the firet
 give wizard taking powert
@@ -60,7 +98,6 @@ Give it back
 
 
 
-let counter be 0
 Listen to bla
 While bla
 Shatter bla into the witch
@@ -81,13 +118,13 @@ If the fire is T
   If the fire is W
     Roll the witch into the fire
     If the fire is O
-      let the witch be other taking the witch, the fire
+      let the witch be destroyed taking the witch, the fire
       Let end be 2
       If start is mysterious
         Let start be 2
       (If start)
     Else
-    let the witch be other taking the witch, the fire
+    let the witch be destroyed taking the witch, the fire
     (If TWO)
   Else
   If the fire is H
@@ -97,22 +134,22 @@ If the fire is T
       If the fire is E
         Roll the witch into the fire
 	If the fire is E
-	  let the witch be other taking the witch, the fire
+	  let the witch be destroyed taking the witch, the fire
 	  Let end be 3
 	  if start is mysterious
 	  let start be 3
 	  (if start)
         Else
-        let the witch be other taking the witch, the fire
+        let the witch be destroyed taking the witch, the fire
 	(If THREE)
       Else
-      let the witch be other taking the witch, the fire
+      let the witch be destroyed taking the witch, the fire
       (If THRE)
     Else
-    let the witch be other taking the witch, the fire
+    let the witch be destroyed taking the witch, the fire
     (If THR)
   Else
-  let the witch be other taking the witch, the fire
+  let the witch be destroyed taking the witch, the fire
   (If TH)
   (If TW)
 Else
@@ -121,17 +158,17 @@ If the fire is O
   If the fire is N
     Roll the witch into the fire
     If the fire is E
-      let the witch be other taking the witch, the fire
+      let the witch be destroyed taking the witch, the fire
       Let end be 1
       If start is mysterious
         Let start be 1
       (If start)
     Else
-    let the witch be other taking the witch, the fire
-    let the witch be other taking the witch, N (aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaargh needed for twonine)
+    let the witch be destroyed taking the witch, the fire
+    let the witch be destroyed taking the witch, N (aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaargh needed for twonine)
     (If ONE)
   Else
-  let the witch be other taking the witch, the fire
+  let the witch be destroyed taking the witch, the fire
   (If ON)
 Else
 If the fire is N
@@ -141,19 +178,19 @@ If the fire is N
     If the fire is N
       Roll the witch into the fire
       If the fire is E
-        let the witch be other taking the witch, the fire
+        let the witch be destroyed taking the witch, the fire
 	Let end be 9
 	if start is mysterious
 	  Let start be 9
 	(if start)
       Else
-      let the witch be other taking the witch, the fire
+      let the witch be destroyed taking the witch, the fire
       (if NINE)
     Else
-    let the witch be other taking the witch, the fire
+    let the witch be destroyed taking the witch, the fire
     (If NIN)
   Else
-  let the witch be other taking the witch, the fire
+  let the witch be destroyed taking the witch, the fire
   (If NI)
 Else
 If the fire is E
@@ -165,22 +202,22 @@ If the fire is E
       If the fire is H
         Roll the witch into the fire
 	If the fire is T
-        let the witch be other taking the witch, the fire
+        let the witch be destroyed taking the witch, the fire
 	Let end be 8
 	if start is mysterious
 	  let start be 8
 	(if start)
         Else
-        let the witch be other taking the witch, the fire
+        let the witch be destroyed taking the witch, the fire
 	(If EIGHT)
       Else
-      let the witch be other taking the witch, the fire
+      let the witch be destroyed taking the witch, the fire
       (If EIGH)
     Else
-    let the witch be other taking the witch, the fire
+    let the witch be destroyed taking the witch, the fire
     (If EIG)
   Else
-  let the witch be other taking the witch, the fire
+  let the witch be destroyed taking the witch, the fire
   (If EI)
 Else
 If the fire is F
@@ -190,16 +227,16 @@ If the fire is F
     If the fire is U
       roll the witch into the fire
       if the fire is R
-        let the witch be other taking the witch, the fire
+        let the witch be destroyed taking the witch, the fire
         let end be 4
         if start is mysterious
           let start be 4
         (if start)
       Else
-      let the witch be other taking the witch, the fire
+      let the witch be destroyed taking the witch, the fire
       (if four)
     Else
-    let the witch be other taking the witch, the fire
+    let the witch be destroyed taking the witch, the fire
     (if fou)
   Else
   if the fire is I
@@ -207,19 +244,19 @@ If the fire is F
     if the fire is V
       roll the witch into the fire
       if the fire is E
-        let the witch be other taking the witch, the fire
+        let the witch be destroyed taking the witch, the fire
         let end be 5
         if start is mysterious
           let start be 5
         (if start)
       Else
-      let the witch be other taking the witch, the fire
+      let the witch be destroyed taking the witch, the fire
       (if five)
     Else
-    let the witch be other taking the witch, the fire
+    let the witch be destroyed taking the witch, the fire
     (if fiv)
   Else
-  let the witch be other taking the witch, the fire
+  let the witch be destroyed taking the witch, the fire
   (if fi)
   (if fo)
 Else
@@ -228,13 +265,13 @@ If the fire is S
   If the fire is I
     Roll the witch into the fire
     If the fire is X
-      let the witch be other taking the witch, the fire
+      let the witch be destroyed taking the witch, the fire
       let end be 6
       if start is mysterious
       let start be 6
       (if start)
     Else
-    let the witch be other taking the witch, the fire
+    let the witch be destroyed taking the witch, the fire
     (if SIX)
   Else
   if the fire is E
@@ -244,22 +281,22 @@ If the fire is S
       if the fire is E
         roll the witch into the fire
 	if the fire is N
-          let the witch be other taking the witch, the fire	
+          let the witch be destroyed taking the witch, the fire	
 	  let end be 7
 	  if start is mysterious
 	    let start be 7
 	  (if start)
         Else
-        let the witch be other taking the witch, the fire
+        let the witch be destroyed taking the witch, the fire
 	(if SEVEN)
       Else
-      let the witch be other taking the witch, the fire
+      let the witch be destroyed taking the witch, the fire
       (if SEVE)
     Else
-    let the witch be other taking the witch, the fire
+    let the witch be destroyed taking the witch, the fire
     (if SEV)
   Else
-  let the witch be other taking the witch, the fire
+  let the witch be destroyed taking the witch, the fire
   (if SE)
   (if SI)
 (if S)
@@ -271,29 +308,13 @@ If the fire is S
 (If the fire mysterious)
 Roll the witch into the fire
 (While the fire aint nothing)
-Shout bla
-Shout start
-Shout end
 Let the world be with start of 10
 Let the world be with end
 If the world is mysterious
-shout counter
-shout bla
-ooooooooo
 (if world mysterious)
-build counter up
 Listen to bla
 (While bla)
 
 
 
 shout the world
-
-
-
-
-
-(correct to foursixqgeight5b)
-(one two three four five six seven eight nine)
-
-(fivesix62twonine 5 2 how did that happen!!)
