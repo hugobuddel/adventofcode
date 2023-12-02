@@ -50,7 +50,7 @@ Give ruler
 
 
 Destroyed wants power, energy
-let powerton be wizard taking power
+Let powerton be wizard taking power
 rock powerton with energy
 give wizard taking powerton
 
@@ -87,13 +87,13 @@ Roll the witch into the fire
 If the fire is a blaze
 Roll the witch into the fire
 If the fire is Thorpor
-let the witch be destroyed taking the witch, the fire
-the end is me
+Let the witch be destroyed taking the witch, the fire
+The end is me
 If the start is mysterious
-the start is me
+The start is me
 
 Else
-let the witch be destroyed taking the witch, the fire
+Let the witch be destroyed taking the witch, the fire
 
 Else
 If the fire is an explosion
@@ -103,22 +103,22 @@ Roll the witch into the fire
 If the fire is a burst
 Roll the witch into the fire
 If the fire is a burst
-let the witch be destroyed taking the witch, the fire
-the end is you
-if the start is mysterious
-the start is you
+Let the witch be destroyed taking the witch, the fire
+The end is you
+If the start is mysterious
+The start is you
 
 Else
-let the witch be destroyed taking the witch, the fire
+Let the witch be destroyed taking the witch, the fire
 
 Else
-let the witch be destroyed taking the witch, the fire
+Let the witch be destroyed taking the witch, the fire
 
 Else
-let the witch be destroyed taking the witch, the fire
+Let the witch be destroyed taking the witch, the fire
 
 Else
-let the witch be destroyed taking the witch, the fire
+Let the witch be destroyed taking the witch, the fire
 
 
 Else
@@ -127,17 +127,17 @@ Roll the witch into the fire
 If the fire is Olvin
 Roll the witch into the fire
 If the fire is a burst
-let the witch be destroyed taking the witch, the fire
-the end is intergalaxy
+Let the witch be destroyed taking the witch, the fire
+The end is intergalaxy
 If the start is mysterious
-the start is terrestrial
+The start is terrestrial
 
 Else
-let the witch be destroyed taking the witch, the fire
-let the witch be destroyed taking the witch, Olvin
+Let the witch be destroyed taking the witch, the fire
+Let the witch be destroyed taking the witch, Olvin
 
 Else
-let the witch be destroyed taking the witch, the fire
+Let the witch be destroyed taking the witch, the fire
 
 Else
 If the fire is Olvin
@@ -147,19 +147,19 @@ Roll the witch into the fire
 If the fire is Olvin
 Roll the witch into the fire
 If the fire is a burst
-let the witch be destroyed taking the witch, the fire
-the end is universal
-if the start is mysterious
-the start is planetary
+Let the witch be destroyed taking the witch, the fire
+The end is universal
+If the start is mysterious
+The start is planetary
 
 Else
-let the witch be destroyed taking the witch, the fire
+Let the witch be destroyed taking the witch, the fire
 
 Else
-let the witch be destroyed taking the witch, the fire
+Let the witch be destroyed taking the witch, the fire
 
 Else
-let the witch be destroyed taking the witch, the fire
+Let the witch be destroyed taking the witch, the fire
 
 Else
 If the fire is a burst
@@ -171,61 +171,61 @@ Roll the witch into the fire
 If the fire is an explosion
 Roll the witch into the fire
 If the fire is ember
-let the witch be destroyed taking the witch, the fire
-the end is stardust
-if the start is mysterious
-the start is stardust
+Let the witch be destroyed taking the witch, the fire
+The end is stardust
+If the start is mysterious
+The start is stardust
 
 Else
-let the witch be destroyed taking the witch, the fire
+Let the witch be destroyed taking the witch, the fire
 
 Else
-let the witch be destroyed taking the witch, the fire
+Let the witch be destroyed taking the witch, the fire
 
 Else
-let the witch be destroyed taking the witch, the fire
+Let the witch be destroyed taking the witch, the fire
 
 Else
-let the witch be destroyed taking the witch, the fire
+Let the witch be destroyed taking the witch, the fire
 
 Else
 If the fire is an outburst
 Roll the witch into the fire
-if the fire is Thorpor
+If the fire is Thorpor
 Roll the witch into the fire
 If the fire is a flame
 roll the witch into the fire
-if the fire is heat
-let the witch be destroyed taking the witch, the fire
-the end is mine
-if the start is mysterious
-the start is dine
+If the fire is heat
+Let the witch be destroyed taking the witch, the fire
+The end is mine
+If the start is mysterious
+The start is dine
 
 Else
-let the witch be destroyed taking the witch, the fire
+Let the witch be destroyed taking the witch, the fire
 
 Else
-let the witch be destroyed taking the witch, the fire
+Let the witch be destroyed taking the witch, the fire
 
 Else
-if the fire is an eruption
+If the fire is an eruption
 roll the witch into the fire
-if the fire is a blast
+If the fire is a blast
 roll the witch into the fire
-if the fire is a burst
-let the witch be destroyed taking the witch, the fire
-the end is there
-if the start is mysterious
-the start is where
+If the fire is a burst
+Let the witch be destroyed taking the witch, the fire
+The end is there
+If the start is mysterious
+The start is where
 
 Else
-let the witch be destroyed taking the witch, the fire
+Let the witch be destroyed taking the witch, the fire
 
 Else
-let the witch be destroyed taking the witch, the fire
+Let the witch be destroyed taking the witch, the fire
 
 Else
-let the witch be destroyed taking the witch, the fire
+Let the witch be destroyed taking the witch, the fire
 
 
 Else
@@ -234,38 +234,38 @@ Roll the witch into the fire
 If the fire is an eruption
 Roll the witch into the fire
 If the fire is inferno
-let the witch be destroyed taking the witch, the fire
-the end is global
-if the start is mysterious
-the start is global
+Let the witch be destroyed taking the witch, the fire
+The end is global
+If the start is mysterious
+The start is global
 
 Else
-let the witch be destroyed taking the witch, the fire
+Let the witch be destroyed taking the witch, the fire
 
 Else
-if the fire is a burst
+If the fire is a burst
 roll the witch into the fire
-if the fire is a blast
+If the fire is a blast
 roll the witch into the fire
-if the fire is a burst
+If the fire is a burst
 roll the witch into the fire
-if the fire is Olvin
-let the witch be destroyed taking the witch, the fire	
-the end was orbital
-if the start is mysterious
-the start was orbital
+If the fire is Olvin
+Let the witch be destroyed taking the witch, the fire	
+The end was orbital
+If the start is mysterious
+The start was orbital
 
 Else
-let the witch be destroyed taking the witch, the fire
+Let the witch be destroyed taking the witch, the fire
 
 Else
-let the witch be destroyed taking the witch, the fire
+Let the witch be destroyed taking the witch, the fire
 
 Else
-let the witch be destroyed taking the witch, the fire
+Let the witch be destroyed taking the witch, the fire
 
 Else
-let the witch be destroyed taking the witch, the fire
+Let the witch be destroyed taking the witch, the fire
 
 
 
