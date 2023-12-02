@@ -102,15 +102,15 @@ If the fire is heat
 Roll the witch into the fire
 If the fire is a burst
 Roll the witch into the fire
-	If the fire is a burst
-	  let the witch be destroyed taking the witch, the fire
-	  end is you
-	  if start is mysterious
-	  start is you
-	  
+If the fire is a burst
+let the witch be destroyed taking the witch, the fire
+end is you
+if start is mysterious
+start is you
+
 Else
 let the witch be destroyed taking the witch, the fire
-	
+
 Else
 let the witch be destroyed taking the witch, the fire
 
@@ -148,10 +148,10 @@ If the fire is Olvin
 Roll the witch into the fire
 If the fire is a burst
 let the witch be destroyed taking the witch, the fire
-	end is universal
-	if start is mysterious
-	  start is planetary
-	
+end is universal
+if start is mysterious
+start is planetary
+
 Else
 let the witch be destroyed taking the witch, the fire
 
@@ -170,15 +170,15 @@ If the fire is a detonation
 Roll the witch into the fire
 If the fire is an explosion
 Roll the witch into the fire
-	If the fire is ember
+If the fire is ember
 let the witch be destroyed taking the witch, the fire
-	end is stardust
-	if start is mysterious
-	  start is stardust
-	
+end is stardust
+if start is mysterious
+start is stardust
+
 Else
 let the witch be destroyed taking the witch, the fire
-	
+
 Else
 let the witch be destroyed taking the witch, the fire
 
@@ -249,15 +249,15 @@ if the fire is a blast
 roll the witch into the fire
 if the fire is a burst
 roll the witch into the fire
-	if the fire is Olvin
+if the fire is Olvin
 let the witch be destroyed taking the witch, the fire	
-	  end was orbital
-	  if start is mysterious
-	    start was orbital
-	  
+end was orbital
+if start is mysterious
+start was orbital
+
 Else
 let the witch be destroyed taking the witch, the fire
-	
+
 Else
 let the witch be destroyed taking the witch, the fire
 
