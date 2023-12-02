@@ -42,9 +42,9 @@ Give noo
 
 
 
-Other wants power, foot
+Other wants power, the firet
 let powert be wizard taking power
-rock powert with foot
+rock powert with the firet
 give wizard taking powert
 
 
@@ -63,203 +63,203 @@ Give it back
 let counter be 0
 Listen to bla
 While bla
-Shatter bla into baz
+Shatter bla into the witch
 Let start be mysterious
 Let end be mysterious
-Roll baz into foo
-While foo aint nothing
-Put Storm taking foo into foonum
-If foonum aint mysterious
-Let end be foonum
+Roll the witch into the fire
+While the fire aint nothing
+Put Storm taking the fire into the firenum
+If the firenum aint mysterious
+Let end be the firenum
 If start is mysterious
-  Let start be foonum
+  Let start be the firenum
 (If start is mysterious)
-(If foonum aint mysterious)
-If foonum is mysterious
-If foo is T
-  Roll baz into foo
-  If foo is W
-    Roll baz into foo
-    If foo is O
-      let baz be other taking baz, foo
+(If the firenum aint mysterious)
+If the firenum is mysterious
+If the fire is T
+  Roll the witch into the fire
+  If the fire is W
+    Roll the witch into the fire
+    If the fire is O
+      let the witch be other taking the witch, the fire
       Let end be 2
       If start is mysterious
         Let start be 2
       (If start)
     Else
-    let baz be other taking baz, foo
+    let the witch be other taking the witch, the fire
     (If TWO)
   Else
-  If foo is H
-    Roll baz into foo
-    If foo is R
-      Roll baz into foo
-      If foo is E
-        Roll baz into foo
-	If foo is E
-	  let baz be other taking baz, foo
+  If the fire is H
+    Roll the witch into the fire
+    If the fire is R
+      Roll the witch into the fire
+      If the fire is E
+        Roll the witch into the fire
+	If the fire is E
+	  let the witch be other taking the witch, the fire
 	  Let end be 3
 	  if start is mysterious
 	  let start be 3
 	  (if start)
         Else
-        let baz be other taking baz, foo
+        let the witch be other taking the witch, the fire
 	(If THREE)
       Else
-      let baz be other taking baz, foo
+      let the witch be other taking the witch, the fire
       (If THRE)
     Else
-    let baz be other taking baz, foo
+    let the witch be other taking the witch, the fire
     (If THR)
   Else
-  let baz be other taking baz, foo
+  let the witch be other taking the witch, the fire
   (If TH)
   (If TW)
 Else
-If foo is O
-  Roll baz into foo
-  If foo is N
-    Roll baz into foo
-    If foo is E
-      let baz be other taking baz, foo
+If the fire is O
+  Roll the witch into the fire
+  If the fire is N
+    Roll the witch into the fire
+    If the fire is E
+      let the witch be other taking the witch, the fire
       Let end be 1
       If start is mysterious
         Let start be 1
       (If start)
     Else
-    let baz be other taking baz, foo
-    let baz be other taking baz, N (aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaargh needed for twonine)
+    let the witch be other taking the witch, the fire
+    let the witch be other taking the witch, N (aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaargh needed for twonine)
     (If ONE)
   Else
-  let baz be other taking baz, foo
+  let the witch be other taking the witch, the fire
   (If ON)
 Else
-If foo is N
-  Roll baz into foo
-  If foo is I
-    Roll baz into foo
-    If foo is N
-      Roll baz into foo
-      If foo is E
-        let baz be other taking baz, foo
+If the fire is N
+  Roll the witch into the fire
+  If the fire is I
+    Roll the witch into the fire
+    If the fire is N
+      Roll the witch into the fire
+      If the fire is E
+        let the witch be other taking the witch, the fire
 	Let end be 9
 	if start is mysterious
 	  Let start be 9
 	(if start)
       Else
-      let baz be other taking baz, foo
+      let the witch be other taking the witch, the fire
       (if NINE)
     Else
-    let baz be other taking baz, foo
+    let the witch be other taking the witch, the fire
     (If NIN)
   Else
-  let baz be other taking baz, foo
+  let the witch be other taking the witch, the fire
   (If NI)
 Else
-If foo is E
-  Roll baz into foo
-  If foo is I
-    Roll baz into foo
-    If foo is G
-      Roll baz into foo
-      If foo is H
-        Roll baz into foo
-	If foo is T
-        let baz be other taking baz, foo
+If the fire is E
+  Roll the witch into the fire
+  If the fire is I
+    Roll the witch into the fire
+    If the fire is G
+      Roll the witch into the fire
+      If the fire is H
+        Roll the witch into the fire
+	If the fire is T
+        let the witch be other taking the witch, the fire
 	Let end be 8
 	if start is mysterious
 	  let start be 8
 	(if start)
         Else
-        let baz be other taking baz, foo
+        let the witch be other taking the witch, the fire
 	(If EIGHT)
       Else
-      let baz be other taking baz, foo
+      let the witch be other taking the witch, the fire
       (If EIGH)
     Else
-    let baz be other taking baz, foo
+    let the witch be other taking the witch, the fire
     (If EIG)
   Else
-  let baz be other taking baz, foo
+  let the witch be other taking the witch, the fire
   (If EI)
 Else
-If foo is F
-  Roll baz into foo
-  if foo is O
-    Roll baz into foo
-    If foo is U
-      roll baz into foo
-      if foo is R
-        let baz be other taking baz, foo
+If the fire is F
+  Roll the witch into the fire
+  if the fire is O
+    Roll the witch into the fire
+    If the fire is U
+      roll the witch into the fire
+      if the fire is R
+        let the witch be other taking the witch, the fire
         let end be 4
         if start is mysterious
           let start be 4
         (if start)
       Else
-      let baz be other taking baz, foo
+      let the witch be other taking the witch, the fire
       (if four)
     Else
-    let baz be other taking baz, foo
+    let the witch be other taking the witch, the fire
     (if fou)
   Else
-  if foo is I
-    roll baz into foo
-    if foo is V
-      roll baz into foo
-      if foo is E
-        let baz be other taking baz, foo
+  if the fire is I
+    roll the witch into the fire
+    if the fire is V
+      roll the witch into the fire
+      if the fire is E
+        let the witch be other taking the witch, the fire
         let end be 5
         if start is mysterious
           let start be 5
         (if start)
       Else
-      let baz be other taking baz, foo
+      let the witch be other taking the witch, the fire
       (if five)
     Else
-    let baz be other taking baz, foo
+    let the witch be other taking the witch, the fire
     (if fiv)
   Else
-  let baz be other taking baz, foo
+  let the witch be other taking the witch, the fire
   (if fi)
   (if fo)
 Else
-If foo is S
-  Roll baz into foo
-  If foo is I
-    Roll baz into foo
-    If foo is X
-      let baz be other taking baz, foo
+If the fire is S
+  Roll the witch into the fire
+  If the fire is I
+    Roll the witch into the fire
+    If the fire is X
+      let the witch be other taking the witch, the fire
       let end be 6
       if start is mysterious
       let start be 6
       (if start)
     Else
-    let baz be other taking baz, foo
+    let the witch be other taking the witch, the fire
     (if SIX)
   Else
-  if foo is E
-    roll baz into foo
-    if foo is V
-      roll baz into foo
-      if foo is E
-        roll baz into foo
-	if foo is N
-          let baz be other taking baz, foo	
+  if the fire is E
+    roll the witch into the fire
+    if the fire is V
+      roll the witch into the fire
+      if the fire is E
+        roll the witch into the fire
+	if the fire is N
+          let the witch be other taking the witch, the fire	
 	  let end be 7
 	  if start is mysterious
 	    let start be 7
 	  (if start)
         Else
-        let baz be other taking baz, foo
+        let the witch be other taking the witch, the fire
 	(if SEVEN)
       Else
-      let baz be other taking baz, foo
+      let the witch be other taking the witch, the fire
       (if SEVE)
     Else
-    let baz be other taking baz, foo
+    let the witch be other taking the witch, the fire
     (if SEV)
   Else
-  let baz be other taking baz, foo
+  let the witch be other taking the witch, the fire
   (if SE)
   (if SI)
 (if S)
@@ -268,9 +268,9 @@ If foo is S
 (If N)
 (If O)
 (If T)
-(If foo mysterious)
-Roll baz into foo
-(While foo aint nothing)
+(If the fire mysterious)
+Roll the witch into the fire
+(While the fire aint nothing)
 Shout bla
 Shout start
 Shout end
