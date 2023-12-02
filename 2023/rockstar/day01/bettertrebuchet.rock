@@ -29,13 +29,6 @@ Cast V
 Cast W
 Cast X
 
-Shout O
-Shout E
-Shout F
-Shout G
-Shout T
-Shout X
-Shout R
 Let the world be nothing
 
 Wizard wants globe
@@ -70,14 +63,11 @@ Give it back
 let counter be 0
 Listen to bla
 While bla
-Shout bla
 Shatter bla into baz
 Let start be mysterious
 Let end be mysterious
-Shout start
 Roll baz into foo
 While foo aint nothing
-Shout foo
 Put Storm taking foo into foonum
 If foonum aint mysterious
 Let end be foonum
@@ -144,14 +134,12 @@ If foo is O
   (If ON)
 Else
 If foo is N
-  Shout "N"
   Roll baz into foo
   If foo is I
     Roll baz into foo
     If foo is N
       Roll baz into foo
       If foo is E
-        Shout "NINE"
         let baz be other taking baz, foo
 	Let end be 9
 	if start is mysterious
@@ -176,7 +164,6 @@ If foo is E
       If foo is H
         Roll baz into foo
 	If foo is T
-	Shout "EIGHT"
         let baz be other taking baz, foo
 	Let end be 8
 	if start is mysterious
@@ -283,13 +270,9 @@ If foo is S
 (If foo mysterious)
 Roll baz into foo
 (While foo aint nothing)
-Shout "  END"
 Shout bla
 Shout start
 Shout end
-Shout " "
-Shout " ==== "
-Shout " "
 Let the world be with start of 10
 Let the world be with end
 If the world is mysterious
