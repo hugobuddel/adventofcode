@@ -91,6 +91,7 @@ If foo is T
   If foo is W
     Roll baz into foo
     If foo is O
+      let baz be other taking baz, foo
       Let end be 2
       If start is mysterious
         Let start be 2
@@ -239,6 +240,7 @@ If foo is S
   If foo is I
     Roll baz into foo
     If foo is X
+      let baz be other taking baz, foo
       let end be 6
       if start is mysterious
       let start be 6
@@ -254,6 +256,7 @@ If foo is S
       if foo is E
         roll baz into foo
 	if foo is N
+          let baz be other taking baz, foo	
 	  let end be 7
 	  if start is mysterious
 	    let start be 7
@@ -307,3 +310,4 @@ shout the world
 
 
 (correct to foursixqgeight5b)
+(one two three four five six seven eight nine)
