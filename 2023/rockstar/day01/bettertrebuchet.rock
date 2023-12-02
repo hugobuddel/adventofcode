@@ -128,6 +128,7 @@ If foo is O
       (If start)
     Else
     let baz be other taking baz, foo
+    let baz be other taking baz, N (aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaargh needed for twonine)
     (If ONE)
   Else
   let baz be other taking baz, foo
@@ -294,3 +295,5 @@ shout the world
 
 (correct to foursixqgeight5b)
 (one two three four five six seven eight nine)
+
+(fivesix62twonine 5 2 how did that happen!!)
