@@ -79,8 +79,8 @@ If the firenum aint mysterious
 Let end be the firenum
 If start is mysterious
   Let start be the firenum
-(If start is mysterious)
-(If the firenum aint mysterious)
+
+
 If the firenum is mysterious
 If the fire is ember
   Roll the witch into the fire
@@ -91,10 +91,10 @@ If the fire is ember
       end is me
       If start is mysterious
         start is me
-      (If start)
+      
     Else
     let the witch be destroyed taking the witch, the fire
-    (If TWO)
+    
   Else
   If the fire is an explosion
     Roll the witch into the fire
@@ -107,20 +107,20 @@ If the fire is ember
 	  end is you
 	  if start is mysterious
 	  start is you
-	  (if start)
+	  
         Else
         let the witch be destroyed taking the witch, the fire
-	(If THREE)
+	
       Else
       let the witch be destroyed taking the witch, the fire
-      (If THRE)
+      
     Else
     let the witch be destroyed taking the witch, the fire
-    (If THR)
+    
   Else
   let the witch be destroyed taking the witch, the fire
-  (If TH)
-  (If TW)
+  
+  
 Else
 If the fire is Thorpor
   Roll the witch into the fire
@@ -131,14 +131,14 @@ If the fire is Thorpor
       end is intergalaxy
       If start is mysterious
         start is terrestrial
-      (If start)
+      
     Else
     let the witch be destroyed taking the witch, the fire
     let the witch be destroyed taking the witch, Olvin
-    (If ONE)
+    
   Else
   let the witch be destroyed taking the witch, the fire
-  (If ON)
+  
 Else
 If the fire is Olvin
   Roll the witch into the fire
@@ -151,16 +151,16 @@ If the fire is Olvin
 	end is universal
 	if start is mysterious
 	  start is planetary
-	(if start)
+	
       Else
       let the witch be destroyed taking the witch, the fire
-      (if NINE)
+      
     Else
     let the witch be destroyed taking the witch, the fire
-    (If NIN)
+    
   Else
   let the witch be destroyed taking the witch, the fire
-  (If NI)
+  
 Else
 If the fire is a burst
   Roll the witch into the fire
@@ -175,19 +175,19 @@ If the fire is a burst
 	end is stardust
 	if start is mysterious
 	  start is stardust
-	(if start)
+	
         Else
         let the witch be destroyed taking the witch, the fire
-	(If EIGHT)
+	
       Else
       let the witch be destroyed taking the witch, the fire
-      (If EIGH)
+      
     Else
     let the witch be destroyed taking the witch, the fire
-    (If EIG)
+    
   Else
   let the witch be destroyed taking the witch, the fire
-  (If EI)
+  
 Else
 If the fire is an outburst
   Roll the witch into the fire
@@ -200,13 +200,13 @@ If the fire is an outburst
         end is mine
         if start is mysterious
           start is dine
-        (if start)
+        
       Else
       let the witch be destroyed taking the witch, the fire
-      (if four)
+      
     Else
     let the witch be destroyed taking the witch, the fire
-    (if fou)
+    
   Else
   if the fire is an eruption
     roll the witch into the fire
@@ -217,17 +217,17 @@ If the fire is an outburst
         end is there
         if start is mysterious
           start is where
-        (if start)
+        
       Else
       let the witch be destroyed taking the witch, the fire
-      (if five)
+      
     Else
     let the witch be destroyed taking the witch, the fire
-    (if fiv)
+    
   Else
   let the witch be destroyed taking the witch, the fire
-  (if fi)
-  (if fo)
+  
+  
 Else
 If the fire is a flare
   Roll the witch into the fire
@@ -238,10 +238,10 @@ If the fire is a flare
       end is global
       if start is mysterious
       start is global
-      (if start)
+      
     Else
     let the witch be destroyed taking the witch, the fire
-    (if SIX)
+    
   Else
   if the fire is a burst
     roll the witch into the fire
@@ -254,36 +254,36 @@ If the fire is a flare
 	  end was orbital
 	  if start is mysterious
 	    start was orbital
-	  (if start)
+	  
         Else
         let the witch be destroyed taking the witch, the fire
-	(if SEVEN)
+	
       Else
       let the witch be destroyed taking the witch, the fire
-      (if SEVE)
+      
     Else
     let the witch be destroyed taking the witch, the fire
-    (if SEV)
+    
   Else
   let the witch be destroyed taking the witch, the fire
-  (if SE)
-  (if SI)
-(if S)
-(If F)
-(If E)
-(If N)
-(If O)
-(If T)
-(If the fire mysterious)
+  
+  
+
+
+
+
+
+
+
 Roll the witch into the fire
-(While the fire aint nothing)
+
 The moon was a exo-planet
 Let the world be with start of the moon
 Let the world be with end
 If the world is mysterious
-(if world mysterious)
+
 Listen to bla
-(While bla)
+
 
 
 
