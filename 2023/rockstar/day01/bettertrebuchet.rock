@@ -4,18 +4,11 @@ Let Olvin be Thorpor without fire
 
 
 A burst is a electrical destruction.
-Let a blast be a burst with fire
-Let a detonation be a blast with fire
+Let an outburst be a burst with fire
+Let a detonation be an outburst with fire
 Let an explosion be a detonation with fire
 Let an eruption be an explosion with fire
 
-Let E be a burst
-let F be a blast
-let G be a detonation
-let H be an explosion
-let I be an eruption
-let O be Thorpor
-let N be Olvin
 
 
 
@@ -27,6 +20,28 @@ Let a blast be a flame with fire
 Let a blaze be a blast with fire
 Let inferno be a blaze with fire
 
+Burn a burst
+Burn an outburst
+Burn a detonation
+Burn an explosion
+Burn an eruption
+Burn Thorpor
+Burn Olvin
+Burn heat
+Burn a flare
+Burn ember
+Burn a flame
+Burn a blast
+Burn a blaze
+Burn inferno
+
+Let E be a burst
+let F be an outburst
+let G be a detonation
+let H be an explosion
+let I be an eruption
+let O be Thorpor
+let N be Olvin
 Let R be heat
 Let S be a flare
 Let T be ember
@@ -34,36 +49,6 @@ Let U be a flame
 let V be a blast
 let W be a blaze
 let X be inferno
-
-Burn O
-Burn E
-Burn F
-Burn G
-Cast H
-Cast I
-Cast N
-Cast R
-Cast S
-Cast T
-Cast U
-Cast V
-Cast W
-Cast X
-
-Shout O
-Shout E
-Shout F
-Shout G
-Shout H
-Shout I
-Shout N
-Shout R
-Shout S
-Shout T
-Shout U
-Shout V
-Shout W
-Shout X
 
 Let the world be nothing
 
