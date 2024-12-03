@@ -20,10 +20,14 @@ Dr Heidritz is sad
 A banana is fun
 While Ms Ankor is entertained
 The enemy is bored
+Friends are bad
 If the garbage was totally the bin
 Give nothing
 
 If the garbage is greater than the bin and Dr Heidritz is the enemy
+Give nothing
+
+If the garbage is less than the bin and Dr Heidritz is friends
 Give nothing
 
 Let The overflow be the garbage without the bin
