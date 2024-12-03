@@ -1,0 +1,59 @@
+Shout "Advent of Code 2024 day 2!"
+
+A hammer is too advantageous
+Shout a hammer
+Cast a hammer
+Shout "A" + a hammer +"B"
+Safety takes effort
+Shout effort
+If effort is nothing
+Give nothing
+
+Shatter effort with a hammer
+Shout effort
+Roll effort into the garbage
+Roll effort into the bin
+Burn the garbage with 10
+Burn the bin with 10
+Shout "HB2 " + the garbage + "-" + the bin
+Dr Heidritz is happy
+If the garbage is greater than the bin
+Shout "Larger " + the garbage + ">" + the bin
+Dr Heidritz is sad
+
+While Ms Ankor is entertained
+If the garbage was totally the bin
+Shout "Equal, so nothing"
+Give nothing
+
+If the garbage is greater than the bin and Dr Heidritz is 5
+Shout "Garbage is greater, so nothing"
+Give nothing
+
+Let the garbage be the bin
+Roll effort into the bin
+Shout "HB4 " + the bin
+If the bin is mysterious
+Shout "No other problems, so 1"
+Give 1
+
+Burn the bin with 10
+Shout "HB5 " + the bin
+
+
+
+Shout "HB1"
+Security is nothing
+While reactor is safe
+Listen to the system
+Shout "HB " + the system + " - "  + reactor
+If the system is nothing
+Reactor is in danger
+
+Shout "HB " + the system + " - "  + reactor
+Let q be safety taking the system
+Shout "HB6 " + q
+Security is with q
+
+
+Shout security
