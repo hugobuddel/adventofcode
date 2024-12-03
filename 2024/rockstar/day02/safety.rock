@@ -1,4 +1,5 @@
 Shout "Advent of Code 2024 day 2!"
+Shout "Still in debugging stage."
 
 A hammer is too advantageous
 Shout a hammer
@@ -28,6 +29,16 @@ Give nothing
 
 If the garbage is greater than the bin and Dr Heidritz is 5
 Shout "Garbage is greater, so nothing"
+Give nothing
+
+Let The overflow be the garbage without the bin
+Shout "HB2 " + the garbage + " - " + the bin + " - " + the overflow
+If the overflow is less than nothing
+Shout "HB3 " + the overflow
+The overflow is nothing without the overflow
+Shout "HB4 " + the overflow
+
+If the overflow is greater than 3
 Give nothing
 
 Let the garbage be the bin
