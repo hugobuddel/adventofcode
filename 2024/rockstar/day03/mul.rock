@@ -1,0 +1,106 @@
+Shout "Advent of Code 2024 Day 3!"
+
+
+The baker takes wheat
+Shout "a" + wheat
+If wheat is mysterious or wheat is nothing
+Shout "o"
+Give it back
+
+Shout "b" + wheat
+4
+
+
+
+Shout "Start Baking"
+Shout the baker taking mysterious
+Shout the baker taking null
+Shout the baker taking "m"
+Shout the baker taking "3"
+Shout the baker taking "q"
+Shout "Done Baking"
+
+
+
+
+
+The sawer takes wood
+Value is everything
+Shout value
+Roll wood into the saw
+Shout "the saw1 " + the saw
+If the saw is mysterious
+Give 0
+
+Burn the saw
+The saw is without 48
+Shout "the saw2 " + the saw
+If the saw is 61 (m)
+Give the miller taking wood (todo: add m back)
+
+Shout "the saw3 " + the saw
+Shout the saw is less than 10
+If the saw is weaker than 10
+Shout "the saw4 " + the saw
+If the saw is as strong as 0
+Shout "the saw5 " + the saw
+The saw is times 10
+Shout "the saw6 " + the saw
+
+
+Give the saw
+
+
+Wood is "23"
+Cut wood 
+Shout the sawer taking wood
+
+
+
+
+
+The Miller takes wood
+Roll wood into mill
+Shout "mill1 " + mill
+If mill ain't "m"
+Give nothing
+
+Roll wood into mill
+Shout "mill2 " + mill
+If mill is "m"
+Give the miller taking wood
+
+If mill ain't "u"
+Give nothing
+
+Roll wood into mill
+Shout "mill3 " + mill
+If mill is "m"
+Give the miller taking wood
+
+If mill ain't "l"
+Give nothing
+
+Roll wood into mill
+Shout "mill4 " + mill
+If mill is "m"
+Give the miller taking wood
+
+If mill ain't "("
+Give nothing
+
+Give the sawer taking wood
+
+
+
+There is all the things
+While there is nothing
+Shout " "
+Listen to the material
+Shout the material
+If the material is nothing
+There is something
+Else
+Shatter the material
+Let the result be the miller taking the material
+Shout the result
